@@ -296,14 +296,13 @@ input[disabled] {
 .postsFooterNav .page-numbers {
   font-size: 14px;
   color: #404b69;
-  padding: 0.5rem;
+  padding: 0.65rem 0.5rem;
   font-weight: 400;
   background-color: #f4f5f9;
   font-size: 0.75rem;
   border-radius: 0.2rem;
   margin-right: 8px;
 }
-.cute,
 .postsFooterNav .page-numbers.current,
 .postsFooterNav .page-numbers:hover {
   color: #fff !important;
@@ -755,5 +754,5 @@ input[disabled] {
 }
 .dot {
   color: #f1404b;
-  margin-right: 0.5rem;
+  margin: 0 0.5rem;
 }

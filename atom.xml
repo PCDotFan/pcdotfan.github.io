@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-26T11:57:32.164Z</updated>
+    <updated>2020-01-26T15:25:26.664Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -180,6 +180,153 @@
 <li>模型驱动：使用模型及策略 / 值函数</li>
 <li>Actor-critic：同时使用策略 + 值函数</li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[强化学习：冰湖游戏 The Frozen Lake]]></title>
+        <id>https://blog.g4.cx/post/the-frozen-lake</id>
+        <link href="https://blog.g4.cx/post/the-frozen-lake">
+        </link>
+        <updated>2019-11-05T03:23:44.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>冰湖的游戏规则是这样的，类似于迷宫：</p>
+<ul>
+<li>冰湖总共有 16 个小格（4x4），小格有两种类型：冰面（F）和冰窟（H）</li>
+<li>从起点（S）出发，到达终点（G）或掉入冰窟（H）为游戏结束</li>
+<li>你控制着一个小人，在冰面（F）上可以按四个方向移动，用数字代表移动方向（左 0 / 下 1 / 右 2 / 上 3）</li>
+<li>你的目的是到达终点，而不是掉进洞里</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20191105113330.png" alt="" loading="lazy"></figure>
+<p>为了解释方便，我们再来给迷宫掰掰细节：</p>
+<ul>
+<li><code>状态（State）</code>：给每个小格做编号（0~15），例如第一行第三列编号为 2，第二行第一列编号为 4，以此类推</li>
+<li>移动后可能会去往另一个冰面——当然咯，如果你已经掉到洞里或者已经到达终点了：不管怎么移动都不会再改变状态</li>
+<li>在边界位置移动可能会撞到墙——撞墙了不会改变状态</li>
+</ul>
+<h2 id="搭个环境">搭个环境</h2>
+<pre><code class="language-python">import gym
+import numpy as np
+
+env = gym.make('FrozenLake-v0', is_slippery=False)
+</code></pre>
+<p>执行 <code>env.render()</code> 后可查看当前冰湖的状态：</p>
+<pre><code class="language-python">env.reset() # 重置环境           
+env.render() # 输出当前环境
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20191105115716.png" alt="" loading="lazy"></figure>
+<p>以 <code>红色背景</code> 标记当前小人的位置。<code>env.action_space</code> 和 <code>env.observation_space</code> 返回的是 <code>Discrete</code> 类型，它们都描述大小为 <code>n</code> 的离散空间：</p>
+<pre><code class="language-python">print(&quot;Action space: &quot;, env.action_space) # Discrete(4) 意味着可执行四种动作
+print(&quot;Observation space: &quot;, env.observation_space) # Discrete(16) 意味着空间大小为 16
+</code></pre>
+<p>为了能让小人移动，我们还需要用到两个 API：<code>env.action_space.sample()</code> 和 <code>env.step()</code></p>
+<pre><code class="language-python">random_action = env.action_space.sample()
+print(random_action) # 返回 0, 1, 2, 3 其中之一，代表移动的方向
+
+new_state, reward, done, info = env.step(random_action) # 输入函数，操作后将按照所给方向移动
+# 返回四个值的 Tuple：
+# new_state: 移动后所在的状态（位置）
+# reward: 获得的奖励（目前始终为 0，不涉及）
+# done: 布尔值，代表游戏是否结束（掉坑里或者走到终点了返回 True）
+# info: 调试用
+</code></pre>
+<p>知道这些之后，可以让小人随便走几步，每走一步输出一次当前环境的信息：</p>
+<pre><code class="language-python">env.reset() # 走之前先重置环境
+MAX_ITERATION = 10 # 走 10 步
+
+for i in range(MAX_ITERATION):
+    random_action = env.action_space.sample()
+    print(env.step(random_action))
+    env.render()
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20191105121029.png" alt="" loading="lazy"></figure>
+<h2 id="值迭代">值迭代</h2>
+<p>对于冰湖游戏来说，在 4x4 的网格上有以下规则：</p>
+<ul>
+<li>不能掉到窟窿里，否则游戏结束（奖励 - 1）</li>
+<li>在行走过程中没有奖励</li>
+<li>当做出的动作超出边界时，会保持原地不动，没有奖励</li>
+<li>（is_Slippery=True 时）冰面上执行动作会有 1/3 的概率打滑，从而向其它的三个方向移动</li>
+</ul>
+<p>为了简化整个值迭代叙述的流程，先假设路途中没有窟窿、也不会有打滑的现象发生：</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20200126231854.png" alt="" loading="lazy"></figure>
+<p>以马里奥找宝箱为例（和冰湖大同小异，图就不做了……），每一个位置（状态）上都有着自己所对应的值，值的不断迭代（变化）由贝尔曼方程决定：</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20200126231907.png" alt="" loading="lazy"></figure>
+<p>唯一的区别是冰湖系统中行走没有奖励，上图每行走一步需要耗费一点体力（Reward - 1）</p>
+<p>以找宝箱为例，迭代过程如下：</p>
+<ul>
+<li>初始化：所有位置值初始化为 0</li>
+<li>在每个位置上都尝试一遍上下左右，并且记录下每个动作带来的奖励以及新位置（状态）。这时根据奖励的多少得出选择最优的Action，更新V(s) = Reward + V(s') = -1 + 0。因为第一轮从任何位置移动都会耗费一点体力，所以除了宝箱位置（走到宝箱游戏结束）之外所有位置（状态）都为 -1.</li>
+<li>第二轮迭代：重复第一步操作，这时对于宝箱周围的位置（State），最优的行为当然是走到宝箱位置，所以此时离宝箱最近的几个位置值最大，V(s) = Reward + V(s') = -1 + 0</li>
+<li>第三轮迭代：重复第二步操作，此时取了最佳动作之后倘若还没有走到宝箱处的 State 再 – 1，这时距离最远的两个位置（State） 值最小，离宝箱最近的值最大，这时迭代已找到最优策略：只需要往损失最小的方向行走，就一定能找到宝箱。</li>
+</ul>
+<p>冰湖游戏也类似。</p>
+<h2 id="策略迭代">策略迭代</h2>
+<p>值迭代是根据行进过程中不断探索得出了最佳的策略；策略迭代则是反过来：先生成一条路线，然后评估它够不够好——如果不够那就再来一次，直至评估值趋向不变为止。</p>
+<p>还是以简化后的系统马里奥找宝箱为例：</p>
+<figure data-type="image" tabindex="6"><img src="https://cdn.mywpku.com/20200126232016.png" alt="" loading="lazy"></figure>
+<p>策略迭代公式：</p>
+<figure data-type="image" tabindex="7"><img src="https://cdn.mywpku.com/20200126232030.png" alt="" loading="lazy"></figure>
+<p>策略迭代过程如下：</p>
+<ul>
+<li>初始化：随机选择策略，比如一直向下走</li>
+<li>策略评估：计算V(s)，如果宝藏恰好在正下方，则期望价值等于到达宝藏的距离(-2或者-1)；如果宝藏不在正下方，则永远也不可能找到宝藏，期望价值为负无穷。</li>
+<li>策略提升：根据V(s) 找到更好的策略，如果宝藏不在正下方，根据可以得出最优策略为横向移动一步</li>
+<li>迭代：对上一步继续执行策略评估和提升，直至策略不再变化为止。</li>
+</ul>
+<p>可以看出策略迭代和值迭代最终所生成的 Q Table 应是一致的。</p>
+<h2 id="代码解释">代码解释</h2>
+<pre><code class="language-python">import gym  
+import numpy as np  
+env = gym.make('FrozenLake-v0')  
+    
+def value_iteration(env, gamma = 1.0):  
+    value_table = np.zeros(env.observation_space.n)  
+    # 迭代次数  
+    no_of_iterations = 100000  
+    # 阈值  
+    threshold = 1e-20  
+    
+    for i in range(no_of_iterations):  
+        updated_value_table = np.copy(value_table)  
+        
+        for state in range(env.observation_space.n):  
+            Q_value = []  
+    
+            for action in range(env.action_space.n):  # 遍历所有可能转移的状态  
+                next_states_rewards = []  
+                for next_sr in env.P[state][action]:  
+                    trans_prob, next_state, reward_prob, _ = next_sr  
+                    # 下一状态 t 的动作状态价值 = 转移到 t 状态的概率 × （ 环境反馈的 reward + γ × t 状态的当前价值 ）  
+                    next_states_rewards.append((trans_prob * (reward_prob + gamma * updated_value_table[next_state])))  
+                # 将某一动作执行后，将所有可能的 t+1 状态的价值加起来   
+                Q_value.append(np.sum(next_states_rewards))  
+            # 选 Q_value 的最大值作为该状态的价值  
+            value_table[state] = max(Q_value)  
+    
+            # 如果已经非常接近理想值（相差小于阈值），则终止循环返回值表  
+            if (np.sum(np.fabs(updated_value_table - value_table)) &lt;= threshold):  
+                print ('Value-iteration converged at iteration# %d.' %(i+1))  
+                break  
+    return value_table  
+    
+def extract_policy(value_table, gamma = 1.0):  
+    policy = np.zeros(env.observation_space.n)  
+    # 与值迭代不同，策略迭代不更新值函数，而是选出每个状态下对应最大价值的动作  
+    for state in range(env.observation_space.n):  
+        Q_table = np.zeros(env.action_space.n)  
+        for action in range(env.action_space.n):  
+            for next_sr in env.P[state][action]:  
+                trans_prob, next_state, reward_prob, _ = next_sr  
+                Q_table[action] += (trans_prob * (reward_prob + gamma * value_table[next_state]))  
+                policy[state] = np.argmax(Q_table)  
+    return policy  
+    
+optimal_value_function = value_iteration(env=env,gamma=1.0)  
+optimal_policy = extract_policy(optimal_value_function, gamma=1.0)  
+    
+print(optimal_policy) 
+</code></pre>
+<p></p>
 ]]></content>
     </entry>
     <entry>
@@ -558,101 +705,6 @@ ajax( &quot;http://some.url.2&quot;, bFunc );
 <p>在 JavaScript 的特性中，这种函数顺序的不确定性就是通常所说的竞态条件（race condition），<code>foo()</code> 和 <code>bar()</code> 相互竞争，看谁先运行。具体来说，因为无法可靠预测 a 和 b 的最终结果，所以才是竞态条件。</p>
 </blockquote>
 <p>如何「规避」这种不确定性呢？最容易想到的一种方法就是「设置门闸」。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ES6 - 箭头函数]]></title>
-        <id>https://blog.g4.cx/post/es6-jian-tou-han-shu</id>
-        <link href="https://blog.g4.cx/post/es6-jian-tou-han-shu">
-        </link>
-        <updated>2019-06-09T11:03:50.000Z</updated>
-        <summary type="html"><![CDATA[<p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
-<!-- more -->
-<h2 id="更简明的语法-隐式返回">更简明的语法 &amp; 隐式返回</h2>
-<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
-    let aPlusOne = a.map(function(x) {
-      return x + 1;
-    })
-    console.log(aPlusOne); // (9) [2, 3, 4, 5, 6, 7, 8, 9, 10]
-</code></pre>
-<p>以上，<code>map</code> 的参数是 <code>function(x)</code> 这一个匿名函数，对数组的每一个元素 <code>+1</code>。有了 ES6，这一段代码可以这样修改：</p>
-<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
-    let aPlusOne = a.map( x =&gt; {
-      return x + 1;
-    })
-    console.log(aPlusOne);
-</code></pre>
-<p>也就是去掉了前面的 <code>function</code> 声明，将迭代器 <code>x</code> 直接写在 <code>a.map</code> 内作为参数。用一个箭头 <code>=&gt;</code> 指向函数块。</p>
-<p>哦当然咯，如果匿名函数内的参数不止一个，那么之前的 <code>a.map(x =&gt; ...)</code> 还是需要将参数用括号包起来，像这样：<code>a.map( (x,y) =&gt; ...)</code></p>
-<p>实际上，如果这个「匿名函数」的作用能简单到只用一行 <code>return</code> 就搞定的话，以上代码还能再简单一点：</p>
-<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
-    let aPlusOne = a.map( x =&gt; x+1);
-    console.log(aPlusOne);
-</code></pre>
-<p>箭头直接指向 return 后的表达式，这就是 <strong>隐式返回</strong>。</p>
-<h2 id="不绑定-this">不绑定 <code>this</code></h2>
-<p>我并不太懂这个「不绑定 <code>this</code>」更深层次是虾米意思……回头仔细看看，先照搬例子。</p>
-<pre><code class="language-javascript">    let Computer = {
-      company: 'ThinkPad',
-      name: 'Carbon X1',
-      features: ['fast', 'inexpensive', 'squared-shape'],
-      ram: '8G',
-      printFeatures: function() {
-        this.features.map(function(feature) {
-          console.log(`${this.name} is ${feature}`);
-        })
-      }
-    }
-    Computer.printFeatures(); // TypeError: Cannot read property 'name' of undefined
-</code></pre>
-<p>这里我们给 Computer 这个对象的 printFeatures 属性声明了一个匿名函数，但奇怪的是似乎取不到 <code>this.name</code>。<br>
-常规做法，我们会先给检查 <code>this</code> 是否绑定在 <code>Computer</code> 上：</p>
-<pre><code class="language-javascript">    let Computer = {
-        // ...
-        printFeatures: function() {
-        this.features.map(function(feature) {
-          console.log(this);
-         //  console.log(`${this.name} is ${feature}`);
-        })
-      }
-    }
-    Computer.printFeatures(); // undefined
-</code></pre>
-<p>实际上，<code>console.log(this)</code> 在 <code>features.map</code> 内的匿名函数里面，既不是直接赋值给对象上的属性，又没用什么 <code>callback</code> 之类的方法——导致 <code>this</code> 实际上指向的是 <code>window</code> 或者是 <code>undefined</code>（严格模式下）<br>
-在 ES5，可以使用这样的 Hack：</p>
-<pre><code class="language-javascript">    // ...
-      printFeatures: function() {
-        var computer = this;
-        this.features.map(function(feature) {
-          console.log(`${computer.name} is ${feature}`); // Carbon X1 is fast ...
-        })
-      }
-  // ...
-</code></pre>
-<p>由于 <code>var</code> 是函数作用域，且 <code>this</code> 所指向的也是 <code>Computer</code> 这个变量，则自然代码可以正常运行。<br>
-在 ES6 则没有这么麻烦了，直接使用「箭头函数」就可以避免这种不必要的尴尬：</p>
-<pre><code class="language-javascript">    // ...
-    printFeatures: function() {
-        this.features.map(feature =&gt; {
-          console.log(`${this.name} is ${feature}`);
-        })
-      }
-    // ...
-</code></pre>
-<p>为什么呢？实际上，箭头函数根本「没有自己的 <code>this</code>」：</p>
-<blockquote>
-<p>this 对象的指向是可变的，但是在箭头函数中，它是固定的。this 指向的固定化，并不是因为箭头函数内部有绑定 this 的机制，实际原因是箭头函数根本没有自己的 this，导致内部的 this 就是外层代码块的 this。正是因为它没有 this，所以也就不能用作构造函数。</p>
-</blockquote>
-<h2 id="箭头函数雷区">箭头函数雷区</h2>
-<blockquote>
-<p>ES6 标准入门 - 阮一峰<br>
-箭头函数使用注意点：<br>
-（1）函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。<br>
-（2）不可以当作构造函数，也就是说，不可以使用 new 命令，否则会抛出一个错误。<br>
-（3）不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</p>
-</blockquote>
 ]]></content>
     </entry>
 </feed>

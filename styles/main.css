@@ -1,10 +1,4 @@
 @font-face {
-  font-family: dinmedium;
-  src: url(../media/museo500-regular-webfont.woff2) format("woff2"), url(../media/museo500-regular-webfont.woff) format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
   font-family: 'iconfont';
   src: url('../media/iconfont.woff2') format('woff2'), url('../media/iconfont.woff') format('woff'), url('../media/iconfont.svg#iconfont') format('svg');
 }
@@ -255,15 +249,15 @@ input[disabled] {
 }
 .site-title {
   font-size: 36px;
-  font-family: dinmedium;
+  font-family: Lato;
 }
 .site-description {
   font-size: 20px;
-  font-family: dinmedium;
+  font-family: Lato;
 }
 .subnav-ul {
   text-align: right;
-  font-family: dinmedium;
+  font-family: Lato;
   padding-bottom: 80px;
 }
 .subnav-ul li {
@@ -296,7 +290,7 @@ input[disabled] {
 }
 .postsFooterNav {
   font-size: 18px;
-  font-family: dinmedium;
+  font-family: Lato;
   color: #222831;
 }
 .postsFooterNav .page-numbers {
@@ -335,7 +329,7 @@ input[disabled] {
 }
 .more-link {
   font-size: 14px;
-  font-family: dinmedium;
+  font-family: Lato;
   color: #f1404b;
 }
 .block-featured {
@@ -364,6 +358,9 @@ input[disabled] {
   font-weight: 700;
   color: #222831;
 }
+.block-title:hover {
+  color: #f1404b;
+}
 .block-title:before {
   background: #f1404b none repeat scroll 0 0;
   content: " ";
@@ -377,7 +374,7 @@ input[disabled] {
 }
 .block-postMetaWrap,
 .site-footer {
-  font-family: dinmedium;
+  font-family: Lato;
   font-size: 14px;
   margin-top: 2rem;
 }
@@ -528,7 +525,7 @@ input[disabled] {
 .comment_triggered input,
 .comment_triggered textarea,
 .comments_block_title {
-  font-family: dinmedium;
+  font-family: Lato;
 }
 .doc_comments .comments .comment .author .reply {
   background-color: #f1404b;
@@ -537,12 +534,12 @@ input[disabled] {
   padding: 3px 8px;
   position: absolute;
   right: 0;
-  font-family: dinmedium;
+  font-family: Lato;
 }
 .author-date {
   font-size: 12px;
   color: #222831;
-  font-family: dinmedium;
+  font-family: Lato;
   color: #7a8b9a;
 }
 .comments-area {

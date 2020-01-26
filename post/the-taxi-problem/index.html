@@ -1,0 +1,227 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0,minimal-ui">
+<title>强化学习：The Taxi Problem |
+    PCDotFan</title>
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580053711214">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="surface-content">
+  <header class="site-header">
+      <div class="container">
+          <div class="topNav">
+              <ul class="subnav-ul">
+                
+                  
+                    <li><a href="/" aria-current="page">首页</a></li>
+                  
+                
+                  
+                    <li><a href="https://blog.g4.cx/tags/music" aria-current="page">音乐</a></li>
+                  
+                
+                  
+                    <li><a href="/post/about" aria-current="page">关于</a></li>
+                  
+                
+              </ul>
+              <div class="social-container">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </div>
+          </div>
+          <h1 class="site-title">
+              <a href="https://blog.g4.cx">PCDotFan</a>
+          </h1>
+          <p class="site-description">A straight jacket for your mind.</p>
+      </div>
+  </header>
+    <main class="main-content">
+      <section class="block-content container">
+        
+        <h2 class="block-title">
+          强化学习：The Taxi Problem
+        </h2>
+        <div class="block-postMetaWrap">
+          <i class="dot">•</i>
+          <time>2020-01-26</time>
+          
+        </div>
+        <div class="grap">
+          <p>接上一篇 <a href="https://blog.g4.cx/post/the-frozen-lake/">强化学习：The Frozen Lake</a>，同样是使用 OpenAI Gym 来玩另一个游戏：The Taxi Problem。环境和接口都大同小异。</p>
+<!--more-->
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20200126232510.png" alt="" loading="lazy"></figure>
+<h2 id="基本参数">基本参数</h2>
+<h3 id="envrender">env.render()</h3>
+<ul>
+<li>蓝色 B：接乘客点</li>
+<li>紫色 Y：乘客下车位置</li>
+<li>|：代表不能穿越的墙</li>
+<li>黄块：出租车，当车上有乘客时会变绿</li>
+</ul>
+<h3 id="action_space-observation_space">action_space / observation_space</h3>
+<ul>
+<li>action_space：[0, 1, 2, 3, 4, 5] # 左下右上，接乘客，放下乘客</li>
+<li>observation_space：[0, 1, … , 24] # 5x5 网格</li>
+</ul>
+<h2 id="q-learning-解决-taxi-问题">Q-Learning 解决 Taxi 问题</h2>
+<p>对于出租车游戏来说，有以下规则：</p>
+<ul>
+<li>在一个地点接乘客，然后送到指定的另一个地点</li>
+<li>完成一次成功载客，可以得到 20 分；将乘客送到错误地点会扣 10 分</li>
+<li>出租车每移动一步，扣 1 分</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20200126233211.png" alt="" loading="lazy"></figure>
+<p>Q-Learning 执行过程如下：</p>
+<ul>
+<li>初始化q表，将所有0和q值初始化为任意常数。</li>
+<li>让智能体对环境作出反应並探索这些操作（并选取 6 种操作中最好的一种）</li>
+<li>执行上一步选择的操作</li>
+<li>重复，选择最好的一种操作（q 值最高）</li>
+<li>使用公式更新 q 表值</li>
+<li>不断重复，如果达到状态则结束。</li>
+</ul>
+<pre><code class="language-python">import gym  
+import random  
+    
+env = gym.make('Taxi-v2')  
+    
+alpha = 0.4  
+# 衰减因子  
+gamma = 0.999  
+# ε  
+epsilon = 0.017  
+    
+# 初始化Q表  
+Q = {}  
+for s in range(env.observation_space.n):  
+    for a in range(env.action_space.n):  
+        Q[(s, a)] = 0  
+    
+# 更新Q表  
+def update_q_table(prev_state, action, reward, nextstate, alpha, gamma):  
+    # maxQ(s',a')  
+    qa = max([Q[(nextstate, a)] for a in range(env.action_space.n)])  
+    # 更新Q值  
+    Q[(prev_state, action)] += alpha * (reward + gamma * qa - Q[(prev_state, action)])  
+    
+    
+# ε-greedy 策略选取动作  
+def epsilon_greedy_policy(state, epsilon):  
+    # 随机选取一个另外的动作  
+    if random.uniform(0, 1) &lt; epsilon:  
+        return env.action_space.sample()  
+    # 否则，选取令当前状态下 Q 值最大的动作  
+    else:  
+        return max(list(range(env.action_space.n)), key=lambda x: Q[(state, x)])  
+    
+    
+for i in range(1000):  
+    r = 0  
+    # 初始化  
+    state = env.reset()  
+    while True:  
+        # 采用 ε-greedy 选取动作并执行  
+        action = epsilon_greedy_policy(state, epsilon)  
+        nextstate, reward, done, _ = env.step(action)  
+        # 将当前与上一步信息一同更新Q表  
+        update_q_table(state, action, reward, nextstate, alpha, gamma)  
+        # 切换到下一状态  
+        state = nextstate  
+        # 累加奖励  
+        r += reward  
+        # 当游戏达到最终状态时结束  
+        if done:  
+            break  
+    
+    print(&quot;Total reward: %d&quot; % (r))  
+env.close()
+</code></pre>
+<h2 id="sarsa-解决-taxi-问题">SARSA 解决 Taxi 问题</h2>
+<p>与 Q-Learning 流程类似，唯一不同在于更新 Q 表的方式：</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20200126233156.png" alt="" loading="lazy"></figure>
+<pre><code class="language-python">for i in range(1000):  
+    r = 0  
+    state = env.reset()  
+    action = epsilon_greedy_policy(state, epsilon)  
+    while True:  
+        # 执行动作得到的一些信息  
+        nextstate, reward, done, _ = env.step(action)  
+        # 采用 ε-greedy 策略选取下一步的动作  
+        nextaction = epsilon_greedy_policy(nextstate, epsilon)  
+        # 更新Q表  
+        Q[(state, action)] += alpha * (reward + gamma * Q[(nextstate, nextaction)] - Q[(state, action)])  
+        # 切换到下一动作  
+        action = nextaction  
+        # 切换到下一状态  
+        state = nextstate  
+        # 累加奖励  
+        r += reward  
+        # 判断episode是否到达最终状态  
+        if done:  
+            break  
+    print(&quot;Total reward: %d&quot; % (r))  
+</code></pre>
+<h2 id="q-learning-和-sarsa-的异同">Q-Learning 和 SARSA 的异同</h2>
+<p>Q-Learning: 初始化 Q 值 -&gt; 开始迭代 -&gt; 选择状态中最好动作（epsilon-greedy） -&gt; 执行动作并切换到新状态，获得奖励 -&gt; 根据 Q(s,a) 更新 Q 表 -&gt; 如果不是终止状态，循环往复</p>
+<p>SARSA：初始化 Q 值 -&gt; 开始迭代 -&gt; 选择状态中最好动作（epsilon-greedy） -&gt; 执行动作并切换到新状态，获得奖励 -&gt; 根据经验选择状态最好动作（epsilon-greedy） -&gt; 根据前一状态更新 Q 表 -&gt; 如果不是终止状态，循环往复</p>
+<p>可以看出，Q-Learning在每一步都采用 ε-greedy 来选取最好动作，这也就导致了下一次选取的动作跟上一次没有直接关系；而SARSA会根据前一状态更新 Q 表，而后再采用 ε-greedy 来选取最好动作。</p>
+
+        </div>
+        <div class="tag-list">
+          
+        </div>
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+   
+      </section>
+    </main>
+        <footer class="site-footer">
+        <p class="container">
+            Made with
+<span class="cute iconfont icon-heart"></span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+        </p>
+    </footer>
+</div>
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+      
+  </body>
+</html>

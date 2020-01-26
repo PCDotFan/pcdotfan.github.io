@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0,minimal-ui">
+<title>强化学习：[DQN] The Pacman |
+    PCDotFan</title>
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580053711214">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="surface-content">
+  <header class="site-header">
+      <div class="container">
+          <div class="topNav">
+              <ul class="subnav-ul">
+                
+                  
+                    <li><a href="/" aria-current="page">首页</a></li>
+                  
+                
+                  
+                    <li><a href="https://blog.g4.cx/tags/music" aria-current="page">音乐</a></li>
+                  
+                
+                  
+                    <li><a href="/post/about" aria-current="page">关于</a></li>
+                  
+                
+              </ul>
+              <div class="social-container">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </div>
+          </div>
+          <h1 class="site-title">
+              <a href="https://blog.g4.cx">PCDotFan</a>
+          </h1>
+          <p class="site-description">A straight jacket for your mind.</p>
+      </div>
+  </header>
+    <main class="main-content">
+      <section class="block-content container">
+        
+        <div
+          class="post-feature-image"
+          style="background-image: url('https://cdn.mywpku.com/20200126233725.png')"
+        ></div>
+        
+        <h2 class="block-title">
+          强化学习：[DQN] The Pacman
+        </h2>
+        <div class="block-postMetaWrap">
+          <i class="dot">•</i>
+          <time>2020-01-26</time>
+          
+        </div>
+        <div class="grap">
+          <!--more-->
+<h2 id="基本参数">基本参数</h2>
+<h3 id="envrender">env.render()</h3>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20200126233632.png" alt="" loading="lazy"></figure>
+<p>210x160 的界面，RGB 三通道</p>
+<h3 id="action_space-observation_space">action_space / observation_space</h3>
+<ul>
+<li>action_space：<code>['NOOP', 'UP', 'RIGHT', 'LEFT', 'DOWN', 'UPRIGHT', 'UPLEFT', 'DOWNRIGHT', 'DOWNLEFT']</code></li>
+<li>observation_space：<code>Box(210, 160, 3)</code></li>
+</ul>
+<h2 id="图像预处理">图像预处理</h2>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20200126233917.png" alt="" loading="lazy"></figure>
+<pre><code class="language-python"># 吃豆人颜色
+color = np.array([210, 164, 74]).mean()
+
+def preprocess_observation(obs):
+
+    # 裁剪和转换图片尺寸
+    img = obs[1:176:2, ::2]
+    # 图像转换成灰度
+    img = img.mean(axis=2)
+    # 加强图像对比
+    img[img==color] = 0
+    # 正则化，使值分布在 [-1, 1]
+    img = (img - 128) / 128 - 1
+   return img.reshape(88,80,1)
+</code></pre>
+<pre><code>在实际的训练过程中颜色属于无关信息，过大的尺寸也会影响训练的速度。因此对图像转换成 88x80 并灰度处理。
+</code></pre>
+<h2 id="设置网络">设置网络</h2>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20200126233935.png" alt="" loading="lazy"></figure>
+<p>因为 DQN 是双网络结构，所以封装一个 <code>q_network</code> 函数便于调用。</p>
+<pre><code class="language-python">def q_network(X, name_scope): 
+    
+    # 初始化
+    initializer = tf.contrib.layers.variance_scaling_initializer()
+
+    with tf.variable_scope(name_scope) as scope:
+        
+        # 初始化卷积层
+        layer_1 = conv2d(X, num_outputs=32, kernel_size=(8,8), stride=4, padding='SAME', weights_initializer=initializer)
+
+	   # Tensorboard 绘图用
+        tf.summary.histogram('layer_1',layer_1)
+
+        layer_2 = conv2d(layer_1, num_outputs=64, kernel_size=(4,4), stride=2, padding='SAME', weights_initializer=initializer)
+        tf.summary.histogram('layer_2',layer_2)
+
+        layer_3 = conv2d(layer_2, num_outputs=64, kernel_size=(3,3), stride=1, padding='SAME', weights_initializer=initializer)
+        tf.summary.histogram('layer_3',layer_3) 
+
+        # 在放入全连接层前先展平第三层结果
+        flat = flatten(layer_3)
+        fc = fully_connected(flat, num_outputs=128, weights_initializer=initializer)           
+
+        tf.summary.histogram('fc',fc)
+        output = fully_connected(fc, num_outputs=9, activation_fn=None, weights_initializer=initializer)
+        tf.summary.histogram(‘output’,output) # 存储网络参数（权重等）
+
+        vars = {
+        v.name[len(scope.name):]: v for v in tf.get_collection(key=tf.GraphKeys.TRAINABLE_VARIABLES, scope=scope.name)
+        }
+
+        return vars, output
+</code></pre>
+<h2 id="epsilon-greedy-算法">Epsilon-Greedy 算法</h2>
+<p>由于初始阶段「经验」不足，因此固定的行为模式未必要比随机的探索环境更好（实际上在前期，随机动作大多都要比使用经验执行的动作效果要好）。因此我们可以设定一个 Epislon 值来表示执行随机操作的概率，智能体在选择动作时有两种选项：一是执行随机操作（概率为 Epsilon），二是执行根据经验得出的最佳动作（概率为 1 - Epsilon）。</p>
+<pre><code class="language-python">epsilon = 0.5 
+eps_min = 0.05
+eps_max = 1.0
+eps_decay_steps = 500000
+
+def epsilon_greedy(action, step):
+    epsilon = max(eps_min, eps_max - (eps_max-eps_min) * step/eps_decay_steps)
+    if np.random.rand() &lt; epsilon:
+        return np.random.randint(n_outputs)
+    else:
+        return action 
+</code></pre>
+<p>Epsilon 应该随着经验的增多而逐渐减小，最后绝大部分动作都从经验当中得出。</p>
+<h2 id="经验回放缓冲">经验回放缓冲</h2>
+<p>因为每一次游戏都能获得经验，因此我们选择设计一个游戏经验池，每一次从其中取出 5 份，在训练时随机抽取。</p>
+<pre><code class="language-python">buffer_len = 20000
+exp_buffer = deque(maxlen=buffer_len)
+
+def sample_memories(batch_size):
+    perm_batch = np.random.permutation(len(exp_buffer))[:batch_size]
+    mem = np.array(exp_buffer)[perm_batch]
+    return mem[:,0], mem[:,1], mem[:,2], mem[:,3], mem[:,4] 
+</code></pre>
+<h2 id="超参数定义">超参数定义</h2>
+<ul>
+<li><code>num_episodes</code>：决定游玩的游戏回合数</li>
+<li><code>batch_size</code>：批尺寸，过小将导致不能完全收敛，过大将占用过多的内存容量，花费的时间也会成倍增加。</li>
+<li><code>input_shape / X_shape</code>：数据的输入形状</li>
+<li><code>learning_rate</code>：学习率，学习率大收敛速度快，但容易出现损失值爆炸 / 震荡的情况；学习率小收敛速度慢，容易出现过拟合</li>
+<li><code>discount_factor</code>：计算奖励的 gamma 值，越趋向 1 代表模型越有「远见」，但训练也越困难。</li>
+</ul>
+<h2 id="代码解释">代码解释</h2>
+<pre><code class="language-python">logdir = 'logs'
+tf.reset_default_graph()
+ 
+# 初始化变量
+X = tf.placeholder(tf.float32, shape=X_shape)
+ 
+# 设定一个布尔值来切换「训练模式」
+in_training_mode = tf.placeholder(tf.bool)
+ 
+# 设定好主要的 Q 网络及对应的输出
+mainQ, mainQ_outputs = q_network(X, 'mainQ')
+ 
+# 目标 Q 网络也是同样的建立方法
+targetQ, targetQ_outputs = q_network(X, 'targetQ')
+ 
+# 初始化变量
+X_action = tf.placeholder(tf.int32, shape=(None,))
+Q_action = tf.reduce_sum(
+    targetQ_outputs * tf.one_hot(X_action, 9), axis=-1, keep_dims=True)
+ 
+
+copy_op = [tf.assign(main_name, targetQ[var_name])
+                     for var_name, main_name in mainQ.items()]
+copy_target_to_main = tf.group(*copy_op)
+ 
+# 初始化变量，设定输出的占位符
+y = tf.placeholder(tf.float32, shape=(None, 1))
+ 
+# 损失函数，实际值与预测值两者之差（方差）
+loss = tf.reduce_mean(tf.square(y - Q_action))
+ 
+# 使用优化算法 Adam
+optimizer = tf.train.AdamOptimizer(learning_rate)
+training_op = optimizer.minimize(loss)
+ 
+init = tf.global_variables_initializer()
+ 
+# Tensorboard
+loss_summary = tf.summary.scalar('LOSS', loss)
+merge_summary = tf.summary.merge_all()
+file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
+ 
+with tf.Session() as sess:
+    init.run()
+
+    for i in range(num_episodes):
+        done = False
+        obs = env.reset()
+        epoch = 0
+        episodic_reward = 0
+        episodic_loss = []
+ 
+        # 反复进行，直至游戏结束（命用完了）
+        while not done:
+
+            # 处理画面
+            obs = preprocess_observation(obs)
+ 
+            # 传入画面并获得各个动作的 Q 值
+            actions = mainQ_outputs.eval(
+                feed_dict={X: [obs], in_training_mode: False})
+ 
+            # 找出 Q 值最高的动作（最佳动作）
+            action = np.argmax(actions, axis=-1)
+ 
+            # 使用 Epsilon-greedy 来决定是随机还是使用该动作
+            action = epsilon_greedy(action, global_step)
+
+            # 执行动作，并取得下一状态的画面、奖励等
+            next_obs, reward, done, _ = env.step(action)
+
+ 		# 传入缓冲区，作为经验
+            exp_buffer.append(
+                [obs, action, preprocess_observation(next_obs), reward, done])
+		# 当缓冲区里经验足够「丰富」时，开始使用这里面的取样来训练网络
+            if global_step % steps_train == 0 and global_step &gt; start_steps:
+
+                # 从缓冲区中取出一小段游戏经验
+                o_obs, o_act, o_next_obs, o_rew, o_done = sample_memories(
+                    batch_size)
+ 
+                # 取出状态、下一状态
+                o_obs = [x for x in o_obs]
+		    o_next_obs = [x for x in o_next_obs]
+ 
+                # 下一个动作
+                next_act = mainQ_outputs.eval(
+                    feed_dict={X: o_next_obs, in_training_mode: False})
+ 
+                # 奖励
+                y_batch = o_rew + discount_factor * \
+                    np.max(next_act, axis=-1) * (1-o_done)
+  
+                # 训练模型 计算损失
+                train_loss, _ = sess.run([loss, training_op], feed_dict={X: o_obs, y: np.expand_dims(
+                    y_batch, axis=-1), X_action: o_act, in_training_mode: True})
+                episodic_loss.append(train_loss)
+
+  		# 隔一段时间就复制主 Q 网络的权重到目标 Q 网络上
+            if (global_step + 1) % copy_steps == 0 and global_step &gt; start_steps:
+                copy_target_to_main.run()
+
+            obs = next_obs
+            epoch += 1
+            global_step += 1
+            episodic_reward += reward
+
+        print('Epoch', epoch, 'Reward', episodic_reward)
+</code></pre>
+<h2 id="运行模型">运行模型</h2>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20200126234518.png" alt="" loading="lazy"></figure>
+<p>前期效果并不理想，但在一段时间后智能体能够有意识地做出躲避怪兽、尽量吃豆得分等最大化奖励的行为。</p>
+<video id="video" controls="" preload="none">
+      <source id="mp4" src="https://cdn.mywpku.com/pacman.mp4"
+      <p>Your user agent does not support the HTML5 Video element.</p>
+</video>
+
+        </div>
+        <div class="tag-list">
+          
+        </div>
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+   
+      </section>
+    </main>
+        <footer class="site-footer">
+        <p class="container">
+            Made with
+<span class="cute iconfont icon-heart"></span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+        </p>
+    </footer>
+</div>
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+      
+  </body>
+</html>

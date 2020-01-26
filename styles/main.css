@@ -211,23 +211,24 @@ input[disabled] {
   font-family: "iconfont" !important;
   font-size: 16px;
   font-style: normal;
-  top: 1px;
-  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-left:before {
-  content: "\e658";
+.icon-heart:before {
+  content: "\e707";
 }
-.icon-right:before {
-  content: "\e659";
+.icon-arrow-ios-forward:before {
+  content: "\e643";
+}
+.icon-arrow-ios-back:before {
+  content: "\e676";
 }
 .site-header {
   background-size: cover;
   background-position: 50%;
   background-image: url(../media/banner.jpg);
   color: #fff;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   padding-top: 50px;
   position: relative;
   box-shadow: 0px 10px 50px -15px rgba(0, 0, 0, 0.1) !important;

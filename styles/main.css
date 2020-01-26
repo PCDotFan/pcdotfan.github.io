@@ -228,7 +228,7 @@ header.masthead .post-heading .meta a {
   }
 }
 .post-preview > a {
-  color: #4A4A4A;
+  color: #f1404b;
 }
 .post-preview > a:focus,
 .post-preview > a:hover {
@@ -337,16 +337,16 @@ footer .copyright {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .btn-primary {
-  background-color: #4a4a4a;
-  border-color: #4a4a4a;
+  background-color: #f1404b;
+  border-color: #f1404b;
   margin-top: 30px;
 }
 .btn-primary:active,
 .btn-primary:focus,
 .btn-primary:hover {
   color: #fff;
-  background-color: #00657b !important;
-  border-color: #00657b !important;
+  background-color: #222831 !important;
+  border-color: #222831 !important;
 }
 .btn-lg {
   font-size: 16px;
@@ -358,7 +358,7 @@ img {
 }
 h2.post-title.Archives {
   font-size: 20px;
-  color: #4a4a4a;
+  color: #f1404b;
   margin-bottom: 0;
 }
 .time {

@@ -290,18 +290,25 @@ input[disabled] {
 }
 .postsFooterNav {
   font-size: 18px;
-  font-family: Lato;
+  margin-top: 2rem;
   color: #222831;
 }
 .postsFooterNav .page-numbers {
   font-size: 14px;
   color: #404b69;
+  padding: 0.5rem;
+  font-weight: 400;
+  background-color: #f4f5f9;
+  font-size: 0.75rem;
+  border-radius: 0.2rem;
   margin-right: 8px;
 }
 .cute,
 .postsFooterNav .page-numbers.current,
 .postsFooterNav .page-numbers:hover {
-  color: #f1404b;
+  color: #fff !important;
+  background-color: #f1404b;
+  box-shadow: 0px 5px 20px -3px rgba(249, 100, 90, 0.6);
 }
 .cute {
   display: inline-block;

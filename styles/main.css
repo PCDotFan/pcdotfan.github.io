@@ -313,6 +313,7 @@ input[disabled] {
 }
 .cute {
   display: inline-block;
+  color: #f1404b;
   font-size: 20px;
   vertical-align: -3px;
 }
@@ -392,7 +393,7 @@ input[disabled] {
   color: #222831;
 }
 .site-footer p {
-  color: #404b69;
+  color: #7a8b9a;
 }
 .post--keywords {
   padding-top: 15px;
@@ -757,4 +758,7 @@ input[disabled] {
 .dot {
   color: #f1404b;
   margin: 0 0.5rem;
+}
+.navigation {
+  text-align: right;
 }

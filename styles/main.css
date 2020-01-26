@@ -394,6 +394,7 @@ input[disabled] {
 }
 .site-footer p {
   color: #7a8b9a;
+  text-align: right;
 }
 .post--keywords {
   padding-top: 15px;

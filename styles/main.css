@@ -345,15 +345,15 @@ input[disabled] {
 .block--list {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid rgba(135, 150, 165, 0.075);
-  margin-top: -1px;
-  margin-bottom: 0;
+  border-bottom: 1px solid rgba(135, 150, 165, 0.075);
+  margin-bottom: -1px;
+  margin-top: 0;
 }
 .block--list .grap {
   margin-top: 0;
 }
 .block--list .grap p {
-  font-size: 14px;
+  font-size: 15px;
   text-indent: 0;
   margin: 0;
 }
@@ -379,6 +379,7 @@ input[disabled] {
 .site-footer {
   font-family: dinmedium;
   font-size: 14px;
+  margin-top: 2rem;
 }
 .site-footer {
   padding-top: 20px;
@@ -513,7 +514,7 @@ input[disabled] {
   text-align: center;
 }
 .doc_comments .comments .comment {
-  border: 0!important;
+  border: 0 !important;
   padding: 0 !important;
 }
 .comment_content {
@@ -532,7 +533,7 @@ input[disabled] {
 .doc_comments .comments .comment .author .reply {
   background-color: #f1404b;
   color: #fff !important;
-  font-size: 12px!important;
+  font-size: 12px !important;
   padding: 3px 8px;
   position: absolute;
   right: 0;

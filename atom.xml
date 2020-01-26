@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-26T15:55:34.725Z</updated>
+    <updated>2020-01-26T15:58:50.484Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -225,9 +225,8 @@ with tf.Session() as sess:
         print('Epoch', epoch, 'Reward', episodic_reward)
 </code></pre>
 <h2 id="运行模型">运行模型</h2>
-<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20200126234518.png" alt="" loading="lazy"></figure>
 <p>前期效果并不理想，但在一段时间后智能体能够有意识地做出躲避怪兽、尽量吃豆得分等最大化奖励的行为。</p>
-<video id="video" controls="" preload="none">
+<video id="video" controls="" preload="none" poster="https://cdn.mywpku.com/20200126234518.png">
       <source id="mp4" src="https://cdn.mywpku.com/pacman.mp4"
       <p>Your user agent does not support the HTML5 Video element.</p>
 </video>

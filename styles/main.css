@@ -353,15 +353,16 @@ input[disabled] {
   margin-top: 0;
 }
 .block--list .grap p {
-  font-size: 15px;
+  font-size: 14px;
   text-indent: 0;
+  margin: 0;
 }
 .block-title {
   font-size: 28px;
   line-height: 1.4;
   margin-bottom: 10px;
   font-weight: 700;
-  color: #000;
+  color: #222831;
 }
 .block-title:before {
   background: #f1404b none repeat scroll 0 0;
@@ -593,7 +594,7 @@ input[disabled] {
 }
 .comment-reply-link {
   display: inline-block;
-  background-color: #000;
+  background-color: #222831;
   color: #fff;
   padding: 3px 10px;
   line-height: 1.2;
@@ -642,7 +643,7 @@ input[disabled] {
 }
 .comment-form .submit {
   display: inline-block;
-  background-color: #000;
+  background-color: #222831;
   color: #fff;
   font-size: 14px;
   padding: 6px 15px;
@@ -664,8 +665,8 @@ input[disabled] {
   font-family: museo500;
 }
 .comments-pagination .page-numbers {
-  background: #000 none repeat scroll 0 0;
-  border: 1px solid #000;
+  background: #222831 none repeat scroll 0 0;
+  border: 1px solid #222831;
   color: #fff;
   display: inline-block;
   font-size: 12px;
@@ -675,7 +676,7 @@ input[disabled] {
 .tag-list a {
   display: inline-block;
   color: #fff;
-  background-color: #000;
+  background-color: #222831;
   padding: 2px 8px;
   margin-right: 5px;
   font-size: 14px;

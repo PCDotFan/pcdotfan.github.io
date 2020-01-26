@@ -87,7 +87,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>这问题困扰了我好久……明明 Registy 用的已经是 <code>http://registry.npm.taobao.org</code>，然而安装过程中还是会出现各种卡在 <code>Download from github</code> 的尴尬问题。</p>
+          <div class="content-style content">
+            <p>这问题困扰了我好久……明明 Registy 用的已经是 <code>http://registry.npm.taobao.org</code>，然而安装过程中还是会出现各种卡在 <code>Download from github</code> 的尴尬问题。</p>
 <!-- more -->
 <p>Mark 一下解决方法：</p>
 <h2 id="registry-更换淘宝源">Registry 更换淘宝源</h2>
@@ -102,6 +103,7 @@ yarn：<br>
 <code>yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass</code></p>
 <p>再也不用输一次 <code>yarn</code> 还要顺带着把 <code>Proxifier</code> 带上了……</p>
 
+          </div>
           
           <p class="next-post">下一篇：
             <a href="https://blog.g4.cx/post/macrotasks-he-microtasks">

@@ -87,7 +87,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>（之前一直不明白 Vue 组件里什么时候用 this 什么时候不用……果然基础不牢写什么都碰壁</p>
+          <div class="content-style content">
+            <p>（之前一直不明白 Vue 组件里什么时候用 this 什么时候不用……果然基础不牢写什么都碰壁</p>
 <!-- more -->
 <p>什么是 <code>this</code>？之前我把它简单地理解为英文词义上的 <code>this</code>，也就是指向一个对象的本身。</p>
 <p>果然我掉进了作者所说的坑里，再 Mark 一下定义以防忘记：</p>
@@ -157,6 +158,7 @@ aFunc();
 <p>诶？为什么输出的是 <code>I'm window</code>？</p>
 <p>真奇怪，「执行链」的想法在这不靠谱！如上的插图即为这段代码的调试结果：<code>This</code> 是绑定在 <code>Window</code> 上的。</p>
 
+          </div>
           
           <p class="next-post">下一篇：
             <a href="https://blog.g4.cx/post/es6-mo-ban-zi-fu-chuan">

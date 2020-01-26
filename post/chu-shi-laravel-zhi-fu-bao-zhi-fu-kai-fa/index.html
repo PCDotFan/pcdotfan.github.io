@@ -87,7 +87,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>过来水一篇，这次使用的是 <a href="https://github.com/yansongda/pay">Yangsongda/Pay</a>，不用写各种拼字符串的代码真是太幸福了。</p>
+          <div class="content-style content">
+            <p>过来水一篇，这次使用的是 <a href="https://github.com/yansongda/pay">Yangsongda/Pay</a>，不用写各种拼字符串的代码真是太幸福了。</p>
 <p>想跑通整个支付流程，提供订单号、AK、SK 这类资料也已经是老生常谈了。不过最让人感到一头雾水的应该是 <code>notify_url</code> 和 <code>return_url</code> 两个概念。</p>
 <h2 id="官方版">官方版</h2>
 <blockquote>
@@ -172,6 +173,7 @@ Route::get('/alipay/return', 'OrdersController@paymentSuccess')-&gt;name('alipay
     }
 </code></pre>
 
+          </div>
           
           <p class="next-post">下一篇：
             <a href="https://blog.g4.cx/post/Gf3GdU6QM">

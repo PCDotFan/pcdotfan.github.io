@@ -276,7 +276,7 @@ blockquote cite::before {
   }
 }
 hr {
-  margin: 3rem 0;
+  margin: 2rem 0;
 }
 .hr-short::before {
   content: "";
@@ -306,14 +306,6 @@ embed {
 figure {
   margin: 0;
 }
-pre {
-  overflow-y: auto;
-  background-color: #fdfdfd;
-  border: 1px solid #eee;
-  border-radius: 0;
-  padding: 15px;
-  margin: 20px 0;
-}
 svg.svg-inline--fa:not(:root) {
   vertical-align: -0.125em;
 }
@@ -327,8 +319,8 @@ main {
   min-height: 66.66vh;
 }
 /*--------------------------------------------------------------
-    row Size style
---------------------------------------------------------------*/
+      row Size style
+  --------------------------------------------------------------*/
 .row-md {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
@@ -581,6 +573,7 @@ header.masthead .post-heading .meta a {
   font-size: 28px;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 .post-preview > a > .post-subtitle {
   font-weight: 300;
@@ -869,7 +862,7 @@ ul.markdownIt-TOC {
   line-height: 1.75;
 }
 .post-subtitle p {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: normal;
   color: #7a8b9a;
   margin-bottom: 0px;
@@ -973,7 +966,7 @@ a.Themeinfo {
 }
 .post-meta {
   font-size: 16px;
-  font-style: italic;
+  /* font-style: italic; */
   margin-top: 0;
   color: #7a8b9a;
 }
@@ -1009,4 +1002,67 @@ h3.post-subtitle {
 }
 .post-preview img {
   margin: 10px auto;
+}
+/*--------------------------------------------------------------
+	content-style
+--------------------------------------------------------------*/
+.content-style.content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.content-style.content img {
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+.content-style.content h1 {
+  font-size: 1.875rem;
+}
+.content-style.content h2 {
+  font-size: 1.625rem;
+}
+.content-style.content h3 {
+  font-size: 1.375rem;
+}
+.content-style.content h4 {
+  font-size: 1.125rem;
+}
+.content-style.content h5 {
+  font-size: 1rem;
+}
+.content-style.content h6 {
+  font-size: 0.875rem;
+}
+.content-style.content h1,
+.content-style.content h2,
+.content-style.content h3,
+.content-style.content h4,
+.content-style.content h5,
+.content-style.content h6 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.content-style.content h2.quote {
+  font-size: 1.25rem;
+  color: #2d3757;
+  padding-bottom: 15px;
+  border-bottom: solid 1px #f0f4f7;
+}
+.content-style.content ul {
+  list-style: disc;
+}
+.content-style.content ol {
+  list-style: decimal;
+}
+.content-style.content ul,
+.content-style.content ol {
+  margin: 0 0 20px 45px;
+  font-size: 0.875rem;
+}
+.content-style.content ul li,
+.content-style.content ol li {
+  margin: 15px 0;
 }

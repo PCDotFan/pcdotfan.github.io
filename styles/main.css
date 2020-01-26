@@ -26,7 +26,7 @@ a {
 }
 a:focus,
 a:hover {
-  color: #0085a1;
+  color: #f1404b;
 }
 blockquote {
   color: #7a8b9a;
@@ -50,12 +50,12 @@ blockquote {
 }
 ::-moz-selection {
   color: #fff;
-  background: #0085a1;
+  background: #f1404b;
   text-shadow: none;
 }
 ::selection {
   color: #fff;
-  background: #0085a1;
+  background: #f1404b;
   text-shadow: none;
 }
 img::-moz-selection {
@@ -132,14 +132,14 @@ img::-moz-selection {
   }
   #mainNav.is-fixed .navbar-brand:focus,
   #mainNav.is-fixed .navbar-brand:hover {
-    color: #0085a1;
+    color: #f1404b;
   }
   #mainNav.is-fixed .navbar-nav > li.nav-item > a {
     color: #212529;
   }
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus,
   #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
-    color: #0085a1;
+    color: #f1404b;
   }
   #mainNav.is-visible {
     transform: translate3d(0, 100%, 0);
@@ -233,7 +233,7 @@ header.masthead .post-heading .meta a {
 .post-preview > a:focus,
 .post-preview > a:hover {
   text-decoration: none;
-  color: #0085a1;
+  color: #f1404b;
 }
 .post-preview > a > .post-title {
   font-size: 28px;
@@ -256,7 +256,7 @@ header.masthead .post-heading .meta a {
 .post-preview > .post-meta > a:focus,
 .post-preview > .post-meta > a:hover {
   text-decoration: underline;
-  color: #0085a1;
+  color: #f1404b;
 }
 @media only screen and (min-width: 768px) {
   .post-preview > a > .post-title {
@@ -309,7 +309,7 @@ header.masthead .post-heading .meta a {
   opacity: 1;
 }
 .floating-label-form-group-with-focus label {
-  color: #0085a1;
+  color: #f1404b;
 }
 form .form-group:first-child .floating-label-form-group {
   border-top: 1px solid #dee2e6;

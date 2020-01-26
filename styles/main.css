@@ -746,3 +746,7 @@ input[disabled] {
 .hljs-link {
   text-decoration: underline;
 }
+.dot {
+  color: #f1404b;
+  margin-right: 0.5rem;
+}

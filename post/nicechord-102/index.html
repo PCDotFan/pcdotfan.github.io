@@ -1,0 +1,209 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nicechord - 和弦功能 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Nicechord - 和弦功能
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-27 ·
+                    </time>
+                    
+                        <a href="https://blog.g4.cx/tag/music" class="post-tags">
+                            # 音乐
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190627120058.png" alt="" loading="lazy"></figure>
+<p>我们来假定现在一首曲目只由单音的 <strong>do-re-mi-fa-sol sol-fa-mi-re-do</strong> 组成，前半段的进行给人一种从 <strong>do</strong> 出发一直往上爬的感觉，情绪逐渐上涨达到最高。可如果从中间断开——不弹奏后面的 <strong>sol-fa-mi-re-do</strong> 总是让人觉得不太舒服，就像是爬山「走到顶端」就呆在那不下来了一样。</p>
+<p>把 <strong>do-re-mi-fa-sol-la-ti</strong> 映射到对应的和弦上来会是这样：</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190627121518.png" alt="" loading="lazy"></figure>
+<p>固定地，1 级和弦称主和弦、4 级和弦可称下属和弦，5级和弦也称属和弦。</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190627123639.png" alt="" loading="lazy"></figure>
+<p>了解这些有什么用呢？我们所说的谱曲和写歌，背后「和弦进行」的基本逻辑，就是从稳定的和弦再到不稳定的和弦，最后再到稳定的和弦。就好像是从「家」出发，到了杂乱的「外面」，跨桥经历千山万水之后终于再一次回「家」一样。</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20190627124402.png" alt="" loading="lazy"></figure>
+<p>这也就是主和弦、下属和弦和属和弦的功能，合在一起就是完成了「起  ➡️ 承  ➡️ 转」最后再回到「合」<br>
+的进行。</p>
+<blockquote>
+<p>C 即 1 级和弦，是用来明确调性的。一般大调的歌曲都以它开始，也以它结束。不过在曲子的中间可以尽量少用主和弦，否则老是给人以终止感，乐曲的进行也会很硬。</p>
+</blockquote>
+<blockquote>
+<p>Dm 即 2 级和弦，是一个很柔和的和弦，它的最重要用途就是放在属和弦即 5 级和弦之前。而 5 级和弦则自然要回到1级和弦，所以很容易就形成了2-5-1的进行。这是一个极其常用的进行。</p>
+</blockquote>
+<blockquote>
+<p>Em 即 3 级和弦，也是一个十分柔和的和弦。音乐的进行中有了她马上就会变得柔美而略带忧伤。1-3-4 的进行，也即在 C 大调中的 C-Em-F 是一个很常用的进行。乐曲中本来用 1 级和弦的地方有时可以考虑换成 3 级和弦，音乐立即就不强硬了。港台音乐中这种手法很常用。</p>
+</blockquote>
+<blockquote>
+<p>F 即 4 级和弦，大调中的又一正三和弦，属于骨干和弦之一。它十分明亮，让人感觉心胸开阔，有一种一下子「飞」起来的感觉。我们听到的美国乡村乐和描写西部大草原和大峡谷的歌曲都使用 4 级和弦来表现。1 级和弦后面跟 4 级与跟 3 级和弦是绝对不同的。</p>
+</blockquote>
+<blockquote>
+<p>G 即 5 级和弦，大调中的第三个正三和弦，任何一首歌曲都不可缺少。它起着对主和弦支撑的作用。乐曲的终止感就是由 5-1 这样的进行产生的。当然现代流行音乐特别是欧美音乐中不使用 5-1 终止的歌曲也很多，这正是流行音乐的特色，但 5 级和弦作为音乐的骨架和弦仍然不可动摇。</p>
+</blockquote>
+<blockquote>
+<p>Am 即 6 级和弦，一个中性的和弦，如果把它作为主和弦那就是小调了。歌曲肯定会变得忧郁，悲伤。如果 6 级和弦出现在大调中的某些部分，那它起到的就是连接不同和弦的作用。6 级和弦象一座桥，它前面可以接几乎所有的和弦，后面也是如此。它可以是和弦的进行连贯，不呆板。1-6-4-5 是极为常用的进行，事实上就用这四个和弦就可以写歌了。</p>
+</blockquote>
+<blockquote>
+<p>Bdim 即 7 级和弦，在流行音乐中很少用。因为它是减三和弦，有一种向里收缩的紧张感，一般只在某些特定进行中使用，或是为了根音的流动而使用。</p>
+</blockquote>
+<blockquote>
+<p>Via: <a href="https://www.douban.com/group/topic/13429306/">【乐理】和弦的功能、变化、连接及编配</a></p>
+</blockquote>
+<p>所以，与其给每一个和弦都定义一个功能，倒不如把现有的所有和弦都归类到「起、承、转」当中，只要遵循着最简单的 TDS 公式来谱曲就会很好听啦！</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20190629095631.png" alt="" loading="lazy"></figure>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/nicechord-001" class="post-title gt-a-link">
+                    Nicechord - 现代和弦代号
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

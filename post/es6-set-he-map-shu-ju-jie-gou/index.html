@@ -1,0 +1,239 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ES6 - Set 和 Map 数据结构 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    ES6 - Set 和 Map 数据结构
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-09 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="set-集合">Set 集合</h2>
+<p>ES6 当中的 Set 和数学概念中的「集合」基本上是一致的。只不过它兼有普通 Array 的性质并且具备以下特点：</p>
+<ul>
+<li><strong>唯一</strong>：保证集合中各个元素都是不相同的</li>
+<li><strong>不发生类型转换</strong>：<code>5</code> 和 <code>&quot;5&quot;</code> 被视为两种不同元素，<code>0</code> 和 <code>false</code> 也是如此</li>
+<li><strong>NaN 等于自身</strong>：类似于精确相等运算符（<code>===</code>），主要的区别是 <code>NaN</code> 等于自身，而精确相等运算符认为 <code>NaN</code> 不等于自身。（Via <a href="http://es6.ruanyifeng.com/#docs/set-map">Set 和 Map 数据结构</a>）</li>
+<li><strong>空对象不相等</strong>：所有的空对象在集合中都被视为不同的元素</li>
+</ul>
+<p>其余的用法基本上和 Array 相同，利用 Set 集合很容易实现数学概念当中的「交并补集」，例如：</p>
+<pre><code class="language-javascript">// 并集
+let a = new Set([2, 3, 4, 5])
+let b = new Set([4, 5, 7, 8])
+let union = new Set([...a, ...b])
+// [2, 3, 4, 5, 7, 8]
+
+// 交集
+let a = new Set([2, 3, 4, 5])
+let b = new Set([4, 5, 7, 8])
+let intersection = new Set([...a].filter(item =&gt; b.has(item)))
+// [4, 5]
+
+// 补集
+let a = new Set([1, 2, 3, 4, 5, 6])
+let b = new Set([1, 2, 3])
+let c = new Set([...a].filter(item =&gt; !b.has(item)))
+// [4, 5, 6]
+</code></pre>
+<p>还多学到一个知识点：剩余参数的内部实现是 <code>for..of</code>，所以具有 <code>Iterable</code> 接口的对象都能使用剩余参数 <code>...</code>。</p>
+<p><code>new Set()</code> 当中可传递的不仅仅是数组，而是所有可进行遍历的对象（比如字符串）：</p>
+<pre><code class="language-javascript">// 字母去重
+let a = new Set(&quot;aaaaabbbcccccddd&quot;)
+// Set(4) {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;}
+</code></pre>
+<h2 id="map">Map</h2>
+<p>在实现 <strong>「键-&gt;值」对</strong> 时我们通常使用的是 <code>Object</code>，但 <code>Object</code> 的设计更像是实现了 <strong>「字符串-&gt;值」对</strong> 的模式，这意味着键名必须是一个合法的字符串（或是 <code>Symbol</code>）。<code>Map</code> 的设计则更加开放，键值均可为任意类型。</p>
+<p>和普通 <code>Object</code> 的用法稍有不同，<code>Map</code> 需要以方法 <code>set()</code> 和 <code>get()</code> 对实例进行操作，例如：</p>
+<pre><code class="language-javascript">let a = new Map()
+let b = { foo: 'bar' }
+a.set(b, 'barbarbar')
+// 我怎么知道这有什么用呢，反正我是把一个对象和 'barbarbar' 联系起来了
+a.get(b)
+// 得到 'barbarbar'
+</code></pre>
+<p>其实耐心尝试可以发现：<code>Map</code> 实际上是一个类似于 Hash 结构的存在，还是使用上面的例子，然后这样做会如何呢？</p>
+<pre><code class="language-javascript">a.get({ foo: 'bar' }) // 提示不存在
+</code></pre>
+<p>这是因为 <strong>只有对同一个对象的引用，Map 结构才将其视为同一个键</strong> （Thanks ruanyifeng）。换句话来说，以下的操作会出现的对应结果是：</p>
+<pre><code class="language-javascript">a.set('a', 'b')
+a.get('a') // undefined
+
+const keyA = 'a'
+a.set(keyA, 'b')
+a.get(keyA) // 'b'
+</code></pre>
+<p>那你可能会问了：<code>a.set('a', 'b')</code> 既然都没有报错，那我要怎么取到值啊？<br>
+答：转换成其它形式呗（比如 <code>Array</code>, <code>Object</code>）~</p>
+<h3 id="map-和-array-之间有些暧昧的关系">Map 和 Array 之间有些暧昧的关系：</h3>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/10/16/5bc55f315c755.jpg" alt="" loading="lazy"></figure>
+<p>From MDN：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map">Map 与数组的关系</a>，<code>Map</code> 的实现方法与构造二维数组有关。</p>
+<pre><code class="language-javascript">var kvArray = [[&quot;key1&quot;, &quot;value1&quot;], [&quot;key2&quot;, &quot;value2&quot;]];
+
+// 使用常规的Map构造函数可以将一个二维键值对数组转换成一个Map对象
+var myMap = new Map(kvArray);
+
+myMap.get(&quot;key1&quot;); // 返回值为 &quot;value1&quot;
+
+// 使用Array.from函数可以将一个Map对象转换成一个二维键值对数组
+console.log(Array.from(myMap)); // 输出和kvArray相同的数组
+
+// 或者在键或者值的迭代器上使用Array.from，进而得到只含有键或者值的数组
+console.log(Array.from(myMap.keys())); // 输出 [&quot;key1&quot;, &quot;key2&quot;]
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding" class="post-title gt-a-link">
+                    PM2 使用方法之从抓狂到情绪稳定
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

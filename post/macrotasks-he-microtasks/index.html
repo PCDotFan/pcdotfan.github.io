@@ -1,0 +1,335 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MacroTasks 和 Microtasks | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    MacroTasks 和 Microtasks
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2018-02-20 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="jake-archibald-版本">Jake Archibald 版本</h2>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules</a></p>
+<ul>
+<li>Macrotasks 按序执行，浏览器会在 Macrotasks 之间执行渲染。</li>
+<li>Microtasks 按序执行，在下面情况时执行：
+<ol>
+<li>在每个回调之后，只要没有其它代码正在运行。</li>
+<li>在每个 Macrotask 的末尾。</li>
+</ol>
+</li>
+</ul>
+<h2 id="何幻版本">何幻版本</h2>
+<p><a href="https://www.jianshu.com/p/3ed992529cfc">[JavaScript] Macrotask Queue 和 Microtask Queue</a></p>
+<p>V8 实现中，两个队列各包含不同的任务：</p>
+<p><strong>Macrotasks</strong>: <code>script (整体代码)</code>, <code>setTimeout</code>, <code>setInterval</code>, <code>setImmediate</code>, <code>I/O</code>, <code>UI rendering</code><br>
+<strong>Microtasks</strong>: <code>process.nextTick</code>, <code>Promises</code>, <code>Object.observe</code>, <code>MutationObserver</code></p>
+<p>执行过程如下：</p>
+<ul>
+<li>JavaScript 引擎首先从 Macrotask queue 中取出第一个任务，</li>
+<li>执行完毕后，将 Microtask queue 中的所有任务取出，按顺序全部执行；</li>
+<li>然后再从 Macrotask queue 中取下一个，</li>
+<li>执行完毕后，再次将 <code>Microtask queue</code> 中的全部取出；</li>
+<li>循环往复，直到两个 <code>queue</code> 中的任务都取完。</li>
+</ul>
+<p>可以发现，两位大神的版本略有不同，但总体分析的思路是一致的。只是 Jake Archibald 更指出在 JavaScript 栈已空时——Microtasks 同样也会按序执行。（Although we're mid-task, microtasks are processed after callbacks if the stack is empty）</p>
+<h2 id="几个小测试">几个小测试</h2>
+<h3 id="专栏-promise只能进行异步操作">专栏: Promise只能进行异步操作？</h3>
+<p><a href="http://liubin.org/promises-book/#promise-is-always-async">专栏: Promise只能进行异步操作？</a></p>
+<pre><code class="language-javascript">var promise = new Promise(function (resolve){
+    console.log(&quot;inner promise&quot;); 
+    resolve(42);
+});
+promise.then(function(value){
+    console.log(value); 
+});
+console.log(&quot;outer promise&quot;);
+</code></pre>
+<p>结果为：<code>inner promise</code>, <code>outer promise</code>, <code>42</code>。</p>
+<p>流程如下（Macrotask 简称 MA；Microtask 简称 MI，下同）：</p>
+<ul>
+<li>(script 整体代码) 添加 MA，此为 MA 队列中第一个任务，开始执行。
+<ol>
+<li>输出 <code>inner promise</code>（Promise 决议前内容立即执行）</li>
+<li><code>resolve(42)</code></li>
+<li>(Promise then) 添加 MI，操作被挂起</li>
+<li>输出 <code>outer promise</code></li>
+</ol>
+</li>
+<li>(script 整体代码) MA 执行完毕，接下来处理刚刚排在队列中的 MI：
+<ol>
+<li>输出 <code>value</code>，决议内容为 <code>42</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="tasks-microtasks-queues-and-schedules">Tasks, microtasks, queues and schedules</h3>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules</a><br>
+（Jake 大神网站里的动态示意图真的很有用</p>
+<pre><code class="language-javascript">console.log('script start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('script end');
+</code></pre>
+<p>结果为：<code>script start</code>, <code>script end</code>, <code>promise1</code>, <code>promise2</code>, <code>setTimeout</code></p>
+<p>流程如下：</p>
+<ul>
+<li>(script 整体代码) 添加 MA，此为 MA 队列中第一个任务，开始执行。
+<ol>
+<li>输出 <code>script start</code></li>
+<li>(setTimeout) 添加 MA，排在「script 整体代码」的后面，此为 MA 队列中第二个任务，操作被挂起</li>
+<li>(Promise then) 添加 MI，操作被挂起（链式调用，<code>then</code> 链节之后的所有操作均被挂起）</li>
+</ol>
+</li>
+<li>输出 <code>script end</code></li>
+<li>(script 整体代码) MA 执行完毕，接下来处理刚刚排在队列中的 MI：
+<ol>
+<li>输出 <code>promise1</code></li>
+<li>(Promise then) 添加 MI，操作被挂起</li>
+<li>由于第一个 MA 已经处理完毕，继续处理 MI</li>
+<li>输出 <code>promise2</code></li>
+</ol>
+</li>
+<li>MI 处理完毕，接下来处理 MA 队列中第二个任务，开始执行。</li>
+<li>输出 <code>setTimeout</code>。</li>
+</ul>
+<h3 id="tasks-microtasks-queues-and-schedules-boss-fight">Tasks, microtasks, queues and schedules - Boss Fight</h3>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules - Boss Fight</a><br>
+点击一下 <code>inner</code> 部分，<code>console</code> 会输出什么呢？</p>
+<pre><code class="language-html">&lt;div class=&quot;outer&quot;&gt;
+  &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// Let's get hold of those elements
+var outer = document.querySelector('.outer');
+var inner = document.querySelector('.inner');
+
+// Let's listen for attribute changes on the
+// outer element
+new MutationObserver(function() {
+  console.log('mutate');
+}).observe(outer, {
+  attributes: true
+});
+
+// Here's a click listener…
+function onClick() {
+  console.log('click');
+
+  setTimeout(function() {
+    console.log('timeout');
+  }, 0);
+
+  Promise.resolve().then(function() {
+    console.log('promise');
+  });
+
+  outer.setAttribute('data-random', Math.random());
+}
+
+// …which we'll attach to both elements
+inner.addEventListener('click', onClick);
+outer.addEventListener('click', onClick);
+</code></pre>
+<p>结果为：<code>click</code>, <code>promise</code>, <code>mutate</code>, <code>click</code>, <code>promise</code>, <code>mutate</code>, <code>timeout</code>, <code>timeout</code></p>
+<p>执行流程如下：</p>
+<ul>
+<li>(处理用户点击事件) 添加 MA（编号 #1），此为 MA 队列中第一个任务，开始执行。
+<ol>
+<li>输出 <code>click</code></li>
+<li>(setTimeout) 添加 MA（编号 #2），操作被挂起</li>
+<li>(Promise then) 添加 MI，操作被挂起（$1）</li>
+<li><code>setAttribute</code> 操作</li>
+<li><code>setAttribute</code> 操作被 <code>MutationObserver</code> 监听到，添加 MI，<code>MutationObserver</code> 回调操作被挂起（$2）</li>
+</ol>
+</li>
+<li>MA 操作结束（此时 JS Stack 为空！即在响应下一个 <code>outer</code> 的 <code>onClick</code> 之前无代码可以运行），开始执行队列内的 MI：
+<ol>
+<li>输出 <code>promise</code></li>
+<li>输出 <code>mutate</code></li>
+</ol>
+</li>
+<li>事件回调，编号 #1 的 MA 又被重新执行了一次，同 <code>1, 2</code> 步（<code>inner</code> 在 <code>outer</code> 内，先处理 <code>inner</code> 事件后处理 <code>outer</code> 事件）。
+<ol>
+<li>(setTimeout) 添加 MA（编号 #3），操作被挂起</li>
+</ol>
+</li>
+<li>MA 操作结束，开始执行 #2：输出 <code>timeout</code></li>
+<li>MA 操作结束，开始执行 #3：输出 <code>timeout</code></li>
+</ul>
+<p>🙂我很窒息。</p>
+<h3 id="tasks-microtasks-queues-and-schedules-bosss-angry-older-brother">Tasks, microtasks, queues and schedules - Boss's angry older brother</h3>
+<p>还是上面的代码。这次不同的是我们不直接点击，而是在 <code>Console</code> 输入：</p>
+<pre><code class="language-javascript">inner.click()
+</code></pre>
+<p>会发生什么呐？</p>
+<p>结果是：<code>click</code>, <code>click</code>, <code>promise</code>, <code>mutate</code>, <code>promise</code>, <code>timeout</code>, <code>timeout</code></p>
+<p>执行过程如下：</p>
+<p>（我真的不想写了，<a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules - Boss's angry older brother</a></p>
+<p>头有点大，:big head:。</p>
+<p>🙂。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-zuo-yong-yu-zuo-you-zhi-yin-yong-ci-fa-zuo-yong-yu" class="post-title gt-a-link">
+                    你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

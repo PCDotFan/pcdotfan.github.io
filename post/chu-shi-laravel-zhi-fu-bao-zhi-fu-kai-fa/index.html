@@ -1,0 +1,251 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>初试 Laravel 支付宝支付开发 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    初试 Laravel 支付宝支付开发
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2017-12-04 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>过来水一篇，这次使用的是 <a href="https://github.com/yansongda/pay">Yangsongda/Pay</a>，不用写各种拼字符串的代码真是太幸福了。</p>
+<p>想跑通整个支付流程，提供订单号、AK、SK 这类资料也已经是老生常谈了。不过最让人感到一头雾水的应该是 <code>notify_url</code> 和 <code>return_url</code> 两个概念。</p>
+<h2 id="官方版">官方版</h2>
+<blockquote>
+<p>notify_url：对于 PC 网站支付的交易，在用户支付完成之后，支付宝会根据 API 中商户传入的 notify_url，通过 POST 请求的形式将支付结果作为参数通知到商户系统。<br>
+return_url：支付宝处理完成后，浏览器当前页面自动跳转回商户网站中指定页面的路径，同时返回订单信息。</p>
+</blockquote>
+<p>什么鬼……最后折腾了半小时才弄懂支付宝文档想说什么。</p>
+<h2 id="人话版">人话版</h2>
+<h3 id="return-url">Return URL</h3>
+<p>功能：买家支付成功后跳转到自己网站的「支付成功」页面。</p>
+<h3 id="notify-url">Notify URL</h3>
+<p>功能：减少掉单几率（听说是 0.0001%）、帮助网站主及时处理交易成功的订单（我乱说的）<br>
+流程：</p>
+<ol>
+<li>用户根据步骤依次下单、支付且支付成功后，支付宝会将订单状态更改为：「等待发货」（trade_status=WAIT_SELLER_SEND_GOODS）</li>
+<li>同时支付宝将不断以 POST 的形式向所提供的 <code>notify_url</code> 发送数据，包括给客户生成的交易订单号 <code>out_trade_no</code> 还有支付金额 <code>total_amount</code> 等等。这时就应借此机会来校验订单金额是否正确、交易订单号是否与网站上的相符等等，还有就是做发货之类的任务分发</li>
+<li>当以上操作全部结束时，应在 <code>notify_url</code> 返回一个 <code>success</code> 以告诉支付宝你已收到订单通知</li>
+<li>为了避免掉单，支付宝会在用户付款成功时就不断向 <code>notify_url</code> 发起通知，直至网页返回 <code>success</code>。当然，如果 48 小时后通知仍不成功，则视为交易失败。</li>
+</ol>
+<p>诶？要是第二步的时候发现订单金额不对怎么办？面对这种情况，你也可以选择给支付宝返回 <code>fail</code>（我没试过）。但一般不这么做——通常可以先令程序记录下有问题的订单，给支付宝返回 <code>success</code> 后再人工处理。</p>
+<h2 id="demo">DEMO</h2>
+<p>定义两个 URL 的路由：</p>
+<pre><code class="language-php">Route::get('/alipay/notify', 'OrdersController@notify')-&gt;name('alipay.notify');
+Route::get('/alipay/return', 'OrdersController@paymentSuccess')-&gt;name('alipay.return');
+</code></pre>
+<pre><code class="language-php">    /**
+     * 支付宝网站支付实现
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pay(Art $art, Order $order) {
+        if ($order-&gt;status == 'unpaid') {
+            // 构建支付信息
+            $billing_config = [
+                'out_trade_no' =&gt; $order-&gt;order_id,
+                'total_amount' =&gt; 1,
+                'subject' =&gt; &quot;订单：$order_id&quot;,
+                'body' =&gt; &quot;这是 XXX 在网站的 XXX 购买订单，生成于 $order_create_at&quot;,
+                'timeout_express' =&gt; '1c', // 表示订单将在 1 天后自动关闭
+                'goods_type' =&gt; '0'
+            ];
+            // 发起支付请求
+            return \Pay::driver('alipay')-&gt;gateway('web')-&gt;pay($billing_config);
+        }
+        
+        abort(404);
+    }
+
+    public function paymentSuccess(Order $order) {
+        if ($order-&gt;status == 'success') {
+            return view('orders.success', compact('order'));
+        }
+        abort(404);
+    }
+
+    public function notify(Request $request)
+    {
+        if (\Pay::driver('alipay')-&gt;gateway('web')-&gt;verify($request-&gt;all())) {
+            /*
+                接收支付宝通知信息，开始处理                
+             */
+             // 校验订单号
+            $order = Order::findorFail($request-&gt;out_trade_no);
+            if ($order-&gt;status == 'unpaid') {
+                // 校验金额
+                if ($request-&gt;total_amount == $order-&gt;price) {
+                    $order-&gt;status = 'success';
+                    // 接下来就是支付成功后的逻辑
+                    // 发货、加积分 blablabla
+                }
+            } else {
+                // 手动记录错误订单
+                $order-&gt;description = '支付状态异常，原因可能是订单金额不符或者订单状态不满足交易成功要求，请直接联系网站管理员处理。';
+                $order-&gt;status = 'warning';
+                $order-&gt;save();
+            }
+        }
+        // 即使发现异常也返回 success
+        echo &quot;success&quot;;
+    }
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/Gf3GdU6QM" class="post-title gt-a-link">
+                    答案？
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

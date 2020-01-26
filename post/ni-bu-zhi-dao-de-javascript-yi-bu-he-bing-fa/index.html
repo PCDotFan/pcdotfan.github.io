@@ -1,0 +1,255 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>你不知道的 JavaScript - 异步和并发 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    你不知道的 JavaScript - 异步和并发
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-09 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>（不得不说 YDKJS 作者的思路真的清奇，之前完全没有注意到这样的 point，一被点明后恍然大悟。好书，好书~</p>
+<!-- more -->
+<h2 id="什么是异步啊">什么是异步啊？</h2>
+<p>来看下面的例子：</p>
+<pre><code class="language-javascript">// A
+setTimeout(function setTimeoutHandler(){
+    // C
+}, 1000 );
+// B
+</code></pre>
+<p>这个是异步吗？看起来是的：语句按顺序执行，先是 A，然后在 <code>setTimeout</code> 处<strong>设置个时间点</strong>开始计时，然后直接执行 B。等到 1000ms 后再回去执行 <code>setTimeoutHandler</code> 的内容。</p>
+<p>可是，以上的解释是<strong>不够全面</strong>的，且更让人窒息的是：在 ES6 出现之前，JavaScript 甚至没有一个完备的「异步」概念。（为什么呐？我也不知道，等我看到下卷我就知道了）</p>
+<p>还是这些代码，我们再改改：</p>
+<pre><code class="language-javascript">// A 现在
+setTimeout(function setTimeoutHandler(){
+    // 将来
+}, 1000 );
+// B 现在
+</code></pre>
+<p>明显，<code>A</code> 和 <code>B</code> 段都是「写出来就要马上执行」类的代码，属于程序需要现在运行的部分（跟 IIFE 木有关系，这词我乱造的）；而 <code>Handler</code> 内的代码则属于将来，是 1000ms 后需要运行的部分。</p>
+<p>让我们再想想：<code>setTimeoutHandler</code> 里的内容真的会在 1000ms 后的那一时刻就被执行吗？</p>
+<p>答案是：要不就刚刚好，要不就比约定的时间慢——不确定。因为存在 <code>事件循环</code>。</p>
+<h3 id="事件循环">事件循环</h3>
+<p>要解释上一问题其实很简单：只要弄清楚『在使用多个 <code>setTimeout</code> 这类「异步函数」的情况下，程序是如何执行的』这个问题，而首要的知识储备就是「事件循环」。</p>
+<p>我们先联想下平常生活中的「异步应用」：银行办理业务。通常情况下我只需要先到前台的叫号机选择业务、拿一个号，号上还写着我前面有多少人、准备办理的是什么业务等等。需要注意的是：在叫到我准备办理业务之前这段时间里，我是相对自由可以做任何事情的。</p>
+<p>转回当前的场景，我可以说：当前有多少人需要办理业务，就有多少个「号」。叫号机的「号」构成了一个<code>事件队列</code>，并且「先取号的人先办理业务（先进先出）」。</p>
+<p>YDKJS 的伪代码很好地说明了 <code>事件循环</code> 是个啥东东：</p>
+<pre><code class="language-javascript">var eventsWaiting = [getBackToWorkAfter1000ms, ..., ..., ...]; // 事件队列，每一个数组的元素都是一个事件，并且（先进，先出）
+var event;
+
+while (true) { // 一有事件就要准备执行，所以是无限循环的
+    if (eventsWaiting.length &gt; 0) { // 如果此时存在事件
+        // 拿到队列中的下一个事件
+        event = eventsWaiting.shift();
+        // 现在，执行下一个事件
+        try {
+            event();
+        }
+        catch (err) {
+            reportError(err);
+        }
+    }
+}
+</code></pre>
+<p>上一节里，我将程序的执行过程描述为：先是 A，然后在 <code>setTimeout</code> 处<strong>设置个时间点</strong>开始计时 blabla……。但 <code>时间点</code> 一词不够严谨——根据上面对异步的描述，实际上跟「时间」没半毛钱关系——我就是设定了一个「点」：就和取号机当中的「号」一样。</p>
+<blockquote>
+<p>一定要清楚，<code>setTimeout(..)</code> 并没有把你的回调函数挂在事件循环队列中。它所做的是设定一个定时器。当定时器到时后，环境会把你的回调函数放在事件循环中，这样，在未来某个时刻会摘下并执行这个回调。</p>
+</blockquote>
+<p>这个无限循环的 <code>while</code> 语块里，程序会按照先来先得的顺序从队列中摘下一个事件并执行。这些事件就是你所定义的回调函数。</p>
+<blockquote>
+<p>如果这时候事件循环中已经有 20 个项目了会怎样呢？你的回调就会等待。它得排在其他项目后面——通常没有抢占式的方式支持直接将其排到队首。这也解释了为什么 <code>setTimeout(..)</code> 定时器的精度可能不高。大体说来，只能确保你的回调函数不会在指定的时间间隔之前运行，但可能会在那个时刻运行，也可能在那之后运行，要根据事件队列的状态而定。<br>
+——《你不知道的 JavaScript》</p>
+</blockquote>
+<h2 id="为什么需要更高级的异步">为什么需要更高级的异步？</h2>
+<p>Mark 一下作者阐述「为什么需要更高级异步」的部分：</p>
+<blockquote>
+<p>但是，我们真的能一心多用吗？我们真的能同时执行两个有意识的、故意的动作，并对二者进行思考或推理吗？我们最高级的大脑功能是以并行多线程的形式运行的吗？<br>
+我们在假装并行执行多个任务时，实际上极有可能是在进行快速的上下文切换，比如与朋友或家人电话聊天的同时还试图打字。换句话说，我们是在两个或更多任务之间快速连续地来回切换，同时处理每个任务的微小片段。我们切换得如此之快，以至于对外界来说，我们就像是在并行地执行所有任务。<br>
+这听起来是不是和异步事件并发机制（比如 JavaScript 中的形式）很相似呢？！我不会在每次可能被打断的时候都转而投入到其他“进程”中。但是，中断的发生经常频繁到让我觉得我的大脑几乎是不停地切换到不同的上下文（即“进程”）中。很可能 JavaScript 引擎也是这种感觉。<br>
+所以通过回调表达异步的方式并不能很好地映射到同步的大脑计划行为。<br>
+如果我们（按照回调的方法）去计划一天中要做什么以及按什么顺序来做的话，事实就会像听上去那样荒谬。但是，在实际执行方面，我们的大脑就是这么运作的。记住，不是多任务，而是快速的上下文切换。<br>
+对我们程序员来说，编写异步事件代码，特别是当回调是唯一的实现手段时，困难之处就在于这种思考 / 计划的意识流对我们中的绝大多数来说是不自然的。<br>
+我们的思考方式是一步一步的，但是从同步转换到异步之后，可用的工具（回调）却不是按照一步一步的方式来表达的。<br>
+这就是为什么精确编写和追踪使用回调的异步 JavaScript 代码如此之难：因为这并不是我们大脑进行计划的运作方式。<br>
+——《你不知道的 JavaScript》</p>
+</blockquote>
+<h2 id="竞态条件">竞态条件</h2>
+<p>考虑这个例子：</p>
+<pre><code class="language-javascript">var a;
+
+function aFunc() {
+    a = &quot;I'm aFunc!&quot;
+    console.log(a)
+}
+
+function bFunc() {
+    a = &quot;I'm bFunc!&quot;
+    console.log(a)
+}
+
+ajax( &quot;http://some.url.1&quot;, aFunc );
+ajax( &quot;http://some.url.2&quot;, bFunc );
+</code></pre>
+<p>这 <code>aFunc()</code> 和 <code>bFunc()</code> 到底谁先执行呢？不知道——谁也不清楚这 <code>ajax</code> 里回调的函数什么时候才会被执行（取决于谁先从给定的地址中得到相应），这就导致了程序的不确定性。</p>
+<blockquote>
+<p>在 JavaScript 的特性中，这种函数顺序的不确定性就是通常所说的竞态条件（race condition），<code>foo()</code> 和 <code>bar()</code> 相互竞争，看谁先运行。具体来说，因为无法可靠预测 a 和 b 的最终结果，所以才是竞态条件。</p>
+</blockquote>
+<p>如何「规避」这种不确定性呢？最容易想到的一种方法就是「设置门闸」。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/es6-jian-tou-han-shu" class="post-title gt-a-link">
+                    ES6 - 箭头函数
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

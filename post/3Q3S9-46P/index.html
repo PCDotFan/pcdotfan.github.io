@@ -1,0 +1,245 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>初入强化学习 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    初入强化学习
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-11-06 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
+<p>翻译文章式学习，感觉没有比我更奇葩的了……看看翻完能不能搞懂这些。</p>
+<!--more-->
+<h2 id="强化学习是什么">强化学习是什么？</h2>
+<blockquote>
+<p>强化学习是一套帮你做决策的科学</p>
+</blockquote>
+<p>我们在玩马里奥、战地这类通关式游戏的时候总要不断重复这样的步骤：</p>
+<blockquote>
+<p>观察环境 → 做出行动 / 决策 → 分析刚刚做的决策是好是坏</p>
+</blockquote>
+<p>就像你打马里奥一样，打多了输多了自然不会在同一个陷阱里摔两次。不断重复这样的步骤实际上在帮助我们记住在什么情况下应该 / 不应该做出哪样的行动，并且把这些行动串起来，怎样才能拿到游戏的最高分。</p>
+<h2 id="强化学习类问题">强化学习类问题</h2>
+<p>强化学习类问题大概长这样：</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20191106225823.png" alt="" loading="lazy"></figure>
+<h3 id="名词解释">名词解释</h3>
+<p><strong>奖励（Rewards）：</strong></p>
+<p>说是奖励不如说是得分，这就是衡量游戏玩的好不好的关键，强化学习最终也是为了让所获得的奖励尽量最大。</p>
+<p>举个例子，你在玩坦克大战，得分和扣分可能是这样的：</p>
+<ul>
+<li>成功击中敌方坦克：<strong>+ 1 分</strong></li>
+<li>敌方坦克被摧毁：<strong>+ 10 分</strong></li>
+<li>你 / 你的队友被打了：<strong>- 1 分</strong></li>
+<li>你的队友被打死了：<strong>- 10 分</strong></li>
+</ul>
+<p><strong>目标：</strong></p>
+<p>通过分析，做各种判断和行动的形式让所获得的奖励尽量最大。不过奖励也有分短期和长期，田忌赛马了解一下。</p>
+<p><strong>状态：</strong></p>
+<p>指的是当前环境下的信息，这些信息一般是有助于去预测下一个状态是咋样的。</p>
+<p><strong>智能体（Agent）状态和环境状态：</strong></p>
+<p>智能体就代表一个玩家，玩家的状态多数只有他自己知道，状态的信息有助于强化学习去选择下一项操作——比如说你现在空血没魔，技能都还在 CD，这时候你选择 TP 泉水还是自信回头？</p>
+<p>环境会根据智能体所作出的行动来发生变化。不过环境的状态智能体不一定会知道，甚至有些情况下环境状态没啥用处。</p>
+<p><strong>马尔科夫状态：</strong></p>
+<p>马尔科夫状态（The Markov state）想告诉我们的就是：它认为<strong>未来</strong>只和<strong>当下</strong>有关，和历史无关。比如说你在跑 50 米，你下一秒摔不摔跤只和你<strong>当下</strong>有没有被石头绊倒或是踩到了自己的鞋带有关，至于从啥时候开始跑的跑前心情咋样通通都是历史。</p>
+<p>马尔可夫状态真的很妙，它蕴藏的哲学可能是「历史塑造了我」，你的当下就是历史的积淀——我之前做过什么、喜欢什么、环境曾经带给我什么都会或多或少的呈现在现在的我身上，至于其他的都是无用信息，与决策无关。</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20191106232940.png" alt="" loading="lazy"></figure>
+<p>用马里奥来总结一下这些名词大概就是：</p>
+<ul>
+<li><strong>环境</strong>：整个马里奥世界（水管、砖块、路上的金币 blabla）</li>
+<li><strong>状态</strong>：世界里某一个时间点的缩影（屏幕上只能显示世界的一小块）</li>
+<li><strong>智能体</strong>：你控制的马里奥</li>
+<li><strong>行为 / 动作</strong>：跳、蹲、向左、向右、发射（喷火马里奥有这个）</li>
+<li><strong>奖励</strong>：吃到 🍄了、顶到金币了都可以是奖励，其中金币就是瞬时奖励。</li>
+<li><strong>短期目标</strong>：成功降旗到了🏰</li>
+<li><strong>长期目标</strong>：打败了大魔王救出了公主</li>
+</ul>
+<p><strong>全知境界（Fully Observable Environment）：</strong></p>
+<p>意思就是智能体本身就拥有「上帝视角」，这又叫马尔科夫过程（Markov Decision Process）</p>
+<pre><code>智能体状态 = 环境状态 = 马尔科夫状态
+</code></pre>
+<p><strong>未知境界（Partially Observable Environment）：</strong></p>
+<p>智能体需要靠之前的经验来一步步获取环境的各种信息，这又叫部分可知马尔科夫过程（Partially Observable Markov Decision Process）。就像 Dota 里的英雄没法知道整个地图的情况一样，除非你自己走到那里或者买眼。</p>
+<pre><code>智能体状态 ≠ 环境状态
+</code></pre>
+<h2 id="强化学习智能体的组成部分">强化学习智能体的组成部分</h2>
+<p><strong>策略：</strong></p>
+<p>策略就是智能体整体的行为，它是一套能够让智能体得最高分的规则：抽象来讲就是给状态和动作建立联系。</p>
+<p><strong>值函数：</strong></p>
+<p>值函数是针对一个状态预期奖励（得分）的预测。比如现在走左边和走右边会有两种不同结局，那要怎么知道哪种结局是最好的呢？值函数量化了每种状态，让你的智能体知道应该往哪走。</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20191107092104.png" alt="" loading="lazy"></figure>
+<p>整个公式得出的就是预测值，值 <strong>v</strong> 由参数 <strong>状态 s</strong> 决定，<strong>状态 s</strong> 遵循着 <strong>决策 𝛑</strong>、<strong>时刻 t</strong> 是指当前状态所处的时刻，下一秒则是 <strong>t + 1</strong>。</p>
+<p>Gamma, <strong>𝛄 系数</strong> 在我们关注当前 / 之后的状态时会起作用。如果只关注当前状态——<code>𝛄 = 0</code>；如果关注所有相关联的状态——<code>𝛄 = 1</code>，值越接近 1，状态的关联性越强。</p>
+<p><strong>模型：</strong></p>
+<p>模型是环境下智能体的表现，它能分成两种状态：</p>
+<p>过渡：预测着下一个状态。比如给出小车的速度和位置，得出「切换」到下一个状态的概率。</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20191107093233.png" alt="" loading="lazy"></figure>
+<p>奖励：预测的是瞬时奖励，当智能体做出动作时返回它所获得的奖励值。</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20191107093449.png" alt="" loading="lazy"></figure>
+<p>不一定要构建模型，强化学习中也有很多高效的算法选择不使用模型这套理论。</p>
+<h2 id="强化学习智能体的各种类型">强化学习智能体的各种类型</h2>
+<figure data-type="image" tabindex="6"><img src="https://cdn.mywpku.com/20191107093658.png" alt="" loading="lazy"></figure>
+<ul>
+<li>值驱动：没有确定的策略但却有非常直观的值函数，所有动作都取决于让值函数取到最大值。</li>
+<li>策略驱动：有非常直观的策略但却没有确定的值函数，它关注的是 It sees how well it does by picking some actions and how much reward it gets.</li>
+<li>无模型：没有模型意味着智能体不知道环境是怎么运作的，也没有确定的值函数和策略</li>
+<li>模型驱动：使用模型及策略 / 值函数</li>
+<li>Actor-critic：同时使用策略 + 值函数</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/nicechord-104" class="post-title gt-a-link">
+                    Nicechord - 终止式和副属和弦
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Laravel Socialite 实践 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Laravel Socialite 实践
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2017-12-17 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>用半天假期顺便梳理了第三方登录的流程，使用的是超神的 <a href="https://github.com/overtrue/socialite">Socialite</a>。<br>
+我原本可以再偷点懒——直接使用别人处理好的脚手架不就省事了咩，所以之前考虑做项目时就直接选择了 <a href="https://github.com/jeremykenedy/laravel-auth">Laravel-Auth</a> 来开发——但最后还是忍不住重构了。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2017/12/17/5a361b106df08.jpg" alt="" loading="lazy"></figure>
+<h2 id="流程">流程</h2>
+<p>以 QQ 登录为例：</p>
+<ul>
+<li>当用户点击使用社交账号登陆后，将跳转到第三方登陆的登陆界面。</li>
+<li>若登录成功，服务商会向网站所提供的 <code>callback</code> 地址传递该用户的相关信息（昵称、用户名、QQ 等级 blablabla）。并附有表示该账号的唯一 ID。</li>
+<li>开发者再根据服务商返回的信息，与网站用户之间建立相应联系。如下图（Via <a href="http://www.woshipm.com/pd/727011.html">人人都是产品经理</a>）：<br>
+<img src="https://i.loli.net/2017/12/17/5a361f2628fea.jpg" alt="" loading="lazy"></li>
+</ul>
+<h2 id="思路">思路</h2>
+<p><strong>需要实现功能：</strong></p>
+<ol>
+<li>登录页面点击相应图标，即可使用对应平台登录 / 注册</li>
+<li>已注册用户可以在个人中心绑定 / 解绑第三方平台账号<br>
+<strong>实现思路：</strong><br>
+用户在登录页面点击「社会化登录」按钮 -&gt; 用户授权登录完成 -&gt; 接收到服务商返回的用户信息：</li>
+<li>如果数据库内存在一个用户的 Email 可以与第三方平台提供信息相匹配（以下简称「对应关系」），而他却没有绑定该账号 -&gt; 跳出，让用户直接使用密码登录</li>
+<li>数据库内没有匹配的对应关系 -&gt; 视为新用户，直接注册</li>
+<li>数据库内已有匹配的对应关系 -&gt; 直接登录<br>
+用户在个人中心页面点击「绑定账号」按钮 -&gt; 用户授权登录完成 -&gt; 接收到服务商返回的用户信息：</li>
+<li>数据库内没有匹配的对应关系 -&gt; 绑定</li>
+<li>数据库内已有其它用户占用此第三方账号 -&gt; 报错<br>
+首先建立一个新模型 <code>Social</code> 用于说明 <code>User</code> 和各第三方平台提供数据之间的关系。数据表可以这样设计：</li>
+</ol>
+<pre><code>            $table-&gt;increments('id');
+            $table-&gt;integer('user_id')-&gt;unsigned()-&gt;index();
+            $table-&gt;foreign('user_id')-&gt;references('id')-&gt;on('users')-&gt;onDelete('cascade');
+            $table-&gt;string('provider', 50);
+            $table-&gt;text('social_id');
+            $table-&gt;timestamps();
+</code></pre>
+<p><code>social_id</code> 对应服务商 <code>provider</code> 返回的唯一 ID。<br>
+路由定义：</p>
+<pre><code class="language-php">&lt;?php
+    Route::get('/social/{provider}', ['as' =&gt; 'social.redirect', 'uses' =&gt; 'Auth\SocialController@getSocialRedirect']);
+    Route::get('/social/{provider}/callback', ['as' =&gt; 'social.handle', 'uses' =&gt; 'Auth\SocialController@getSocialHandle']);
+    Route::get('/social/{provider}/unbind', ['as' =&gt; 'social.unbind', 'uses' =&gt; 'Auth\SocialController@getSocialUnbind']);
+</code></pre>
+<p><code>SocialController.php</code>：</p>
+<pre><code class="language-php">&lt;?php
+// ....
+public function getSocialRedirect($provider)
+    {
+        return Socialite::driver($provider)-&gt;redirect();
+    }
+
+    public function getSocialHandle($provider)
+    {
+        $socialUser = Socialite::driver($provider)-&gt;user();
+        $matchedSocial = Social::where('provider', $provider)-&gt;where('social_id', $socialUser-&gt;id)-&gt;first();
+
+        // 1 情况
+        if (\Auth::guest() &amp;&amp; !empty($matchedSocial)) {
+            return redirect('login')-&gt;withErrors('对应用户并未绑定社交账号，请使用密码登录。');
+        }
+
+        
+        if (empty($matchedSocial)) {
+            // 4 情况
+            if (\Auth::user()) {
+                $this-&gt;socialDataRecord($socialUser, \Auth::user(), $provider);
+                myflash()-&gt;success('绑定成功');
+                return redirect()-&gt;route('users.edit', \Auth::user());
+            }
+            // 3.ii 情况
+            // 判断是否已有用户名，如果有，则随机化用户名
+            $username = $socialUser-&gt;name;
+            $usernameCheck = User::where('name', $username)-&gt;first();
+
+            while (!empty($usernameCheck)) {
+                $username .= str_random(6);
+                $usernameCheck = User::where('name', $username)-&gt;first();
+            }
+
+            // 对不提供邮箱的第三方平台的 Hack
+            if (!$socialUser-&gt;email) {
+                $email = 'missing' . str_random(10);
+            } else {
+                $email = $socialUser-&gt;email;
+            }
+            
+
+            // 写入新用户到数据库
+            $user = User::create([
+                    'name' =&gt; $username,
+                    'email' =&gt; $email, 
+                    'password' =&gt; bcrypt(str_random(40)),
+                    'signup_ip_address' =&gt; $this-&gt;request-&gt;ip(),
+                    'role_id' =&gt; 2,
+                    'activated' =&gt; true
+                ]);
+            $this-&gt;socialDataRecord($socialUser, $user, $provider);
+
+            auth()-&gt;login($user, true);
+            myflash()-&gt;success('登录成功，请尽快完善您的个人信息。');
+            return redirect()-&gt;route('users.edit', \Auth::user());
+        }
+
+        if (\Auth::user()) {
+            myflash()-&gt;warning('绑定失败，账号已被占用。');
+            return redirect()-&gt;route('users.edit', \Auth::user());
+        }
+        
+        auth()-&gt;login($matchedSocial-&gt;user, true);
+        return redirect('/');        
+    }
+
+    public function getSocialUnbind($provider)
+    {
+        $user = \Auth::user();
+        $user-&gt;social()-&gt;where('provider', $provider)-&gt;delete();
+        $user-&gt;unsetMeta($provider.'_nickname');
+        $user-&gt;save();
+        myflash()-&gt;success('解绑成功');
+        return redirect()-&gt;route('users.edit', \Auth::user());
+    }
+
+    public function socialDataRecord($socialUser, $user, $provider) {
+        $socialData = new Social();
+        $socialData-&gt;social_id = $socialUser-&gt;id;
+        $socialData-&gt;provider = $provider;
+        $user-&gt;social()-&gt;save($socialData);
+        $user-&gt;setMeta($provider.'_nickname', $socialUser-&gt;nickname);
+        if (!$user-&gt;display_name) {
+            $user-&gt;setMeta('display_name', $socialUser-&gt;nickname);
+        }
+        $user-&gt;save();
+    }
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/chu-shi-laravel-zhi-fu-bao-zhi-fu-kai-fa" class="post-title gt-a-link">
+                    初试 Laravel 支付宝支付开发
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

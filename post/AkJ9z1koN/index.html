@@ -1,0 +1,213 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RL: The Frozen Lake | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    RL: The Frozen Lake
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-11-05 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>冰湖的游戏规则是这样的，类似于迷宫：</p>
+<ul>
+<li>冰湖总共有 16 个小格（4x4），小格有两种类型：冰面（F）和冰窟（H）</li>
+<li>从起点（S）出发，到达终点（G）或掉入冰窟（H）为游戏结束</li>
+<li>你控制着一个小人，在冰面（F）上可以按四个方向移动，用数字代表移动方向（左 0 / 下 1 / 右 2 / 上 3）</li>
+<li>你的目的是到达终点，而不是掉进洞里</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20191105113330.png" alt="" loading="lazy"></figure>
+<p>为了解释方便，我们再来给迷宫掰掰细节：</p>
+<ul>
+<li><code>状态（State）</code>：给每个小格做编号（0~15），例如第一行第三列编号为 2，第二行第一列编号为 4，以此类推</li>
+<li>移动后可能会去往另一个冰面——当然咯，如果你已经掉到洞里或者已经到达终点了：不管怎么移动都不会再改变状态</li>
+<li>在边界位置移动可能会撞到墙——撞墙了不会改变状态</li>
+</ul>
+<h2 id="搭个环境">搭个环境</h2>
+<pre><code class="language-python">import gym
+import numpy as np
+
+env = gym.make('FrozenLake-v0', is_slippery=False)
+</code></pre>
+<p>执行 <code>env.render()</code> 后可查看当前冰湖的状态：</p>
+<pre><code class="language-python">env.reset() # 重置环境           
+env.render() # 输出当前环境
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20191105115716.png" alt="" loading="lazy"></figure>
+<p>以 <code>红色背景</code> 标记当前小人的位置。<code>env.action_space</code> 和 <code>env.observation_space</code> 返回的是 <code>Discrete</code> 类型，它们都描述大小为 <code>n</code> 的离散空间：</p>
+<pre><code class="language-python">print(&quot;Action space: &quot;, env.action_space) # Discrete(4) 意味着可执行四种动作
+print(&quot;Observation space: &quot;, env.observation_space) # Discrete(16) 意味着空间大小为 16
+</code></pre>
+<p>为了能让小人移动，我们还需要用到两个 API：<code>env.action_space.sample()</code> 和 <code>env.step()</code></p>
+<pre><code class="language-python">random_action = env.action_space.sample()
+print(random_action) # 返回 0, 1, 2, 3 其中之一，代表移动的方向
+
+new_state, reward, done, info = env.step(random_action) # 输入函数，操作后将按照所给方向移动
+# 返回四个值的 Tuple：
+# new_state: 移动后所在的状态（位置）
+# reward: 获得的奖励（目前始终为 0，不涉及）
+# done: 布尔值，代表游戏是否结束（掉坑里或者走到终点了返回 True）
+# info: 调试用
+</code></pre>
+<p>知道这些之后，可以让小人随便走几步，每走一步输出一次当前环境的信息：</p>
+<pre><code class="language-python">env.reset() # 走之前先重置环境
+MAX_ITERATION = 10 # 走 10 步
+
+for i in range(MAX_ITERATION):
+    random_action = env.action_space.sample()
+    print(env.step(random_action))
+    env.render()
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20191105121029.png" alt="" loading="lazy"></figure>
+<h2 id="状态-值-函数-quality函数q-函数">状态-值 函数 Q(uality)函数，Q 函数</h2>
+<pre><code>看它的名字就知道，Q 函数与状态有关，它描绘的是在
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2018-02-16 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="编译原理">编译原理</h2>
+<p>对于传统的编译型语言来说，「编译」大致需要经过三个步骤：分词、词法解读、生成机器阅读的「机器码」。JavaScript 稍微特殊些，因为它会在每次浏览器访问时（大多数情况下）才进行编译。</p>
+<ol>
+<li>分词：引擎会对代码逐行进行「分词/解构」。以<code>let a = 1;</code>为例，分词后的结果即是<code>let</code>、<code>a</code>、<code>=</code>、<code>2</code>、<code>;</code>，可以发现——空格在多数情况下决定着分词的位置。</li>
+<li>解读：分词后的结果将会被转换成更为抽象的一个个元素，分别对应着 AST （抽象语法树）上的一个个节点——实际上就是「解读」这些「词」背后代表的真正含义：<code>let</code>（声明类型）、<code>a</code>（变量标识符）、<code>=</code>（操作符）、<code>2</code>（值 &lt;- NumericLiteral 整型字面量）、<code>;</code>（语句结束）</li>
+<li>生成「机器码」<br>
+当然 JavaScript 的编译过程没有上述这么简单，但在大部分情况下：JavaScript 代码片段通常都要进行编译（并在编译前的短时间内用尽各种优化的方法），而后立即执行。</li>
+</ol>
+<h2 id="作用域">作用域</h2>
+<blockquote>
+<p>引擎的另一位好朋友，负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。<br>
+——《你不知道的 JavaScript》</p>
+</blockquote>
+<p>作用域类似于数学函数中的「定义域」，字面理解：使语句得以「生效」的区域。<br>
+在上述的「编译原理」里，实际上「生成机器码」这一过程大有文章——「作用域」就有参与其中。<br>
+还是以 <code>let a = 1</code>为例，在一一分词解读结束后，引擎将会预先确定这行代码是否「可以生效」——不能生效的情况有很多种，例如之前已经有一个名为 <code>a</code> 的变量被声明啦之类的。这一类类条约倘若其一不能实现，那么编译器就采取忽略或者抛出异常的行动。</p>
+<blockquote>
+<ol>
+<li>遇到 var a，编译器会询问作用域是否已经有一个该名称的变量存在于同一个作用域的集合中。如果是，编译器会忽略该声明，继续进行编译；否则它会要求作用域在当前作用域的集合中声明一个新的变量，并命名为 a。</li>
+<li>接下来编译器会为引擎生成运行时所需的代码，这些代码被用来处理 a = 2 这个赋值操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫作 a 的变量。如果是，引擎就会使用这个变量；如果不是，引擎会继续查找该变量。<br>
+如果引擎最终找到了 a 变量，就会将 2 赋值给它。否则引擎就会举手示意并抛出一个异常！</li>
+</ol>
+</blockquote>
+<h2 id="lhs-reference-look-up-rhs-reference-look-up">LHS Reference / Look-up、RHS Reference / Look-up</h2>
+<p>（前段时间同学问我什么是左右值引用（C++），我还相当敷衍地跟他说看看就好，这下打脸了……<br>
+JavaScript 的左右值引用 / 查询似乎和 C++ 还是有一定区别的。但是万变不离其宗……</p>
+<p>我们试着以三个简单的例子，从字面角度来理解 L/R-HS 引用：</p>
+<ol>
+<li>LHS 查询：<code>let a = 1</code>，这时候 <code>a</code> 所被执行的是赋值操作，然而 <code>a</code> 之前等于多少跟我没啥关系，这就是对 <code>a</code> 的 LHS 引用，所做的是 LHS 查询。</li>
+<li>RHS 查询：<code>let a = b</code>，这时候我需要先知道 <code>b</code> 的值是什么（<code>b</code> 等于多少跟我关系很大），才能让 <code>a</code> 正确地被赋予新值，这时候对 <code>b</code> 所做的就是 RHS 查询（事实上这一例子存在 LHS、RHS 两种查询，见例 1）。</li>
+<li>RHS 查询：<code>console.log(a)</code>，这时候我需要知道的是 <code>a</code> 的值（<code>a</code> 等于多少跟我关系很大），然后打印到控制台上，这就是对 <code>a</code> 的 RHS 引用，所做的是 RHS 查询。</li>
+</ol>
+<p>通过观察发现，<code>RHS</code> 并不是看起来那样的什么赋值符号左右分别就是 LHS RHS 查询——RHS 查询更像是一种「非左侧查询」。</p>
+<h3 id="最后上个例子">最后上个例子</h3>
+<p>来自 YDKJS，确实想了蛮久……</p>
+<pre><code class="language-javascript">function foo(a) {
+		let b = a;
+		return a + b;
+}
+let c = foo( 2 );
+</code></pre>
+<p>存在的查询有：</p>
+<ol>
+<li><code>foo(...)</code> RHS 查询，返回一个值准备赋值 c</li>
+<li><code>a = ...</code> LHS 查询，隐式查询，将 <code>2</code> 赋给 <code>foo</code> 函参 <code>a</code></li>
+<li><code>... = a</code> RHS 查询，返回 a 的值准备赋给 b</li>
+<li><code>b = ...</code> LHS 查询，同理</li>
+<li><code>a + ...</code> RHS 查询，返回 a 的值准备相加</li>
+<li><code>... + b</code> RHS 查询，同理，对应「1」</li>
+<li><code>c = ...</code> LHS 查询，同理。<br>
+总计 3 个 LHS 查询，4 个 RHS 查询。</li>
+</ol>
+<h2 id="哦那我知道这些干嘛">哦，那我知道这些干嘛？</h2>
+<p>YDKJS 上的结论非常清楚：</p>
+<ol>
+<li>不成功的 RHS 引用 —— ReferenceError</li>
+<li>不成功的 LHS 引用 —— 隐式创建变量（非严格模式下）/ ReferenceError（严格模式下）</li>
+</ol>
+<p>了解 RHS 和 LHS 的概念将有助于我们对语言运行机制的理解，以一个 ES5 非常经典的例子做述：</p>
+<pre><code class="language-javascript">console.log(a)
+var a = 10
+console.log(typeof a)
+/*
+		返回：
+		undefined
+		number
+*/
+</code></pre>
+<p>可以说是相当坑爹了：我都没声明变量，哪来的输出？<br>
+根据前一节「作用域」的概念：当 <code>console.log(a)</code> 被执行时：编译器将首先在当前作用域内寻找是否有一个名为 <code>a</code> 的玩意（Literal 字面量）。如果实在没有，则编译器就会继续向上查找，直至找到为止（从代码书写的角度上看，就像洋葱一样从里到外）。完全没有呢？那么就在「全局作用域」内创建一个名为 <code>a</code> 的变量。</p>
+<h2 id="词法作用域-动态作用域">词法作用域 / 动态作用域</h2>
+<p>YDKJS 上的例子：</p>
+<pre><code class="language-javascript">function aFunc () {
+    var a = 3;
+    bFunc();
+}
+
+function bFunc () {
+    console.log(a);
+}
+
+var a = 2;
+aFunc()
+
+// 结果为 2
+</code></pre>
+<p>为什么结果不是<code>3</code>呐？是因为 JavaScript 本身就是一门使用<code>词法作用域</code>的语言，根据上述「从里到外的洋葱查找」，其过程是这样的：</p>
+<ol>
+<li>全局作用域内定义 <code>a = 2</code></li>
+<li><code>aFunc()</code> 被执行，在 <code>aFunc()</code> 作用域内声明另一个 <code>a = 3</code></li>
+<li><code>bFunc()</code> 被执行，遇到了 RHS 查询 <code>console.log(a)</code>。咦，<code>a</code> 是啥？</li>
+<li>为了搞清楚 <code>a</code>，编译器在确定 <code>bFunc()</code> 作用域内找不到 <code>a</code> 的情况下将「向上查找」——也就是查找「全局作用域」</li>
+</ol>
+<p>当然：如果 JavaScript 是一门使用 <code>动态作用域</code> 的语言，其结果就为 <code>3</code>：编译器查找的方向就从上述的「作用域链」（词法作用域语言）变成了「执行链」（这词我瞎造的）——也就是调用栈（动态作用域）。</p>
+<p><strong>词法作用域</strong>（静态作用域） 在书写代码时即被定义，而 <strong>动态作用域</strong> 在运行时才根据情况被确定。也就是说：词法作用域关注作用域在何处被声明，动态作用域关注作用域在何处被使用。</p>
+<p>YDKJS 上还有一个 <code>欺骗词法作用域</code> 的介绍，感觉比较简单明了就不记了。总而言之就几句话：</p>
+<ol>
+<li><code>eval()</code> 和 <code>with()</code> 之类函数在运行时才能确定词法作用域，造成作用域在运行时被修改的现象（欺骗词法作用域）</li>
+<li>这类「欺骗函数」让 JavaScript 引擎难以在编译阶段做性能优化——甚至干脆就不优化了，代码性能大大下降（谁知道 <code>eval()</code> 传递的是什么东西）</li>
+<li>这类「欺骗函数」既不安全又难以正确使用</li>
+<li>最佳实践——别用它们。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/laravel-socialite-shi-jian" class="post-title gt-a-link">
+                    Laravel Socialite 实践
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

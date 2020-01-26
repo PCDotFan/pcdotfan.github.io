@@ -1,0 +1,230 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Promise 迷你书笔记 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Promise 迷你书笔记
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-09 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>直接看 YDKJS 真的是暴露出了「我一点也不懂 JavaScript」的大问题……还是要先看看迷你书才能弄懂 YDKJS 上都说的是什么玩意……</p>
+<!-- more -->
+<h2 id="为什么要-promise">为什么要 Promise？</h2>
+<p>上代码：</p>
+<pre><code class="language-javascript">console.log('Initialized.');
+setTimeout(function() {
+  setTimeout(then, 0)
+}, 2000)
+let then = function() {
+  console.log(&quot;ALERT!&quot;)
+}
+console.log('I\'m doing something before alert.')
+</code></pre>
+<p>这是用 <code>setTimeout</code> 实现的 Hack 版异步<s>为了异步而异步</s>代码，在输出 <code>Initialized.</code> 之后的两秒后输出 <code>doing sth before alert.</code>，之后则是 <code>ALERT</code>。</p>
+<p>参见上节<a href="https://pcdotfan.com/post/code/ydkjs-async-and-concurrency">我不知道的 JavaScript - 还没写完异步和并发</a>，用回调来写异步有以下几个显而易见的缺点：</p>
+<ol>
+<li>反人类代码，不按顺序，理解困难</li>
+<li>回调地狱，调试困难</li>
+<li>...</li>
+</ol>
+<p>以上面的代码来说确实看不出有什么特别的缺点<s>除了是我写的</s>，来看看 YDKJS 的一个异步回调例子：</p>
+<pre><code class="language-javascript">doA(function() {
+    doB(10);
+    doC(function(){
+        doD(10);
+    }, 10);
+    doE(10);
+}, 10);
+doF(10);
+</code></pre>
+<p>猜猜这段玩意是怎么执行的？（为了便于理解，我给所有函数都多加了一个参数 <code>10</code>，代表延时 10 ms）(答案是：A-&gt;F-&gt;B-&gt;C-&gt;E-&gt;D，窒息)。所以说，JavaScript 相当有必要有一个更加高级的异步机制——这也就是今天的 Promise 和 Async。</p>
+<h2 id="什么是-promise">什么是 Promise？</h2>
+<p>我很喜欢吃 M记 的板烧鸡腿堡，假设我现在正在麦当劳的自动点单机上订餐，付款后点单机给你打印了一张编号为「1234」的凭条。几分钟后，前台的屏幕上显示着「1234 号请取餐」，这时你凭着点单机的凭条换来了服务员配好的板烧鸡腿堡。</p>
+<p>「点单机制」就是 Promise 在生活中的一种应用。Promise 代替了 ES6 之前反人类的回调异步方式，并带领着 JavaScript 社区 Promise 化。</p>
+<p>我们来解析下去 M记 点汉堡的例子：</p>
+<ol>
+<li>那张「1234」的凭条就是一个餐厅对你的「保证」（Promise）——不管餐厅能不能做出来这个汉堡，最后都一定会给你一个<code>答复</code></li>
+<li>在「点餐-&gt;取餐」的过程中，我们（可能）会经历三种状态的转变：「等待取餐……」、「取到餐了！」、「服务员告诉我今天芝士汉堡卖完了」</li>
+<li>我不觉得服务员会骗你说卖完了然后过几分钟再给你个汉堡，所以状态永远只能转变一次，并且转变后就不再变化了</li>
+</ol>
+<p>同样的，Promise 正好也有三种与之对应的状态：<code>pending（进行中） - 「等待取餐」</code>、<code>fulfilled（已成功） - 可以吃了</code>和 <code>rejected（已失败） - 卖完了</code>。并且状态只能由 <code>pending（未决议状态）</code> 变为 <code>fulfillled / rejected （已决议状态）</code>（<strong>状态只能改变一次</strong>）。改变后将<strong>永远停留</strong>在这个状态不动——这时它就成为了不变值（immutable value），可以根据需求多次查看。</p>
+<p>这样写出来的代码就好理解多了，我们来模拟下服务员备餐直至通知我们取餐的整个流程：</p>
+<pre><code class="language-javascript">let hamburger1234 = () =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve('快来取餐吧！')
+    }, 50000) // 假设服务员准备一个汉堡需要 50 秒
+  })
+}
+
+hamburger1234().then(value =&gt; {
+  console.log(`状态：${value}`)
+}).catch(error =&gt; {
+  console.log(error)
+})
+
+console.log('您的订单号为 1234，服务员正在备餐，请稍等。');
+/*
+  打印结果：
+    您的订单号为 1234，服务员正在备餐，请稍等。
+    状态：快来取餐吧！
+*/
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-this" class="post-title gt-a-link">
+                    你不知道的 JavaScript - This
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

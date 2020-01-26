@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.g4.cx</id>
+    <title>PCDotFan</title>
+    <updated>2020-01-26T09:14:25.820Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.g4.cx"/>
+    <link rel="self" href="https://blog.g4.cx/atom.xml"/>
+    <subtitle>A straight jacket for your mind.</subtitle>
+    <logo>https://blog.g4.cx/images/avatar.png</logo>
+    <icon>https://blog.g4.cx/favicon.ico</icon>
+    <rights>All rights reserved 2020, PCDotFan</rights>
+    <entry>
+        <title type="html"><![CDATA[2019-2020 跨年博客]]></title>
+        <id>https://blog.g4.cx/post/2019-2020</id>
+        <link href="https://blog.g4.cx/post/2019-2020">
+        </link>
+        <updated>2020-01-02T03:03:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>写跨年博客的想法其实很早就有了，但每到真正下笔时却总是半途而废。再忙也好、再晚也好，我今天说什么都要把这篇博客写完推到网上。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>写跨年博客的想法其实很早就有了，但每到真正下笔时却总是半途而废。再忙也好、再晚也好，我今天说什么都要把这篇博客写完推到网上。</p>
+<!--more-->
+<p>人们常说人生有三个转折点：出生、高考、婚嫁。如果说 2017-2018 让我对人生重新做了选择，那么 2019 年对我来说，无疑是检验这次选择的关键一年。</p>
+<h2 id="2019">2019</h2>
+<h3 id="生活">生活</h3>
+<p>在杭电的生活一定能算得上是丰富而多元的。我看了不下 20 场的文艺演出和学术讲座，闲时有也常去周边的城市逛逛：从南京到上海，再到苏州和武汉……眼界着实开阔了不少，看到了平静村落下的朴实善良，也看到繁华都市里的「熙熙攘攘」。</p>
+<p><img src="https://cdn.mywpku.com/IMG_20191026_141537.jpg" alt="" loading="lazy"><br>
+<em>苏州街头的小桥流水</em></p>
+<p>学校离西湖景区只有 40 分钟地铁，一年下来我也只走过 1/10 吧，嗯毕业前一定会打卡每个景点的！</p>
+<p><img src="https://cdn.mywpku.com/IMG_20190615_082056.jpg" alt="" loading="lazy"><br>
+<em>9 教随手拍</em></p>
+<p>第一次去看演唱会，那种和 idol 近在咫尺的感觉真的很棒！陈绮贞、逃跑计划、万青、林宥嘉、岸部真明（我和岸部大叔面对面！！）</p>
+<p><img src="https://cdn.mywpku.com/IMG_20191206_212447.jpg" alt="" loading="lazy"><br>
+<em>岸部真明 x 下山亮平 2019 杭州演奏会</em></p>
+<p>我的舍友都超级 nice，好多小细节上能体现出他们的修养（不像我这种憨憨直男哈哈哈），每到学期末和重要日子还会很仪式性地出去搓一顿。（也挺好玩的哈哈哈，过了快半年了才互相发现原来 5 个里有 3 个都是复读生</p>
+<p>每一次回家总能感觉到家人在慢慢变老。外公外婆这两年身体每况愈下，虽然生活尚能自理，但总感觉他们已被阿兹海默症的洪水冲毁了常识和心智，也因此遗失了感情。</p>
+<p>我很希望我能做些什么，真的，不想再看到我妈哭了。</p>
+<h3 id="社团">社团</h3>
+<p>参加了杭电助手和红色家园两个重技术型的社团（也不出所料地成为了两家之间的双面间谍 溜了溜了），认识了很多很多这方面的牛人和志同道合的朋友，甚至还借社团的名义帮学校做了好多事情（学院的官网、微信新生报到、重构各类外包系统等等），这些宝贵的人脉和经历，我想只有助手和红家能带给我，只有杭电能带给我。</p>
+<p>原本只想做一个闷头实现功能写代码的人，谁知阴差阳错还是当上了前端的部长。从最初的线上宣传，一个一个和我「未来」的部员们聊过去，到组织笔试、二面、三面，再到每一周组织例会……所幸，这一年里我的表现（和魅力）还算说得过去，大家都很认真很可爱，不仅没有像我那时的前端部一样没到几个月便隐居山林不再出现，还很积极地完成我给的各种作业和社团任务，有的甚至还和我在办公室里熬夜复习，这对我来说已经是莫大的肯定了。</p>
+<p><img src="https://cdn.mywpku.com/IMG_20190708_221413.jpg" alt="" loading="lazy"><br>
+<em>助手的🐱（现在已经放生了，想它）</em></p>
+<p>社团的开发工作和部门上的这些事情大概占据了我超过一半的空余时间，真的很累很累，但不得不说，这段日子里我真的，真的超级开心。</p>
+<p><img src="https://cdn.mywpku.com/IMG_20191125_205430.jpg" alt="" loading="lazy"><br>
+<em>开会偷拍我的部员们</em></p>
+<p><img src="https://cdn.mywpku.com/Screenshot_20200102-015934.jpg" alt="" loading="lazy"><br>
+<em>助手破冰，跳失恋阵线联盟</em></p>
+<h3 id="竞赛和创业">竞赛和创业？</h3>
+<p>因为总想着要出国，大大小小的比赛也报了不下 10 场。挑战杯，互联网+、服务外包、大创新苗……每一次打比赛都让人觉得特别不舒服，不仅仅是要在规定时间内交上足够满意的结果所带来的一阵阵焦虑，更有因为团队管理上的缺乏经验而自卑，和生怕辜负队友、老师努力和期待的强烈不安。</p>
+<p>原本只是无心插柳，可歪打正着地遇上了学校创业类的金牌指导老师老吴，他不仅仅是在比赛技巧上，更从我的发展方向，人生角度上给了我很多经验和思考。</p>
+<p>第一次认识老吴时总觉得他看起来像个挺不靠谱的老师，比如什么忘记了报名的时间、校赛那天没注意我们讲的什么，但他一到真正的关键时刻却只能让你从内心发出由衷的佩服，你也不知道这小小的身躯里到底装了多少的知识和才华。</p>
+<p><img src="https://cdn.mywpku.com/IMG_20190710_111723.jpg" alt="" loading="lazy"><br>
+<em>参加第五届省互联网+，输的超惨哈哈</em></p>
+<p>他还总能给我带来许多感动（有一次甚至还和老婆孩子打电话说今晚辅导学生不回去了）。我总记得互联网+比赛失利那天，回想起队友为了这次比赛推掉了原本安排好的行程，努力了这么久最后却落得小组倒数的成绩，我心有不甘，更多的是愧疚和自责。要知道悲伤同样可以被传染，我又怎敢向队友再分享这种负面的情绪呢。我发短信给老吴，为我的状态不佳向他道歉时——我第一次听到，听到一个以老师身份的人，能耐下心来接受我所有的不安和焦虑，还对我这样保证。</p>
+<p>「我今后一定帮你把企业做大做强。」</p>
+<p>我实在没有勇气和他说创办公司只为了打比赛这回事。</p>
+<p>可我每每想起那段时光，眼里总噙泪水。</p>
+<h3 id="感情">感情</h3>
+<p>很遗憾，9102 年我还是没脱单。不过今年是和往常不同，收到过不明所以的短信、也从微博上无意翻到别人对我的评价，甚至让我还差点动了内销的念头……</p>
+<p>这一年里，似乎多了好几个拷问自己的夜晚，具体问的什么实在是没脸说。</p>
+<p>之前崇拜和喜欢的人脱单了<s>npy还挺帅的</s>，哎难过了好一段时间，特别是偶遇时，我心里真的好复杂好复杂……心想还要做一段时间队友，更复杂了……</p>
+<h2 id="2020">2020</h2>
+<p>我没想到 20 岁来的这么快，我也真正到了要面对些什么的年纪。先定个小计划：</p>
+<ul>
+<li>~<s>把谷歌 STEP 项目的简历投过去</s>~ 被拒了</li>
+<li>考下雅思或托福，学车</li>
+<li>做一个拿得出手的开源项目</li>
+<li>跟着导师还是得做些什么的对吧</li>
+<li>把极客苏打做出来</li>
+<li>去报吉他班，自己练真的没啥进步</li>
+<li>少油少甜戒糖戒油炸，虽然我知道肯定不会执行</li>
+<li>去一次日本或 HK（再乱也想去看看）</li>
+<li>看一场彩虹合唱团的演出</li>
+<li>多陪陪家人，外公外婆真的老了</li>
+</ul>
+<p>当然了，思想上的一点点要求也得说说：</p>
+<ul>
+<li>保持谦恭，对于我不知道的世界不应过多评价</li>
+<li>DONT WORRY，生死面前皆为小事</li>
+<li>BE OPEN，早点离开自己的那些固化思维，别一上来和你想的不一样就妄加批判</li>
+<li>靠谱，凡事有交代、件件有着落、事事有回音</li>
+<li>温热，别再被谁说是高冷怪了</li>
+</ul>
+<p>最重要的可能还是：</p>
+<ul>
+<li>改变这种一个人也能活的笨蛋思想</li>
+<li>早点认清楚错过才不是什么美好，错过就是怂 + 自我安慰给你下的慢性毒药</li>
+<li>赶紧脱单</li>
+</ul>
+<p>还是很喜欢副部卡片上写的那八个字，虽然看起来平淡无力，但确实是我所能想到的，最棒的祝福：</p>
+<p>万事胜意，平安喜乐。</p>
+<p>2020 年祝好，晚安。</p>
+<p>2020.01.02 01:35</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[初入强化学习]]></title>
+        <id>https://blog.g4.cx/post/3Q3S9-46P</id>
+        <link href="https://blog.g4.cx/post/3Q3S9-46P">
+        </link>
+        <updated>2019-11-06T14:50:56.000Z</updated>
+        <summary type="html"><![CDATA[<p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
+<p>翻译文章式学习，感觉没有比我更奇葩的了……看看翻完能不能搞懂这些。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
+<p>翻译文章式学习，感觉没有比我更奇葩的了……看看翻完能不能搞懂这些。</p>
+<!--more-->
+<h2 id="强化学习是什么">强化学习是什么？</h2>
+<blockquote>
+<p>强化学习是一套帮你做决策的科学</p>
+</blockquote>
+<p>我们在玩马里奥、战地这类通关式游戏的时候总要不断重复这样的步骤：</p>
+<blockquote>
+<p>观察环境 → 做出行动 / 决策 → 分析刚刚做的决策是好是坏</p>
+</blockquote>
+<p>就像你打马里奥一样，打多了输多了自然不会在同一个陷阱里摔两次。不断重复这样的步骤实际上在帮助我们记住在什么情况下应该 / 不应该做出哪样的行动，并且把这些行动串起来，怎样才能拿到游戏的最高分。</p>
+<h2 id="强化学习类问题">强化学习类问题</h2>
+<p>强化学习类问题大概长这样：</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20191106225823.png" alt="" loading="lazy"></figure>
+<h3 id="名词解释">名词解释</h3>
+<p><strong>奖励（Rewards）：</strong></p>
+<p>说是奖励不如说是得分，这就是衡量游戏玩的好不好的关键，强化学习最终也是为了让所获得的奖励尽量最大。</p>
+<p>举个例子，你在玩坦克大战，得分和扣分可能是这样的：</p>
+<ul>
+<li>成功击中敌方坦克：<strong>+ 1 分</strong></li>
+<li>敌方坦克被摧毁：<strong>+ 10 分</strong></li>
+<li>你 / 你的队友被打了：<strong>- 1 分</strong></li>
+<li>你的队友被打死了：<strong>- 10 分</strong></li>
+</ul>
+<p><strong>目标：</strong></p>
+<p>通过分析，做各种判断和行动的形式让所获得的奖励尽量最大。不过奖励也有分短期和长期，田忌赛马了解一下。</p>
+<p><strong>状态：</strong></p>
+<p>指的是当前环境下的信息，这些信息一般是有助于去预测下一个状态是咋样的。</p>
+<p><strong>智能体（Agent）状态和环境状态：</strong></p>
+<p>智能体就代表一个玩家，玩家的状态多数只有他自己知道，状态的信息有助于强化学习去选择下一项操作——比如说你现在空血没魔，技能都还在 CD，这时候你选择 TP 泉水还是自信回头？</p>
+<p>环境会根据智能体所作出的行动来发生变化。不过环境的状态智能体不一定会知道，甚至有些情况下环境状态没啥用处。</p>
+<p><strong>马尔科夫状态：</strong></p>
+<p>马尔科夫状态（The Markov state）想告诉我们的就是：它认为<strong>未来</strong>只和<strong>当下</strong>有关，和历史无关。比如说你在跑 50 米，你下一秒摔不摔跤只和你<strong>当下</strong>有没有被石头绊倒或是踩到了自己的鞋带有关，至于从啥时候开始跑的跑前心情咋样通通都是历史。</p>
+<p>马尔可夫状态真的很妙，它蕴藏的哲学可能是「历史塑造了我」，你的当下就是历史的积淀——我之前做过什么、喜欢什么、环境曾经带给我什么都会或多或少的呈现在现在的我身上，至于其他的都是无用信息，与决策无关。</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20191106232940.png" alt="" loading="lazy"></figure>
+<p>用马里奥来总结一下这些名词大概就是：</p>
+<ul>
+<li><strong>环境</strong>：整个马里奥世界（水管、砖块、路上的金币 blabla）</li>
+<li><strong>状态</strong>：世界里某一个时间点的缩影（屏幕上只能显示世界的一小块）</li>
+<li><strong>智能体</strong>：你控制的马里奥</li>
+<li><strong>行为 / 动作</strong>：跳、蹲、向左、向右、发射（喷火马里奥有这个）</li>
+<li><strong>奖励</strong>：吃到 🍄了、顶到金币了都可以是奖励，其中金币就是瞬时奖励。</li>
+<li><strong>短期目标</strong>：成功降旗到了🏰</li>
+<li><strong>长期目标</strong>：打败了大魔王救出了公主</li>
+</ul>
+<p><strong>全知境界（Fully Observable Environment）：</strong></p>
+<p>意思就是智能体本身就拥有「上帝视角」，这又叫马尔科夫过程（Markov Decision Process）</p>
+<pre><code>智能体状态 = 环境状态 = 马尔科夫状态
+</code></pre>
+<p><strong>未知境界（Partially Observable Environment）：</strong></p>
+<p>智能体需要靠之前的经验来一步步获取环境的各种信息，这又叫部分可知马尔科夫过程（Partially Observable Markov Decision Process）。就像 Dota 里的英雄没法知道整个地图的情况一样，除非你自己走到那里或者买眼。</p>
+<pre><code>智能体状态 ≠ 环境状态
+</code></pre>
+<h2 id="强化学习智能体的组成部分">强化学习智能体的组成部分</h2>
+<p><strong>策略：</strong></p>
+<p>策略就是智能体整体的行为，它是一套能够让智能体得最高分的规则：抽象来讲就是给状态和动作建立联系。</p>
+<p><strong>值函数：</strong></p>
+<p>值函数是针对一个状态预期奖励（得分）的预测。比如现在走左边和走右边会有两种不同结局，那要怎么知道哪种结局是最好的呢？值函数量化了每种状态，让你的智能体知道应该往哪走。</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20191107092104.png" alt="" loading="lazy"></figure>
+<p>整个公式得出的就是预测值，值 <strong>v</strong> 由参数 <strong>状态 s</strong> 决定，<strong>状态 s</strong> 遵循着 <strong>决策 𝛑</strong>、<strong>时刻 t</strong> 是指当前状态所处的时刻，下一秒则是 <strong>t + 1</strong>。</p>
+<p>Gamma, <strong>𝛄 系数</strong> 在我们关注当前 / 之后的状态时会起作用。如果只关注当前状态——<code>𝛄 = 0</code>；如果关注所有相关联的状态——<code>𝛄 = 1</code>，值越接近 1，状态的关联性越强。</p>
+<p><strong>模型：</strong></p>
+<p>模型是环境下智能体的表现，它能分成两种状态：</p>
+<p>过渡：预测着下一个状态。比如给出小车的速度和位置，得出「切换」到下一个状态的概率。</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20191107093233.png" alt="" loading="lazy"></figure>
+<p>奖励：预测的是瞬时奖励，当智能体做出动作时返回它所获得的奖励值。</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20191107093449.png" alt="" loading="lazy"></figure>
+<p>不一定要构建模型，强化学习中也有很多高效的算法选择不使用模型这套理论。</p>
+<h2 id="强化学习智能体的各种类型">强化学习智能体的各种类型</h2>
+<figure data-type="image" tabindex="6"><img src="https://cdn.mywpku.com/20191107093658.png" alt="" loading="lazy"></figure>
+<ul>
+<li>值驱动：没有确定的策略但却有非常直观的值函数，所有动作都取决于让值函数取到最大值。</li>
+<li>策略驱动：有非常直观的策略但却没有确定的值函数，它关注的是 It sees how well it does by picking some actions and how much reward it gets.</li>
+<li>无模型：没有模型意味着智能体不知道环境是怎么运作的，也没有确定的值函数和策略</li>
+<li>模型驱动：使用模型及策略 / 值函数</li>
+<li>Actor-critic：同时使用策略 + 值函数</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nicechord - 终止式和副属和弦]]></title>
+        <id>https://blog.g4.cx/post/nicechord-104</id>
+        <link href="https://blog.g4.cx/post/nicechord-104">
+        </link>
+        <updated>2019-07-28T09:14:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>终止式指的是乐句或一首曲子「最后几个和弦」的安排方式。</p>
+<p>之前提到的<a href="https://blog.g4.cx/post/nicechord-102/">和弦功能</a>当中有讲，不稳定的和弦会有接到稳定和弦的趋势——也就是从「外面」回到「家」。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>终止式指的是乐句或一首曲子「最后几个和弦」的安排方式。</p>
+<p>之前提到的<a href="https://blog.g4.cx/post/nicechord-102/">和弦功能</a>当中有讲，不稳定的和弦会有接到稳定和弦的趋势——也就是从「外面」回到「家」。</p>
+<!-- more -->
+<h3 id="正格终止">正格终止</h3>
+<blockquote>
+<p>G 即 5 级和弦，大调中的第三个正三和弦，任何一首歌曲都不可缺少。它起着对主和弦支撑的作用。乐曲的终止感就是由 5-1 这样的进行产生的。当然现代流行音乐特别是欧美音乐中不使用 5-1 终止的歌曲也很多，这正是流行音乐的特色，但 5 级和弦作为音乐的骨架和弦仍然不可动摇。</p>
+</blockquote>
+<p>正格终止就是由五级和弦（V）接到一级和弦（I）的终止。也就是在 C 大调当中的 <strong>G(7) -&gt; C</strong></p>
+<h3 id="半终止">半终止</h3>
+<p>既然五级和弦给人非常不舒服、不稳定的感觉，那么最后停在五级和弦（V）上的终止给人的自然是一种「意犹未尽、还没结束」的感觉。</p>
+<h3 id="其它">其它</h3>
+<ul>
+<li><strong>假终止：</strong> 本来应该是 V -&gt; I 的进行，却使用了其它方法及结束整个乐句。古典音乐常用 V -&gt; VI，有意想不到的悲伤、忧郁效果。</li>
+<li><strong>变格终止：</strong> 「教会版」终止，特指 IV -&gt; I 的进行，因为「阿门」的念法刚好和 IV -&gt; I 一样，所以又叫做「阿门终止」。</li>
+</ul>
+<h2 id="副属和弦">副属和弦</h2>
+<p>「副属和弦」（Secondary Dominant Chord）被用在两个和弦之间，起到「装饰」作用，让乐句听起来不单调，有起伏感。例如（加粗的为副属和弦）：</p>
+<ul>
+<li>C -&gt; <strong>B7</strong> -&gt; Em</li>
+<li>C -&gt; <strong>E7</strong> -&gt; Am</li>
+<li>C -&gt; <strong>D7</strong> -&gt; G</li>
+<li>C -&gt; <strong>A7</strong> -&gt; Dm</li>
+</ul>
+<p>以上副属和弦都符合一个规则：「是从要接的那個和弦算起，往上五度音的屬七和弦」。<code>E（Em）</code> 往上五度音是 <code>B</code>，属七和弦就是 <code>B7</code>。</p>
+<p>是不是有点像「终止式」当中 <strong>V -&gt; I</strong> 的关系？</p>
+<p>那如果想要再装饰一下「副属和弦」怎么办？既然有了「外面」、有了「家🏠」，自然也有「桥」和弦：</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190728180647.png" alt="" loading="lazy"></figure>
+<p>一般来说，在 V 和弦之前可以加入装饰性的二级和弦（「桥」和弦）。例如 <strong>C -&gt; Fmaj7</strong>：</p>
+<p>加入「副属和弦」就是 <strong>C -&gt; C7 -&gt; Fmaj7</strong></p>
+<p>再加入一个二级的装饰和弦：<strong>C-&gt;Gm(7)-&gt;C7-&gt;Fmaj7</strong>（F 大调的二级和弦是 Gm）</p>
+<blockquote>
+<p>上方：指比某一音更高的音，下方反之</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nicechord - 音程名称]]></title>
+        <id>https://blog.g4.cx/post/nicechord-103</id>
+        <link href="https://blog.g4.cx/post/nicechord-103">
+        </link>
+        <updated>2019-06-29T02:00:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
+<!-- more -->
+<h2 id="度">度</h2>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190629100213.png" alt="" loading="lazy"></figure>
+<p>例如 <strong>do-re-mi</strong>，从 <strong>do</strong> 到 <strong>mi</strong> 就是 <strong>3 度</strong>。</p>
+<p>度一定是 <strong>整数</strong>，这也意味着实际上对音进行升降不会影响到音程。不管是 <strong>降 mi</strong> 还是 <strong>升 mi</strong>，只要它仍叫做 <strong>mi</strong>，那么从 <strong>do</strong> 到 <strong>mi</strong> 就还是 <strong>3 度</strong>。</p>
+<p>那问题来了：既然降音和升音都是一样的，那它们之间的距离怎么表示啊？</p>
+<h2 id="纯音程和大音程">纯音程和大音程</h2>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190629100955.png" alt="" loading="lazy"></figure>
+<p>在大调音阶里，每一个音和第一个音之间的距离，都叫做「完全」或「大」音程。我们把「度」分为两组：</p>
+<ul>
+<li>1 4 5 8 纯（完全）音程（减 ⬅️完全 ➡️增）</li>
+<li>2 3 6 7 大音程（减 ⬅️小 ⬅️大 ➡️增）</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190629102333.png" alt="" loading="lazy"></figure>
+<p>将 C 大调 <strong>do-re-mi-fa-sol-la-ti-do</strong> 和第一个音 <strong>do</strong> 来比较就会像上面这样👆。</p>
+<p>举个 🌰，只要音之间的距离为 <strong>4 度</strong>，那么就属于「纯音程」，读作 <strong>纯 4 度</strong>。那么，比原先音程的距离要 <strong>窄</strong> 或者 <strong>宽</strong> 的就用其它的形容词来表示。</p>
+<p>举个 🌰，<strong>do-降 mi</strong> 之间是 <strong>3 度</strong>，但 <strong>降 mi</strong> 比原本的音程要窄一个单位，那么就是 <strong>小 3 度</strong>。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nicechord - 和弦功能]]></title>
+        <id>https://blog.g4.cx/post/nicechord-102</id>
+        <link href="https://blog.g4.cx/post/nicechord-102">
+        </link>
+        <updated>2019-06-27T03:14:55.000Z</updated>
+        <summary type="html"><![CDATA[<p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190627120058.png" alt="" loading="lazy"></figure>
+<p>我们来假定现在一首曲目只由单音的 <strong>do-re-mi-fa-sol sol-fa-mi-re-do</strong> 组成，前半段的进行给人一种从 <strong>do</strong> 出发一直往上爬的感觉，情绪逐渐上涨达到最高。可如果从中间断开——不弹奏后面的 <strong>sol-fa-mi-re-do</strong> 总是让人觉得不太舒服，就像是爬山「走到顶端」就呆在那不下来了一样。</p>
+<p>把 <strong>do-re-mi-fa-sol-la-ti</strong> 映射到对应的和弦上来会是这样：</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190627121518.png" alt="" loading="lazy"></figure>
+<p>固定地，1 级和弦称主和弦、4 级和弦可称下属和弦，5级和弦也称属和弦。</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190627123639.png" alt="" loading="lazy"></figure>
+<p>了解这些有什么用呢？我们所说的谱曲和写歌，背后「和弦进行」的基本逻辑，就是从稳定的和弦再到不稳定的和弦，最后再到稳定的和弦。就好像是从「家」出发，到了杂乱的「外面」，跨桥经历千山万水之后终于再一次回「家」一样。</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20190627124402.png" alt="" loading="lazy"></figure>
+<p>这也就是主和弦、下属和弦和属和弦的功能，合在一起就是完成了「起  ➡️ 承  ➡️ 转」最后再回到「合」<br>
+的进行。</p>
+<blockquote>
+<p>C 即 1 级和弦，是用来明确调性的。一般大调的歌曲都以它开始，也以它结束。不过在曲子的中间可以尽量少用主和弦，否则老是给人以终止感，乐曲的进行也会很硬。</p>
+</blockquote>
+<blockquote>
+<p>Dm 即 2 级和弦，是一个很柔和的和弦，它的最重要用途就是放在属和弦即 5 级和弦之前。而 5 级和弦则自然要回到1级和弦，所以很容易就形成了2-5-1的进行。这是一个极其常用的进行。</p>
+</blockquote>
+<blockquote>
+<p>Em 即 3 级和弦，也是一个十分柔和的和弦。音乐的进行中有了她马上就会变得柔美而略带忧伤。1-3-4 的进行，也即在 C 大调中的 C-Em-F 是一个很常用的进行。乐曲中本来用 1 级和弦的地方有时可以考虑换成 3 级和弦，音乐立即就不强硬了。港台音乐中这种手法很常用。</p>
+</blockquote>
+<blockquote>
+<p>F 即 4 级和弦，大调中的又一正三和弦，属于骨干和弦之一。它十分明亮，让人感觉心胸开阔，有一种一下子「飞」起来的感觉。我们听到的美国乡村乐和描写西部大草原和大峡谷的歌曲都使用 4 级和弦来表现。1 级和弦后面跟 4 级与跟 3 级和弦是绝对不同的。</p>
+</blockquote>
+<blockquote>
+<p>G 即 5 级和弦，大调中的第三个正三和弦，任何一首歌曲都不可缺少。它起着对主和弦支撑的作用。乐曲的终止感就是由 5-1 这样的进行产生的。当然现代流行音乐特别是欧美音乐中不使用 5-1 终止的歌曲也很多，这正是流行音乐的特色，但 5 级和弦作为音乐的骨架和弦仍然不可动摇。</p>
+</blockquote>
+<blockquote>
+<p>Am 即 6 级和弦，一个中性的和弦，如果把它作为主和弦那就是小调了。歌曲肯定会变得忧郁，悲伤。如果 6 级和弦出现在大调中的某些部分，那它起到的就是连接不同和弦的作用。6 级和弦象一座桥，它前面可以接几乎所有的和弦，后面也是如此。它可以是和弦的进行连贯，不呆板。1-6-4-5 是极为常用的进行，事实上就用这四个和弦就可以写歌了。</p>
+</blockquote>
+<blockquote>
+<p>Bdim 即 7 级和弦，在流行音乐中很少用。因为它是减三和弦，有一种向里收缩的紧张感，一般只在某些特定进行中使用，或是为了根音的流动而使用。</p>
+</blockquote>
+<blockquote>
+<p>Via: <a href="https://www.douban.com/group/topic/13429306/">【乐理】和弦的功能、变化、连接及编配</a></p>
+</blockquote>
+<p>所以，与其给每一个和弦都定义一个功能，倒不如把现有的所有和弦都归类到「起、承、转」当中，只要遵循着最简单的 TDS 公式来谱曲就会很好听啦！</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20190629095631.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nicechord - 现代和弦代号]]></title>
+        <id>https://blog.g4.cx/post/nicechord-001</id>
+        <link href="https://blog.g4.cx/post/nicechord-001">
+        </link>
+        <updated>2019-06-26T13:00:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
+<!-- more -->
+<h2 id="和弦命名">和弦命名</h2>
+<p><strong>三和弦 triad</strong>：三个音的和弦</p>
+<p>「三和弦」之后命名规则发生变化——以「最后一个和弦音的度数」来命名，也就是：</p>
+<ul>
+<li><strong>七和弦 seventh</strong>：四个音的和弦（ex. 1 3 5 7）</li>
+<li><strong>九和弦 ninth</strong>：五个音的和弦（ex. 1 3 5 7 9）</li>
+<li><strong>十一和弦 ...</strong>：六个音的和弦（ex. 1 3 5 7 9 11）</li>
+<li><strong>十三和弦 ...</strong>：七个音的和弦（ex. 1 3 5 7 9 11 13）</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190626210847.png" alt="十三和弦就是尽头了" loading="lazy"></figure>
+<p>十三和弦就是尽头了，因为第 15 度的音实际上与根音相同（也就是常说的高两个八度）。</p>
+<h2 id="和弦家族和代号">和弦家族和代号</h2>
+<p><strong>大（major）</strong>：</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190626211701.png" alt="Cmaj 系列" loading="lazy"></figure>
+<p>仅有大三和弦不加字尾。大调总给人一种明亮、愉悦的感受，所能听到的欢快的曲目基本上都选择了大调音阶。</p>
+<p><strong>小（minor）</strong>：</p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190626211808.png" alt="Cm 系列" loading="lazy"></figure>
+<p>小三和弦也是哦。和大调相反，小调呈现出的是灰色、哀伤等负面情绪。</p>
+<p><strong>属（dominant）</strong>：</p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20190626211841.png" alt="C属和弦系列" loading="lazy"></figure>
+<p>属和弦独特的效果在蓝调音乐中起到重要的作用。</p>
+<p>之间的转换也有规律：例如大 7️⃣和弦转变到小7️⃣和弦，则需要给第 3️⃣、第 7️⃣度音降半音；转变到属 7️⃣和弦则需要给第 7️⃣度音降半音。</p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20190626211100.png" alt="大小属之间" loading="lazy"></figure>
+<p>那么之后的音怎么办呢？不管和弦堆叠了几个音，其中的第 9️⃣、第十一、第十三度音都指「大调音阶」上的音。</p>
+<h2 id="和弦变换">和弦变换</h2>
+<p><strong>挂（sus）</strong>：</p>
+<p>不要 3️⃣度音，换成 4️⃣或 2️⃣度音（默认为 4️⃣）：</p>
+<figure data-type="image" tabindex="6"><img src="https://cdn.mywpku.com/20190626212213.png" alt="" loading="lazy"></figure>
+<p><strong>加（add）</strong>：</p>
+<figure data-type="image" tabindex="7"><img src="https://cdn.mywpku.com/20190626212340.png" alt="" loading="lazy"></figure>
+<p>多弹一个音，在省略记法里偶数代表 add，而奇数就是 dominant 啦。</p>
+<p><strong>不弹（omit）</strong>：</p>
+<figure data-type="image" tabindex="8"><img src="https://cdn.mywpku.com/20190626212240.png" alt="" loading="lazy"></figure>
+<p><strong>转位和弦</strong>：</p>
+<p>通常情况下和弦的根音都应该是「最低音」，比如说 C 的大三和弦 <strong>C E G</strong> 啦。那么反过来——最低音不是根音的和弦就叫「转位和弦」。例如<strong>E G c</strong>：这时 <strong>C</strong> 被抬高了 8️⃣度，<strong>E</strong> 虽然是最低音但根音还是<strong>c</strong>，这也就是 <strong>C/E（C on E）</strong> 和弦。</p>
+<blockquote>
+<p>根音就是转位和弦的「原身」——某一个原位<s>原味</s>和弦建构的基础，它位于原位和弦的最下面（最低音），通过在上方堆叠音的方式来构成和弦。</p>
+</blockquote>
+<p>转位和弦又叫分数和弦，分子为根音 / 分母为最低音。</p>
+<figure data-type="image" tabindex="9"><img src="https://cdn.mywpku.com/20190626221929.png" alt="" loading="lazy"></figure>
+<p>Mark 一下这篇好文章：<a href="https://zhuanlan.zhihu.com/p/22211196">https://zhuanlan.zhihu.com/p/22211196</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ES6 - Set 和 Map 数据结构]]></title>
+        <id>https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou</id>
+        <link href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">
+        </link>
+        <updated>2019-06-09T11:04:20.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="set-集合">Set 集合</h2>
+<p>ES6 当中的 Set 和数学概念中的「集合」基本上是一致的。只不过它兼有普通 Array 的性质并且具备以下特点：</p>
+<ul>
+<li><strong>唯一</strong>：保证集合中各个元素都是不相同的</li>
+<li><strong>不发生类型转换</strong>：<code>5</code> 和 <code>&quot;5&quot;</code> 被视为两种不同元素，<code>0</code> 和 <code>false</code> 也是如此</li>
+<li><strong>NaN 等于自身</strong>：类似于精确相等运算符（<code>===</code>），主要的区别是 <code>NaN</code> 等于自身，而精确相等运算符认为 <code>NaN</code> 不等于自身。（Via <a href="http://es6.ruanyifeng.com/#docs/set-map">Set 和 Map 数据结构</a>）</li>
+<li><strong>空对象不相等</strong>：所有的空对象在集合中都被视为不同的元素</li>
+</ul>
+<p>其余的用法基本上和 Array 相同，利用 Set 集合很容易实现数学概念当中的「交并补集」，例如：</p>
+<pre><code class="language-javascript">// 并集
+let a = new Set([2, 3, 4, 5])
+let b = new Set([4, 5, 7, 8])
+let union = new Set([...a, ...b])
+// [2, 3, 4, 5, 7, 8]
+
+// 交集
+let a = new Set([2, 3, 4, 5])
+let b = new Set([4, 5, 7, 8])
+let intersection = new Set([...a].filter(item =&gt; b.has(item)))
+// [4, 5]
+
+// 补集
+let a = new Set([1, 2, 3, 4, 5, 6])
+let b = new Set([1, 2, 3])
+let c = new Set([...a].filter(item =&gt; !b.has(item)))
+// [4, 5, 6]
+</code></pre>
+<p>还多学到一个知识点：剩余参数的内部实现是 <code>for..of</code>，所以具有 <code>Iterable</code> 接口的对象都能使用剩余参数 <code>...</code>。</p>
+<p><code>new Set()</code> 当中可传递的不仅仅是数组，而是所有可进行遍历的对象（比如字符串）：</p>
+<pre><code class="language-javascript">// 字母去重
+let a = new Set(&quot;aaaaabbbcccccddd&quot;)
+// Set(4) {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;}
+</code></pre>
+<h2 id="map">Map</h2>
+<p>在实现 <strong>「键-&gt;值」对</strong> 时我们通常使用的是 <code>Object</code>，但 <code>Object</code> 的设计更像是实现了 <strong>「字符串-&gt;值」对</strong> 的模式，这意味着键名必须是一个合法的字符串（或是 <code>Symbol</code>）。<code>Map</code> 的设计则更加开放，键值均可为任意类型。</p>
+<p>和普通 <code>Object</code> 的用法稍有不同，<code>Map</code> 需要以方法 <code>set()</code> 和 <code>get()</code> 对实例进行操作，例如：</p>
+<pre><code class="language-javascript">let a = new Map()
+let b = { foo: 'bar' }
+a.set(b, 'barbarbar')
+// 我怎么知道这有什么用呢，反正我是把一个对象和 'barbarbar' 联系起来了
+a.get(b)
+// 得到 'barbarbar'
+</code></pre>
+<p>其实耐心尝试可以发现：<code>Map</code> 实际上是一个类似于 Hash 结构的存在，还是使用上面的例子，然后这样做会如何呢？</p>
+<pre><code class="language-javascript">a.get({ foo: 'bar' }) // 提示不存在
+</code></pre>
+<p>这是因为 <strong>只有对同一个对象的引用，Map 结构才将其视为同一个键</strong> （Thanks ruanyifeng）。换句话来说，以下的操作会出现的对应结果是：</p>
+<pre><code class="language-javascript">a.set('a', 'b')
+a.get('a') // undefined
+
+const keyA = 'a'
+a.set(keyA, 'b')
+a.get(keyA) // 'b'
+</code></pre>
+<p>那你可能会问了：<code>a.set('a', 'b')</code> 既然都没有报错，那我要怎么取到值啊？<br>
+答：转换成其它形式呗（比如 <code>Array</code>, <code>Object</code>）~</p>
+<h3 id="map-和-array-之间有些暧昧的关系">Map 和 Array 之间有些暧昧的关系：</h3>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/10/16/5bc55f315c755.jpg" alt="" loading="lazy"></figure>
+<p>From MDN：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map">Map 与数组的关系</a>，<code>Map</code> 的实现方法与构造二维数组有关。</p>
+<pre><code class="language-javascript">var kvArray = [[&quot;key1&quot;, &quot;value1&quot;], [&quot;key2&quot;, &quot;value2&quot;]];
+
+// 使用常规的Map构造函数可以将一个二维键值对数组转换成一个Map对象
+var myMap = new Map(kvArray);
+
+myMap.get(&quot;key1&quot;); // 返回值为 &quot;value1&quot;
+
+// 使用Array.from函数可以将一个Map对象转换成一个二维键值对数组
+console.log(Array.from(myMap)); // 输出和kvArray相同的数组
+
+// 或者在键或者值的迭代器上使用Array.from，进而得到只含有键或者值的数组
+console.log(Array.from(myMap.keys())); // 输出 [&quot;key1&quot;, &quot;key2&quot;]
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PM2 使用方法之从抓狂到情绪稳定]]></title>
+        <id>https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding</id>
+        <link href="https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding">
+        </link>
+        <updated>2019-06-09T11:04:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>PM2 可以说是 Node.js 上为数不多称得上「好用」的进程管理软件了。之前疯狂 diss 它无非是因为文档写得太繁杂，<a href="http://pm2.keymetrics.io/docs/usage/quick-start/">Quick Start</a> 介绍的内容又简单得过分。这次我还是以一个「普通用户」的角度来写写——我是怎么从情绪逐渐变态过渡到逐渐稳定的。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>PM2 可以说是 Node.js 上为数不多称得上「好用」的进程管理软件了。之前疯狂 diss 它无非是因为文档写得太繁杂，<a href="http://pm2.keymetrics.io/docs/usage/quick-start/">Quick Start</a> 介绍的内容又简单得过分。这次我还是以一个「普通用户」的角度来写写——我是怎么从情绪逐渐变态过渡到逐渐稳定的。</p>
+<!-- more -->
+<p><s>疯狂 diss ucloud，根本没感受到香港主机应该有的速度</s></p>
+<h2 id="懒人版npm-一招流">懒人版：npm 一招流</h2>
+<p>多数使用到 PM2 的场景大概是在线上环境部署个 koa, egg.js 什么的，然而看了无比强大的 <code>pm2 start</code> 命令使用文档后大概只会和我一样懵逼……</p>
+<p>「请告诉我怎么运行 <code>npm run dev</code> 就好了。」</p>
+<p>对于 <code>package.json</code> 已经定义好的 <code>scripts</code> 中的指令，假定你需要执行的是 <code>npm run dev</code>：</p>
+<pre><code class="language-bash">cd koa2 # 假定文件均放在 ko2 目录下
+pm2 start npm --name {name} -- run {script}
+</code></pre>
+<p>也就是 <code>pm2 start npm --name koa-development -- run dev</code>，一个 Koa 就启动好了。</p>
+<h2 id="一条命令实现开机启动">一条命令实现开机启动</h2>
+<p>好了，无论是生产环境还是开发环境，上面的一条命令应该足够你启动绝大多数项目了。为了重启后还能够自动启动所有的进程，第二条命令是：</p>
+<pre><code class="language-bash">pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freebsd | systemd | systemv | upstart | launchd | rcd | openrc]
+</code></pre>
+<p>执行后将会保存当前所有进程，再也不用重启后还要费力执行好几遍命令了。</p>
+<p><code>pm2 startup centos</code>，重启一下喝杯茶，这下我看你还怎么 502……</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[你不知道的 JavaScript - 异步和并发]]></title>
+        <id>https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-yi-bu-he-bing-fa</id>
+        <link href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-yi-bu-he-bing-fa">
+        </link>
+        <updated>2019-06-09T11:04:02.000Z</updated>
+        <summary type="html"><![CDATA[<p>（不得不说 YDKJS 作者的思路真的清奇，之前完全没有注意到这样的 point，一被点明后恍然大悟。好书，好书~</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>（不得不说 YDKJS 作者的思路真的清奇，之前完全没有注意到这样的 point，一被点明后恍然大悟。好书，好书~</p>
+<!-- more -->
+<h2 id="什么是异步啊">什么是异步啊？</h2>
+<p>来看下面的例子：</p>
+<pre><code class="language-javascript">// A
+setTimeout(function setTimeoutHandler(){
+    // C
+}, 1000 );
+// B
+</code></pre>
+<p>这个是异步吗？看起来是的：语句按顺序执行，先是 A，然后在 <code>setTimeout</code> 处<strong>设置个时间点</strong>开始计时，然后直接执行 B。等到 1000ms 后再回去执行 <code>setTimeoutHandler</code> 的内容。</p>
+<p>可是，以上的解释是<strong>不够全面</strong>的，且更让人窒息的是：在 ES6 出现之前，JavaScript 甚至没有一个完备的「异步」概念。（为什么呐？我也不知道，等我看到下卷我就知道了）</p>
+<p>还是这些代码，我们再改改：</p>
+<pre><code class="language-javascript">// A 现在
+setTimeout(function setTimeoutHandler(){
+    // 将来
+}, 1000 );
+// B 现在
+</code></pre>
+<p>明显，<code>A</code> 和 <code>B</code> 段都是「写出来就要马上执行」类的代码，属于程序需要现在运行的部分（跟 IIFE 木有关系，这词我乱造的）；而 <code>Handler</code> 内的代码则属于将来，是 1000ms 后需要运行的部分。</p>
+<p>让我们再想想：<code>setTimeoutHandler</code> 里的内容真的会在 1000ms 后的那一时刻就被执行吗？</p>
+<p>答案是：要不就刚刚好，要不就比约定的时间慢——不确定。因为存在 <code>事件循环</code>。</p>
+<h3 id="事件循环">事件循环</h3>
+<p>要解释上一问题其实很简单：只要弄清楚『在使用多个 <code>setTimeout</code> 这类「异步函数」的情况下，程序是如何执行的』这个问题，而首要的知识储备就是「事件循环」。</p>
+<p>我们先联想下平常生活中的「异步应用」：银行办理业务。通常情况下我只需要先到前台的叫号机选择业务、拿一个号，号上还写着我前面有多少人、准备办理的是什么业务等等。需要注意的是：在叫到我准备办理业务之前这段时间里，我是相对自由可以做任何事情的。</p>
+<p>转回当前的场景，我可以说：当前有多少人需要办理业务，就有多少个「号」。叫号机的「号」构成了一个<code>事件队列</code>，并且「先取号的人先办理业务（先进先出）」。</p>
+<p>YDKJS 的伪代码很好地说明了 <code>事件循环</code> 是个啥东东：</p>
+<pre><code class="language-javascript">var eventsWaiting = [getBackToWorkAfter1000ms, ..., ..., ...]; // 事件队列，每一个数组的元素都是一个事件，并且（先进，先出）
+var event;
+
+while (true) { // 一有事件就要准备执行，所以是无限循环的
+    if (eventsWaiting.length &gt; 0) { // 如果此时存在事件
+        // 拿到队列中的下一个事件
+        event = eventsWaiting.shift();
+        // 现在，执行下一个事件
+        try {
+            event();
+        }
+        catch (err) {
+            reportError(err);
+        }
+    }
+}
+</code></pre>
+<p>上一节里，我将程序的执行过程描述为：先是 A，然后在 <code>setTimeout</code> 处<strong>设置个时间点</strong>开始计时 blabla……。但 <code>时间点</code> 一词不够严谨——根据上面对异步的描述，实际上跟「时间」没半毛钱关系——我就是设定了一个「点」：就和取号机当中的「号」一样。</p>
+<blockquote>
+<p>一定要清楚，<code>setTimeout(..)</code> 并没有把你的回调函数挂在事件循环队列中。它所做的是设定一个定时器。当定时器到时后，环境会把你的回调函数放在事件循环中，这样，在未来某个时刻会摘下并执行这个回调。</p>
+</blockquote>
+<p>这个无限循环的 <code>while</code> 语块里，程序会按照先来先得的顺序从队列中摘下一个事件并执行。这些事件就是你所定义的回调函数。</p>
+<blockquote>
+<p>如果这时候事件循环中已经有 20 个项目了会怎样呢？你的回调就会等待。它得排在其他项目后面——通常没有抢占式的方式支持直接将其排到队首。这也解释了为什么 <code>setTimeout(..)</code> 定时器的精度可能不高。大体说来，只能确保你的回调函数不会在指定的时间间隔之前运行，但可能会在那个时刻运行，也可能在那之后运行，要根据事件队列的状态而定。<br>
+——《你不知道的 JavaScript》</p>
+</blockquote>
+<h2 id="为什么需要更高级的异步">为什么需要更高级的异步？</h2>
+<p>Mark 一下作者阐述「为什么需要更高级异步」的部分：</p>
+<blockquote>
+<p>但是，我们真的能一心多用吗？我们真的能同时执行两个有意识的、故意的动作，并对二者进行思考或推理吗？我们最高级的大脑功能是以并行多线程的形式运行的吗？<br>
+我们在假装并行执行多个任务时，实际上极有可能是在进行快速的上下文切换，比如与朋友或家人电话聊天的同时还试图打字。换句话说，我们是在两个或更多任务之间快速连续地来回切换，同时处理每个任务的微小片段。我们切换得如此之快，以至于对外界来说，我们就像是在并行地执行所有任务。<br>
+这听起来是不是和异步事件并发机制（比如 JavaScript 中的形式）很相似呢？！我不会在每次可能被打断的时候都转而投入到其他“进程”中。但是，中断的发生经常频繁到让我觉得我的大脑几乎是不停地切换到不同的上下文（即“进程”）中。很可能 JavaScript 引擎也是这种感觉。<br>
+所以通过回调表达异步的方式并不能很好地映射到同步的大脑计划行为。<br>
+如果我们（按照回调的方法）去计划一天中要做什么以及按什么顺序来做的话，事实就会像听上去那样荒谬。但是，在实际执行方面，我们的大脑就是这么运作的。记住，不是多任务，而是快速的上下文切换。<br>
+对我们程序员来说，编写异步事件代码，特别是当回调是唯一的实现手段时，困难之处就在于这种思考 / 计划的意识流对我们中的绝大多数来说是不自然的。<br>
+我们的思考方式是一步一步的，但是从同步转换到异步之后，可用的工具（回调）却不是按照一步一步的方式来表达的。<br>
+这就是为什么精确编写和追踪使用回调的异步 JavaScript 代码如此之难：因为这并不是我们大脑进行计划的运作方式。<br>
+——《你不知道的 JavaScript》</p>
+</blockquote>
+<h2 id="竞态条件">竞态条件</h2>
+<p>考虑这个例子：</p>
+<pre><code class="language-javascript">var a;
+
+function aFunc() {
+    a = &quot;I'm aFunc!&quot;
+    console.log(a)
+}
+
+function bFunc() {
+    a = &quot;I'm bFunc!&quot;
+    console.log(a)
+}
+
+ajax( &quot;http://some.url.1&quot;, aFunc );
+ajax( &quot;http://some.url.2&quot;, bFunc );
+</code></pre>
+<p>这 <code>aFunc()</code> 和 <code>bFunc()</code> 到底谁先执行呢？不知道——谁也不清楚这 <code>ajax</code> 里回调的函数什么时候才会被执行（取决于谁先从给定的地址中得到相应），这就导致了程序的不确定性。</p>
+<blockquote>
+<p>在 JavaScript 的特性中，这种函数顺序的不确定性就是通常所说的竞态条件（race condition），<code>foo()</code> 和 <code>bar()</code> 相互竞争，看谁先运行。具体来说，因为无法可靠预测 a 和 b 的最终结果，所以才是竞态条件。</p>
+</blockquote>
+<p>如何「规避」这种不确定性呢？最容易想到的一种方法就是「设置门闸」。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ES6 - 箭头函数]]></title>
+        <id>https://blog.g4.cx/post/es6-jian-tou-han-shu</id>
+        <link href="https://blog.g4.cx/post/es6-jian-tou-han-shu">
+        </link>
+        <updated>2019-06-09T11:03:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
+<!-- more -->
+<h2 id="更简明的语法-隐式返回">更简明的语法 &amp; 隐式返回</h2>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map(function(x) {
+      return x + 1;
+    })
+    console.log(aPlusOne); // (9) [2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre>
+<p>以上，<code>map</code> 的参数是 <code>function(x)</code> 这一个匿名函数，对数组的每一个元素 <code>+1</code>。有了 ES6，这一段代码可以这样修改：</p>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map( x =&gt; {
+      return x + 1;
+    })
+    console.log(aPlusOne);
+</code></pre>
+<p>也就是去掉了前面的 <code>function</code> 声明，将迭代器 <code>x</code> 直接写在 <code>a.map</code> 内作为参数。用一个箭头 <code>=&gt;</code> 指向函数块。</p>
+<p>哦当然咯，如果匿名函数内的参数不止一个，那么之前的 <code>a.map(x =&gt; ...)</code> 还是需要将参数用括号包起来，像这样：<code>a.map( (x,y) =&gt; ...)</code></p>
+<p>实际上，如果这个「匿名函数」的作用能简单到只用一行 <code>return</code> 就搞定的话，以上代码还能再简单一点：</p>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map( x =&gt; x+1);
+    console.log(aPlusOne);
+</code></pre>
+<p>箭头直接指向 return 后的表达式，这就是 <strong>隐式返回</strong>。</p>
+<h2 id="不绑定-this">不绑定 <code>this</code></h2>
+<p>我并不太懂这个「不绑定 <code>this</code>」更深层次是虾米意思……回头仔细看看，先照搬例子。</p>
+<pre><code class="language-javascript">    let Computer = {
+      company: 'ThinkPad',
+      name: 'Carbon X1',
+      features: ['fast', 'inexpensive', 'squared-shape'],
+      ram: '8G',
+      printFeatures: function() {
+        this.features.map(function(feature) {
+          console.log(`${this.name} is ${feature}`);
+        })
+      }
+    }
+    Computer.printFeatures(); // TypeError: Cannot read property 'name' of undefined
+</code></pre>
+<p>这里我们给 Computer 这个对象的 printFeatures 属性声明了一个匿名函数，但奇怪的是似乎取不到 <code>this.name</code>。<br>
+常规做法，我们会先给检查 <code>this</code> 是否绑定在 <code>Computer</code> 上：</p>
+<pre><code class="language-javascript">    let Computer = {
+        // ...
+        printFeatures: function() {
+        this.features.map(function(feature) {
+          console.log(this);
+         //  console.log(`${this.name} is ${feature}`);
+        })
+      }
+    }
+    Computer.printFeatures(); // undefined
+</code></pre>
+<p>实际上，<code>console.log(this)</code> 在 <code>features.map</code> 内的匿名函数里面，既不是直接赋值给对象上的属性，又没用什么 <code>callback</code> 之类的方法——导致 <code>this</code> 实际上指向的是 <code>window</code> 或者是 <code>undefined</code>（严格模式下）<br>
+在 ES5，可以使用这样的 Hack：</p>
+<pre><code class="language-javascript">    // ...
+      printFeatures: function() {
+        var computer = this;
+        this.features.map(function(feature) {
+          console.log(`${computer.name} is ${feature}`); // Carbon X1 is fast ...
+        })
+      }
+  // ...
+</code></pre>
+<p>由于 <code>var</code> 是函数作用域，且 <code>this</code> 所指向的也是 <code>Computer</code> 这个变量，则自然代码可以正常运行。<br>
+在 ES6 则没有这么麻烦了，直接使用「箭头函数」就可以避免这种不必要的尴尬：</p>
+<pre><code class="language-javascript">    // ...
+    printFeatures: function() {
+        this.features.map(feature =&gt; {
+          console.log(`${this.name} is ${feature}`);
+        })
+      }
+    // ...
+</code></pre>
+<p>为什么呢？实际上，箭头函数根本「没有自己的 <code>this</code>」：</p>
+<blockquote>
+<p>this 对象的指向是可变的，但是在箭头函数中，它是固定的。this 指向的固定化，并不是因为箭头函数内部有绑定 this 的机制，实际原因是箭头函数根本没有自己的 this，导致内部的 this 就是外层代码块的 this。正是因为它没有 this，所以也就不能用作构造函数。</p>
+</blockquote>
+<h2 id="箭头函数雷区">箭头函数雷区</h2>
+<blockquote>
+<p>ES6 标准入门 - 阮一峰<br>
+箭头函数使用注意点：<br>
+（1）函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。<br>
+（2）不可以当作构造函数，也就是说，不可以使用 new 命令，否则会抛出一个错误。<br>
+（3）不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</p>
+</blockquote>
+]]></content>
+    </entry>
+</feed>

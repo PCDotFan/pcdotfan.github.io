@@ -1,0 +1,252 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ES6 - 箭头函数 | PCDotFan</title>
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580030063525">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    ES6 - 箭头函数
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-09 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
+<!-- more -->
+<h2 id="更简明的语法-隐式返回">更简明的语法 &amp; 隐式返回</h2>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map(function(x) {
+      return x + 1;
+    })
+    console.log(aPlusOne); // (9) [2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre>
+<p>以上，<code>map</code> 的参数是 <code>function(x)</code> 这一个匿名函数，对数组的每一个元素 <code>+1</code>。有了 ES6，这一段代码可以这样修改：</p>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map( x =&gt; {
+      return x + 1;
+    })
+    console.log(aPlusOne);
+</code></pre>
+<p>也就是去掉了前面的 <code>function</code> 声明，将迭代器 <code>x</code> 直接写在 <code>a.map</code> 内作为参数。用一个箭头 <code>=&gt;</code> 指向函数块。</p>
+<p>哦当然咯，如果匿名函数内的参数不止一个，那么之前的 <code>a.map(x =&gt; ...)</code> 还是需要将参数用括号包起来，像这样：<code>a.map( (x,y) =&gt; ...)</code></p>
+<p>实际上，如果这个「匿名函数」的作用能简单到只用一行 <code>return</code> 就搞定的话，以上代码还能再简单一点：</p>
+<pre><code class="language-javascript">    let a = [1,2,3,4,5,6,7,8,9]
+    let aPlusOne = a.map( x =&gt; x+1);
+    console.log(aPlusOne);
+</code></pre>
+<p>箭头直接指向 return 后的表达式，这就是 <strong>隐式返回</strong>。</p>
+<h2 id="不绑定-this">不绑定 <code>this</code></h2>
+<p>我并不太懂这个「不绑定 <code>this</code>」更深层次是虾米意思……回头仔细看看，先照搬例子。</p>
+<pre><code class="language-javascript">    let Computer = {
+      company: 'ThinkPad',
+      name: 'Carbon X1',
+      features: ['fast', 'inexpensive', 'squared-shape'],
+      ram: '8G',
+      printFeatures: function() {
+        this.features.map(function(feature) {
+          console.log(`${this.name} is ${feature}`);
+        })
+      }
+    }
+    Computer.printFeatures(); // TypeError: Cannot read property 'name' of undefined
+</code></pre>
+<p>这里我们给 Computer 这个对象的 printFeatures 属性声明了一个匿名函数，但奇怪的是似乎取不到 <code>this.name</code>。<br>
+常规做法，我们会先给检查 <code>this</code> 是否绑定在 <code>Computer</code> 上：</p>
+<pre><code class="language-javascript">    let Computer = {
+        // ...
+        printFeatures: function() {
+        this.features.map(function(feature) {
+          console.log(this);
+         //  console.log(`${this.name} is ${feature}`);
+        })
+      }
+    }
+    Computer.printFeatures(); // undefined
+</code></pre>
+<p>实际上，<code>console.log(this)</code> 在 <code>features.map</code> 内的匿名函数里面，既不是直接赋值给对象上的属性，又没用什么 <code>callback</code> 之类的方法——导致 <code>this</code> 实际上指向的是 <code>window</code> 或者是 <code>undefined</code>（严格模式下）<br>
+在 ES5，可以使用这样的 Hack：</p>
+<pre><code class="language-javascript">    // ...
+      printFeatures: function() {
+        var computer = this;
+        this.features.map(function(feature) {
+          console.log(`${computer.name} is ${feature}`); // Carbon X1 is fast ...
+        })
+      }
+  // ...
+</code></pre>
+<p>由于 <code>var</code> 是函数作用域，且 <code>this</code> 所指向的也是 <code>Computer</code> 这个变量，则自然代码可以正常运行。<br>
+在 ES6 则没有这么麻烦了，直接使用「箭头函数」就可以避免这种不必要的尴尬：</p>
+<pre><code class="language-javascript">    // ...
+    printFeatures: function() {
+        this.features.map(feature =&gt; {
+          console.log(`${this.name} is ${feature}`);
+        })
+      }
+    // ...
+</code></pre>
+<p>为什么呢？实际上，箭头函数根本「没有自己的 <code>this</code>」：</p>
+<blockquote>
+<p>this 对象的指向是可变的，但是在箭头函数中，它是固定的。this 指向的固定化，并不是因为箭头函数内部有绑定 this 的机制，实际原因是箭头函数根本没有自己的 this，导致内部的 this 就是外层代码块的 this。正是因为它没有 this，所以也就不能用作构造函数。</p>
+</blockquote>
+<h2 id="箭头函数雷区">箭头函数雷区</h2>
+<blockquote>
+<p>ES6 标准入门 - 阮一峰<br>
+箭头函数使用注意点：<br>
+（1）函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。<br>
+（2）不可以当作构造函数，也就是说，不可以使用 new 命令，否则会抛出一个错误。<br>
+（3）不可以使用 arguments 对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</p>
+</blockquote>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/understanding-es6-kuai-ji-bian-liang" class="post-title gt-a-link">
+                    Understanding ES6 - 块级变量
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6a2718ba6556a741c645',
+    clientSecret: 'c33a68c8747fe1f16167cfa8167e74292b596f6f',
+    repo: 'pcdotfan.github.io',
+    owner: 'pcdotfan',
+    admin: ['pcdotfan'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
+<span class="cute">♥</span>
+<span class="sep"></span>
+Designed by
+<a href="https://fatesinger.com" target="_blank">bigfa</a>
+<span class="sep"></span>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

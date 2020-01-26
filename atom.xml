@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-26T15:58:50.484Z</updated>
+    <updated>2020-01-26T16:13:00.277Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -358,6 +358,130 @@ env.close()
 <p>Q-Learning: 初始化 Q 值 -&gt; 开始迭代 -&gt; 选择状态中最好动作（epsilon-greedy） -&gt; 执行动作并切换到新状态，获得奖励 -&gt; 根据 Q(s,a) 更新 Q 表 -&gt; 如果不是终止状态，循环往复</p>
 <p>SARSA：初始化 Q 值 -&gt; 开始迭代 -&gt; 选择状态中最好动作（epsilon-greedy） -&gt; 执行动作并切换到新状态，获得奖励 -&gt; 根据经验选择状态最好动作（epsilon-greedy） -&gt; 根据前一状态更新 Q 表 -&gt; 如果不是终止状态，循环往复</p>
 <p>可以看出，Q-Learning在每一步都采用 ε-greedy 来选取最好动作，这也就导致了下一次选取的动作跟上一次没有直接关系；而SARSA会根据前一状态更新 Q 表，而后再采用 ε-greedy 来选取最好动作。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[webpack [4] 的前世今生和模块化原理]]></title>
+        <id>https://blog.g4.cx/post/FRcnWGL5U</id>
+        <link href="https://blog.g4.cx/post/FRcnWGL5U">
+        </link>
+        <updated>2020-01-26T12:04:25.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="why-webpack">WHY WEBPACK ?</h2>
+<!-- 
+在前端还没有发展得这么迅速的十年前——要知道，JavaScript 真的只是 **Script**：只能依赖 `<script>` 标签内嵌在 HTML 当中使用。及时
+webpack作为一个构建工具，解决了前端代码缺少模块化能力的问题。我们写的代码，经过webpack构建和包装之后，能够在浏览器以模块化的方式运行。 -->
+<h2 id="从-indexjs-打包开始">从 index.js 打包开始</h2>
+<p>先创建两个简单的文件 <code>index.js</code> 和 <code>nav.js</code>，分别代表「入口文件」和「依赖模块」，看看通过 webpack 是怎么实现模块化的。</p>
+<h3 id="indexjs"><code>index.js</code>：</h3>
+<pre><code class="language-javascript">import nav from './nav'
+console.log(nav)
+</code></pre>
+<h3 id="navjs"><code>nav.js</code></h3>
+<pre><code class="language-javascript">export default 'nav'
+</code></pre>
+<p>在正确引入 <code>webpack</code> 后，直接执行 <code>npm run webpack -- --mode development</code> 即可生成打包后的文件 <code>dist/main.js</code>。</p>
+<h3 id="mainjs"><code>main.js</code></h3>
+<p>在 <code>development</code> 模式下生成的文件附带有详细注释，总体可简化为两个 IIFE：</p>
+<pre><code class="language-javascript">// webpackBootstrap
+(function(modules) { 
+    var installedModules = {};
+    // ...
+})
+
+//
+({
+/***/ &quot;./src/index.js&quot;: (function(module, __webpack_exports__, __webpack_require__) {...}),
+/***/ &quot;./src/nav.js&quot;: (function(module, __webpack_exports__, __webpack_require__) {...})
+});
+</code></pre>
+<h3 id="webpackbootstrap">webpackBootstrap</h3>
+<pre><code class="language-javascript">(function(modules) { // webpackBootstrap
+ 	// 模块缓存，先看下面
+ 	var installedModules = {};
+
+ 	// 主要执行引入的函数
+ 	function __webpack_require__(moduleId) {
+
+ 		// 检查是否已经导入了该模块
+ 		if(installedModules[moduleId]) {
+            // 返回模块的导出（module.exports）
+ 			return installedModules[moduleId].exports;
+ 		}
+ 		// 如果还没，就先创建一个对象记录一下 (并写入模块缓存)
+ 		var module = installedModules[moduleId] = {
+ 			i: moduleId, // i =&gt; id
+ 			l: false, // l =&gt; loaded 标记是否已导入
+ 			exports: {} // 模块的导出
+ 		};
+
+ 		// call 模块的函数
+ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+ 		// 标记一下我加载了
+ 		module.l = true;
+
+ 		// 返回模块的导出
+ 		return module.exports;
+ 	}
+
+
+ 	// 给 __webpack_require__ 暴露所有模块 (__webpack_modules__)
+ 	__webpack_require__.m = modules;
+
+ 	// 暴露模块缓存
+ 	__webpack_require__.c = installedModules;
+
+ 	// define getter function for harmony exports
+ 	__webpack_require__.d = function(exports, name, getter) {
+ 		if(!__webpack_require__.o(exports, name)) {
+ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+ 		}
+ 	};
+
+ 	// 给 exports 定义 __esModule （用在 Babel 上）
+ 	__webpack_require__.r = function(exports) {
+ 		if(typeof Symbol !== 'undefined' &amp;&amp; Symbol.toStringTag) {
+ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+ 		}
+ 		Object.defineProperty(exports, '__esModule', { value: true });
+ 	};
+
+ 	// create a fake namespace object
+ 	// mode &amp; 1: value is a module id, require it
+ 	// mode &amp; 2: merge all properties of value into the ns
+ 	// mode &amp; 4: return value when already ns object
+ 	// mode &amp; 8|1: behave like require
+ 	__webpack_require__.t = function(value, mode) {
+ 		if(mode &amp; 1) value = __webpack_require__(value);
+ 		if(mode &amp; 8) return value;
+ 		if((mode &amp; 4) &amp;&amp; typeof value === 'object' &amp;&amp; value &amp;&amp; value.__esModule) return value;
+ 		var ns = Object.create(null);
+ 		__webpack_require__.r(ns);
+ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+ 		if(mode &amp; 2 &amp;&amp; typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+ 		return ns;
+ 	};
+
+ 	// getDefaultExport function for compatibility with non-harmony modules
+ 	__webpack_require__.n = function(module) {
+ 		var getter = module &amp;&amp; module.__esModule ?
+ 			function getDefault() { return module['default']; } :
+ 			function getModuleExports() { return module; };
+ 		__webpack_require__.d(getter, 'a', getter);
+ 		return getter;
+ 	};
+
+ 	// Object.prototype.hasOwnProperty.call
+ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+
+ 	// __webpack_public_path__
+ 	__webpack_require__.p = &quot;&quot;;
+
+
+ 	// Load entry module and return exports
+ 	return __webpack_require__(__webpack_require__.s = &quot;./src/index.js&quot;);
+ })
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -850,86 +974,6 @@ print(optimal_policy)
 <p>转位和弦又叫分数和弦，分子为根音 / 分母为最低音。</p>
 <figure data-type="image" tabindex="9"><img src="https://cdn.mywpku.com/20190626221929.png" alt="" loading="lazy"></figure>
 <p>Mark 一下这篇好文章：<a href="https://zhuanlan.zhihu.com/p/22211196">https://zhuanlan.zhihu.com/p/22211196</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ES6 - Set 和 Map 数据结构]]></title>
-        <id>https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou</id>
-        <link href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">
-        </link>
-        <updated>2019-06-09T11:04:20.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="set-集合">Set 集合</h2>
-<p>ES6 当中的 Set 和数学概念中的「集合」基本上是一致的。只不过它兼有普通 Array 的性质并且具备以下特点：</p>
-<ul>
-<li><strong>唯一</strong>：保证集合中各个元素都是不相同的</li>
-<li><strong>不发生类型转换</strong>：<code>5</code> 和 <code>&quot;5&quot;</code> 被视为两种不同元素，<code>0</code> 和 <code>false</code> 也是如此</li>
-<li><strong>NaN 等于自身</strong>：类似于精确相等运算符（<code>===</code>），主要的区别是 <code>NaN</code> 等于自身，而精确相等运算符认为 <code>NaN</code> 不等于自身。（Via <a href="http://es6.ruanyifeng.com/#docs/set-map">Set 和 Map 数据结构</a>）</li>
-<li><strong>空对象不相等</strong>：所有的空对象在集合中都被视为不同的元素</li>
-</ul>
-<p>其余的用法基本上和 Array 相同，利用 Set 集合很容易实现数学概念当中的「交并补集」，例如：</p>
-<pre><code class="language-javascript">// 并集
-let a = new Set([2, 3, 4, 5])
-let b = new Set([4, 5, 7, 8])
-let union = new Set([...a, ...b])
-// [2, 3, 4, 5, 7, 8]
-
-// 交集
-let a = new Set([2, 3, 4, 5])
-let b = new Set([4, 5, 7, 8])
-let intersection = new Set([...a].filter(item =&gt; b.has(item)))
-// [4, 5]
-
-// 补集
-let a = new Set([1, 2, 3, 4, 5, 6])
-let b = new Set([1, 2, 3])
-let c = new Set([...a].filter(item =&gt; !b.has(item)))
-// [4, 5, 6]
-</code></pre>
-<p>还多学到一个知识点：剩余参数的内部实现是 <code>for..of</code>，所以具有 <code>Iterable</code> 接口的对象都能使用剩余参数 <code>...</code>。</p>
-<p><code>new Set()</code> 当中可传递的不仅仅是数组，而是所有可进行遍历的对象（比如字符串）：</p>
-<pre><code class="language-javascript">// 字母去重
-let a = new Set(&quot;aaaaabbbcccccddd&quot;)
-// Set(4) {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;}
-</code></pre>
-<h2 id="map">Map</h2>
-<p>在实现 <strong>「键-&gt;值」对</strong> 时我们通常使用的是 <code>Object</code>，但 <code>Object</code> 的设计更像是实现了 <strong>「字符串-&gt;值」对</strong> 的模式，这意味着键名必须是一个合法的字符串（或是 <code>Symbol</code>）。<code>Map</code> 的设计则更加开放，键值均可为任意类型。</p>
-<p>和普通 <code>Object</code> 的用法稍有不同，<code>Map</code> 需要以方法 <code>set()</code> 和 <code>get()</code> 对实例进行操作，例如：</p>
-<pre><code class="language-javascript">let a = new Map()
-let b = { foo: 'bar' }
-a.set(b, 'barbarbar')
-// 我怎么知道这有什么用呢，反正我是把一个对象和 'barbarbar' 联系起来了
-a.get(b)
-// 得到 'barbarbar'
-</code></pre>
-<p>其实耐心尝试可以发现：<code>Map</code> 实际上是一个类似于 Hash 结构的存在，还是使用上面的例子，然后这样做会如何呢？</p>
-<pre><code class="language-javascript">a.get({ foo: 'bar' }) // 提示不存在
-</code></pre>
-<p>这是因为 <strong>只有对同一个对象的引用，Map 结构才将其视为同一个键</strong> （Thanks ruanyifeng）。换句话来说，以下的操作会出现的对应结果是：</p>
-<pre><code class="language-javascript">a.set('a', 'b')
-a.get('a') // undefined
-
-const keyA = 'a'
-a.set(keyA, 'b')
-a.get(keyA) // 'b'
-</code></pre>
-<p>那你可能会问了：<code>a.set('a', 'b')</code> 既然都没有报错，那我要怎么取到值啊？<br>
-答：转换成其它形式呗（比如 <code>Array</code>, <code>Object</code>）~</p>
-<h3 id="map-和-array-之间有些暧昧的关系">Map 和 Array 之间有些暧昧的关系：</h3>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/10/16/5bc55f315c755.jpg" alt="" loading="lazy"></figure>
-<p>From MDN：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map">Map 与数组的关系</a>，<code>Map</code> 的实现方法与构造二维数组有关。</p>
-<pre><code class="language-javascript">var kvArray = [[&quot;key1&quot;, &quot;value1&quot;], [&quot;key2&quot;, &quot;value2&quot;]];
-
-// 使用常规的Map构造函数可以将一个二维键值对数组转换成一个Map对象
-var myMap = new Map(kvArray);
-
-myMap.get(&quot;key1&quot;); // 返回值为 &quot;value1&quot;
-
-// 使用Array.from函数可以将一个Map对象转换成一个二维键值对数组
-console.log(Array.from(myMap)); // 输出和kvArray相同的数组
-
-// 或者在键或者值的迭代器上使用Array.from，进而得到只含有键或者值的数组
-console.log(Array.from(myMap.keys())); // 输出 [&quot;key1&quot;, &quot;key2&quot;]
-</code></pre>
 ]]></content>
     </entry>
 </feed>

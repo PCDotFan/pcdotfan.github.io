@@ -1,65 +1,92 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1.0,minimal-ui">
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>你不知道的 JavaScript - This | PCDotFan</title>
-<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
 <link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580031548995">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-  </head>
-  <body>
-      <div class="surface-content">
-  <header class="site-header">
-      <div class="container">
-          <div class="topNav">
-              <ul class="subnav-ul">
-                
-                  
-                    <li><a href="/" aria-current="page">首页</a></li>
-                  
-                
-                  
-                    <li><a href="https://blog.g4.cx/tags/music" aria-current="page">音乐</a></li>
-                  
-                
-                  
-                    <li><a href="/post/about" aria-current="page">关于</a></li>
-                  
-                
-              </ul>
-              <div class="social-container">
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-              </div>
-          </div>
-          <h1 class="site-title">
-              <a href="https://blog.g4.cx">PCDotFan</a>
-          </h1>
-          <p class="site-description">A straight jacket for your mind.</p>
-      </div>
-  </header>
-      <main class="main-content">
-          <section class="block-content container">
-              <div class="block-postMetaWrap">
-                  <time>2019-06-09</time>
-                  
-              </div>
-              <h2 class="block-title">
-                  你不知道的 JavaScript - This
-              </h2>
-              
-              <div class="grap">
-                  <p>（之前一直不明白 Vue 组件里什么时候用 this 什么时候不用……果然基础不牢写什么都碰壁</p>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+      <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+        <p class="site-description">A straight jacket for your mind.</p>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    你不知道的 JavaScript - This
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-06-09 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>（之前一直不明白 Vue 组件里什么时候用 this 什么时候不用……果然基础不牢写什么都碰壁</p>
 <!-- more -->
 <p>什么是 <code>this</code>？之前我把它简单地理解为英文词义上的 <code>this</code>，也就是指向一个对象的本身。</p>
 <p>果然我掉进了作者所说的坑里，再 Mark 一下定义以防忘记：</p>
@@ -129,13 +156,22 @@ aFunc();
 <p>诶？为什么输出的是 <code>I'm window</code>？</p>
 <p>真奇怪，「执行链」的想法在这不靠谱！如上的插图即为这段代码的调试结果：<code>This</code> 是绑定在 <code>Window</code> 上的。</p>
 
-              </div>
-              <div class="tag-list">
-                  
-              </div>
-              
-                
-                  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.g4.cx/post/es6-mo-ban-zi-fu-chuan" class="post-title gt-a-link">
+                    ES6 - 模板字符串
+                </a>
+            </div>
+        
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -156,27 +192,43 @@ aFunc();
 
 </script>
 
-                
-      
-                
-              
-          </section>
-      </main>
-          <footer class="site-footer">
-        <p class="container">
-            Made with
+            
+
+            
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
 <span class="cute">♥</span>
 <span class="sep"></span>
 Designed by
 <a href="https://fatesinger.com" target="_blank">bigfa</a>
 <span class="sep"></span>
-Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-        </p>
-    </footer>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
 </div>
+
 <script>
     hljs.initHighlightingOnLoad()
 </script>
-      
-  </body>
+
+
+    </div>
+</div>
+</body>
 </html>

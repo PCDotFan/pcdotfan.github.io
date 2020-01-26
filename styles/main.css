@@ -311,9 +311,10 @@ html {
   font-size: 58%;
 }
 body {
-  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, opensans, Optima, 'Microsoft Yahei', sans-serif;
+  font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-size: 16px;
-  letter-spacing: 1.0382px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 button {
   outline: none !important;
@@ -1721,4 +1722,73 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 }
 .katex .mtable .col-align-r > .vlist {
   text-align: right;
+}
+.gt-bg-theme-color-first {
+  background: #ffffff !important;
+}
+.gt-bg-theme-color-second {
+  background: #ffffff !important;
+}
+.gt-bg-content-color-first {
+  background: #5f6169 !important;
+}
+.gt-bg-content-color-second {
+  background: #999fa7 !important;
+}
+.gt-bg-accent-color-first {
+  background: #f5bab2 !important;
+}
+.gt-bg-accent-color-second {
+  background: rgba(245, 186, 178, 0.14) !important;
+}
+.gt-c-theme-color-first {
+  color: #ffffff !important;
+}
+.gt-c-theme-color-second {
+  color: #ffffff !important;
+}
+.gt-c-content-color-first {
+  color: #5f6169 !important;
+}
+.gt-c-content-color-second {
+  color: #999fa7 !important;
+}
+.gt-c-accent-color-first {
+  color: #f5bab2 !important;
+}
+.gt-c-accent-color-second {
+  color: rgba(245, 186, 178, 0.14) !important;
+}
+body {
+  color: #5f6169 !important;
+}
+a {
+  color: #f5bab2 !important;
+}
+.post-content h1 {
+  display: inline-block;
+  color: #5f6169 !important;
+  position: relative!important;
+  background: linear-gradient(180deg, transparent 75%, rgba(245, 186, 178, 0.4) 0) !important;
+}
+.post-content h2 {
+  display: inline-block;
+  color: #5f6169 !important;
+  position: relative!important;
+  background: linear-gradient(180deg, transparent 75%, rgba(245, 186, 178, 0.4) 0) !important;
+}
+.gt-a-link {
+  color: #5f6169 !important;
+  position: relative!important;
+  background: linear-gradient(180deg, transparent 75%, rgba(245, 186, 178, 0.4) 0) !important;
+}
+.gt-post-content a {
+  color: #f5bab2 !important;
+}
+.gt-post-content blockquote {
+  background: rgba(245, 186, 178, 0.14) !important;
+  border-color: #f5bab2 !important;
+}
+.gt-post-content code {
+  background: rgba(245, 186, 178, 0.14) !important;
 }

@@ -1,286 +1,369 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1.0,minimal-ui">
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>PCDotFan</title>
-<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
 <link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580031548995">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="surface-content">
-  <header class="site-header">
-      <div class="container">
-          <div class="topNav">
-              <ul class="subnav-ul">
-                
-                  
-                    <li><a href="/" aria-current="page">首页</a></li>
-                  
-                
-                  
-                    <li><a href="https://blog.g4.cx/tags/music" aria-current="page">音乐</a></li>
-                  
-                
-                  
-                    <li><a href="/post/about" aria-current="page">关于</a></li>
-                  
-                
-              </ul>
-              <div class="social-container">
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-              </div>
-          </div>
-          <h1 class="site-title">
-              <a href="https://blog.g4.cx">PCDotFan</a>
-          </h1>
-          <p class="site-description">A straight jacket for your mind.</p>
-      </div>
-  </header>
-    <main class="main-content">
-        <section class="container">
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <div class="main-content">
+          <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            PCDotFan
+        </div>
+        <p class="site-description">A straight jacket for your mind.</p>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
             
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2020-01-02</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/2019-2020">2019-2020 跨年博客</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-            <a class="block-featured" href="https://blog.g4.cx/post/2019-2020">
-              <img src="https://cdn.mywpku.com/IMG_20191206_212447.jpg" alt="2019-2020 跨年博客">
-            </a>
-          
-          <p>写跨年博客的想法其实很早就有了，但每到真正下笔时却总是半途而废。再忙也好、再晚也好，我今天说什么都要把这篇博客写完推到网上。</p>
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://blog.g4.cx/tags/music" class="menu gt-a-link">
+                            音乐
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
 
-          <a class="more-link" href="https://blog.g4.cx/post/2019-2020">Read more..</a>
-      </div>
-  </article>
+        <div class="post-list-container">
+    <div class="post-inner">
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/2019-2020">
+                            <span class="post-title gt-c-content-color-first">2019-2020 跨年博客</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>写跨年博客的想法其实很早就有了，但每到真正下笔时却总是半途而废。再忙也好、再晚也好，我今天说什么都要把这篇博客写完推到网上。</p>
 
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-11-06</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/3Q3S9-46P">初入强化学习</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-            <a class="block-featured" href="https://blog.g4.cx/post/3Q3S9-46P">
-              <img src="https://cdn.mywpku.com/20191107094432.png" alt="初入强化学习">
-            </a>
-          
-          <p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2020-01-02 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+                    <a href="https://blog.g4.cx/post/2019-2020" class="post-feature-image"
+                       style="background-image: url('https://cdn.mywpku.com/IMG_20191206_212447.jpg')">
+                    </a>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/3Q3S9-46P">
+                            <span class="post-title gt-c-content-color-first">初入强化学习</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
 <p>翻译文章式学习，感觉没有比我更奇葩的了……看看翻完能不能搞懂这些。</p>
 
-          <a class="more-link" href="https://blog.g4.cx/post/3Q3S9-46P">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-07-28</time>
-          <!-- <span class="sep"></span> -->
-          
-            <a href="https://blog.g4.cx/tag/music" class="post-tag">
-              # 音乐
-            </a>
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/nicechord-104">Nicechord - 终止式和副属和弦</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>终止式指的是乐句或一首曲子「最后几个和弦」的安排方式。</p>
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-11-06 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+                    <a href="https://blog.g4.cx/post/3Q3S9-46P" class="post-feature-image"
+                       style="background-image: url('https://cdn.mywpku.com/20191107094432.png')">
+                    </a>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/nicechord-104">
+                            <span class="post-title gt-c-content-color-first">Nicechord - 终止式和副属和弦</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>终止式指的是乐句或一首曲子「最后几个和弦」的安排方式。</p>
 <p>之前提到的<a href="https://blog.g4.cx/post/nicechord-102/">和弦功能</a>当中有讲，不稳定的和弦会有接到稳定和弦的趋势——也就是从「外面」回到「家」。</p>
 
-          <a class="more-link" href="https://blog.g4.cx/post/nicechord-104">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-29</time>
-          <!-- <span class="sep"></span> -->
-          
-            <a href="https://blog.g4.cx/tag/music" class="post-tag">
-              # 音乐
-            </a>
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/nicechord-103">Nicechord - 音程名称</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/nicechord-103">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-27</time>
-          <!-- <span class="sep"></span> -->
-          
-            <a href="https://blog.g4.cx/tag/music" class="post-tag">
-              # 音乐
-            </a>
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/nicechord-102">Nicechord - 和弦功能</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/nicechord-102">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-26</time>
-          <!-- <span class="sep"></span> -->
-          
-            <a href="https://blog.g4.cx/tag/music" class="post-tag">
-              # 音乐
-            </a>
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/nicechord-001">Nicechord - 现代和弦代号</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/nicechord-001">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-09</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">ES6 - Set 和 Map 数据结构</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          
-          <a class="more-link" href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-09</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding">PM2 使用方法之从抓狂到情绪稳定</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>PM2 可以说是 Node.js 上为数不多称得上「好用」的进程管理软件了。之前疯狂 diss 它无非是因为文档写得太繁杂，<a href="http://pm2.keymetrics.io/docs/usage/quick-start/">Quick Start</a> 介绍的内容又简单得过分。这次我还是以一个「普通用户」的角度来写写——我是怎么从情绪逐渐变态过渡到逐渐稳定的。</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-09</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-yi-bu-he-bing-fa">你不知道的 JavaScript - 异步和并发</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>（不得不说 YDKJS 作者的思路真的清奇，之前完全没有注意到这样的 point，一被点明后恍然大悟。好书，好书~</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-yi-bu-he-bing-fa">Read more..</a>
-      </div>
-  </article>
-
-  <article class="block block--inset block--list">
-      <div class="block-postMetaWrap">
-          <time>2019-06-09</time>
-          <!-- <span class="sep"></span> -->
-          
-      </div>
-      <h2 class="block-title">
-          <a href="https://blog.g4.cx/post/es6-jian-tou-han-shu">ES6 - 箭头函数</a>
-      </h2>
-      <div class="block-snippet block-snippet--subtitle grap">
-          
-          <p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
-
-          <a class="more-link" href="https://blog.g4.cx/post/es6-jian-tou-han-shu">Read more..</a>
-      </div>
-  </article>
-
-
-
-
-            <div class="postsFooterNav">
-                <nav class="navigation pagination" role="navigation">
-		<div class="nav-links">
-      
-      
-        <a class="page-numbers" href="https://blog.g4.cx/page/2">下一页 <i class="iconfont icon-right"></i></a>
-      
-  </div>
-</nav>
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-07-28 ·
+                        </time>
+                        
+                            <a href="https://blog.g4.cx/tag/music" class="post-tag">
+                                # 音乐
+                            </a>
+                        
+                    </div>
+                </div>
+                
             </div>
-        </section>
-    </main>
-        <footer class="site-footer">
-        <p class="container">
-            Made with
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/nicechord-103">
+                            <span class="post-title gt-c-content-color-first">Nicechord - 音程名称</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-29 ·
+                        </time>
+                        
+                            <a href="https://blog.g4.cx/tag/music" class="post-tag">
+                                # 音乐
+                            </a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/nicechord-102">
+                            <span class="post-title gt-c-content-color-first">Nicechord - 和弦功能</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-27 ·
+                        </time>
+                        
+                            <a href="https://blog.g4.cx/tag/music" class="post-tag">
+                                # 音乐
+                            </a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/nicechord-001">
+                            <span class="post-title gt-c-content-color-first">Nicechord - 现代和弦代号</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-26 ·
+                        </time>
+                        
+                            <a href="https://blog.g4.cx/tag/music" class="post-tag">
+                                # 音乐
+                            </a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">
+                            <span class="post-title gt-c-content-color-first">ES6 - Set 和 Map 数据结构</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-09 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/pm2-shi-yong-fang-fa-zhi-cong-zhua-kuang-dao-qing-xu-wen-ding">
+                            <span class="post-title gt-c-content-color-first">PM2 使用方法之从抓狂到情绪稳定</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>PM2 可以说是 Node.js 上为数不多称得上「好用」的进程管理软件了。之前疯狂 diss 它无非是因为文档写得太繁杂，<a href="http://pm2.keymetrics.io/docs/usage/quick-start/">Quick Start</a> 介绍的内容又简单得过分。这次我还是以一个「普通用户」的角度来写写——我是怎么从情绪逐渐变态过渡到逐渐稳定的。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-09 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/ni-bu-zhi-dao-de-javascript-yi-bu-he-bing-fa">
+                            <span class="post-title gt-c-content-color-first">你不知道的 JavaScript - 异步和并发</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>（不得不说 YDKJS 作者的思路真的清奇，之前完全没有注意到这样的 point，一被点明后恍然大悟。好书，好书~</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-09 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://blog.g4.cx/post/es6-jian-tou-han-shu">
+                            <span class="post-title gt-c-content-color-first">ES6 - 箭头函数</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>「箭头函数」相较于之前的「匿名函数」其优点是具有更简明的语法、可以隐式返回、不绑定<code>this</code>。</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-06-09 ·
+                        </time>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        
+    </div>
+</div>
+
+        <div class="pagination-container">
+    
+    
+        <a href="https://blog.g4.cx/page/2" class="prev-page gt-a-link">下一页</a>
+    
+</div>
+
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">A straight jacket for your mind.</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Made with
 <span class="cute">♥</span>
 <span class="sep"></span>
 Designed by
 <a href="https://fatesinger.com" target="_blank">bigfa</a>
 <span class="sep"></span>
-Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-        </p>
-    </footer>
+Proudly published by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://blog.g4.cx/atom.xml" target="_blank">RSS</a>
 </div>
+
 <script>
     hljs.initHighlightingOnLoad()
 </script>
-      
-  </body>
+
+    </div>
+</div>
+</body>
 </html>
-
-    
-
-    
-

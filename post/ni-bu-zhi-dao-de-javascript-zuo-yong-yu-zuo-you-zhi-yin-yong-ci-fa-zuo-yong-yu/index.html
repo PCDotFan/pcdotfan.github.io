@@ -2,14 +2,15 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0,minimal-ui">
-<title>你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域 | PCDotFan</title>
+<title>你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域 |
+    PCDotFan</title>
 <link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
 <link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580033762263">
 
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
   <body>
-      <div class="surface-content">
+    <div class="surface-content">
   <header class="site-header">
       <div class="container">
           <div class="topNav">
@@ -48,18 +49,18 @@
           <p class="site-description">A straight jacket for your mind.</p>
       </div>
   </header>
-      <main class="main-content">
-          <section class="block-content container">
-              <div class="block-postMetaWrap">
-                  <time>2018-02-16</time>
-                  
-              </div>
-              <h2 class="block-title">
-                  你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域
-              </h2>
-              
-              <div class="grap">
-                  <h2 id="编译原理">编译原理</h2>
+    <main class="main-content">
+      <section class="block-content container">
+        
+        <h2 class="block-title">
+          你不知道的 JavaScript - 作用域 / 左右值引用 / 词法作用域
+        </h2>
+        <div class="block-postMetaWrap">
+          <time>2018-02-16</time>
+          
+        </div>
+        <div class="grap">
+          <h2 id="编译原理">编译原理</h2>
 <p>对于传统的编译型语言来说，「编译」大致需要经过三个步骤：分词、词法解读、生成机器阅读的「机器码」。JavaScript 稍微特殊些，因为它会在每次浏览器访问时（大多数情况下）才进行编译。</p>
 <ol>
 <li>分词：引擎会对代码逐行进行「分词/解构」。以<code>let a = 1;</code>为例，分词后的结果即是<code>let</code>、<code>a</code>、<code>=</code>、<code>2</code>、<code>;</code>，可以发现——空格在多数情况下决定着分词的位置。</li>
@@ -162,13 +163,11 @@ aFunc()
 <li>最佳实践——别用它们。</li>
 </ol>
 
-              </div>
-              <div class="tag-list">
-                  
-              </div>
-              
-                
-                  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        </div>
+        <div class="tag-list">
+          
+        </div>
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -188,14 +187,10 @@ aFunc()
   gitalk.render('gitalk-container')
 
 </script>
-
-                
-      
-                
-              
-          </section>
-      </main>
-          <footer class="site-footer">
+   
+      </section>
+    </main>
+        <footer class="site-footer">
         <p class="container">
             Made with
 <span class="cute">♥</span>

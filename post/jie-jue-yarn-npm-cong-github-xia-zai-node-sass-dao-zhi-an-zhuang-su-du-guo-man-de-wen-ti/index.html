@@ -2,14 +2,15 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0,minimal-ui">
-<title>解决 Yarn / NPM 从 GitHub 下载 Node-SASS 导致安装速度过慢的问题 | PCDotFan</title>
+<title>解决 Yarn / NPM 从 GitHub 下载 Node-SASS 导致安装速度过慢的问题 |
+    PCDotFan</title>
 <link rel="stylesheet" href="https://blog.g4.cx/styles/main.css">
 <link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580033762263">
 
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
   <body>
-      <div class="surface-content">
+    <div class="surface-content">
   <header class="site-header">
       <div class="container">
           <div class="topNav">
@@ -48,18 +49,18 @@
           <p class="site-description">A straight jacket for your mind.</p>
       </div>
   </header>
-      <main class="main-content">
-          <section class="block-content container">
-              <div class="block-postMetaWrap">
-                  <time>2018-04-06</time>
-                  
-              </div>
-              <h2 class="block-title">
-                  解决 Yarn / NPM 从 GitHub 下载 Node-SASS 导致安装速度过慢的问题
-              </h2>
-              
-              <div class="grap">
-                  <p>这问题困扰了我好久……明明 Registy 用的已经是 <code>http://registry.npm.taobao.org</code>，然而安装过程中还是会出现各种卡在 <code>Download from github</code> 的尴尬问题。</p>
+    <main class="main-content">
+      <section class="block-content container">
+        
+        <h2 class="block-title">
+          解决 Yarn / NPM 从 GitHub 下载 Node-SASS 导致安装速度过慢的问题
+        </h2>
+        <div class="block-postMetaWrap">
+          <time>2018-04-06</time>
+          
+        </div>
+        <div class="grap">
+          <p>这问题困扰了我好久……明明 Registy 用的已经是 <code>http://registry.npm.taobao.org</code>，然而安装过程中还是会出现各种卡在 <code>Download from github</code> 的尴尬问题。</p>
 <!-- more -->
 <p>Mark 一下解决方法：</p>
 <h2 id="registry-更换淘宝源">Registry 更换淘宝源</h2>
@@ -74,13 +75,11 @@ yarn：<br>
 <code>yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass</code></p>
 <p>再也不用输一次 <code>yarn</code> 还要顺带着把 <code>Proxifier</code> 带上了……</p>
 
-              </div>
-              <div class="tag-list">
-                  
-              </div>
-              
-                
-                  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        </div>
+        <div class="tag-list">
+          
+        </div>
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 <div id="gitalk-container"></div>
@@ -100,14 +99,10 @@ yarn：<br>
   gitalk.render('gitalk-container')
 
 </script>
-
-                
-      
-                
-              
-          </section>
-      </main>
-          <footer class="site-footer">
+   
+      </section>
+    </main>
+        <footer class="site-footer">
         <p class="container">
             Made with
 <span class="cute">♥</span>

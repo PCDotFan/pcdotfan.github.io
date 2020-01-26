@@ -5,7 +5,7 @@
 <title>强化学习：The Taxi Problem |
     PCDotFan</title>
 <link rel="stylesheet" href="/styles/main.css">
-<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580053711214">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580053971303">
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
@@ -87,11 +87,11 @@
 <figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20200126233211.png" alt="" loading="lazy"></figure>
 <p>Q-Learning 执行过程如下：</p>
 <ul>
-<li>初始化q表，将所有0和q值初始化为任意常数。</li>
+<li>初始化 Q 表，将所有 0 和 Q 值初始化为任意常数。</li>
 <li>让智能体对环境作出反应並探索这些操作（并选取 6 种操作中最好的一种）</li>
 <li>执行上一步选择的操作</li>
-<li>重复，选择最好的一种操作（q 值最高）</li>
-<li>使用公式更新 q 表值</li>
+<li>重复，选择最好的一种操作（Q 值最高）</li>
+<li>使用公式更新 Q 表值</li>
 <li>不断重复，如果达到状态则结束。</li>
 </ul>
 <pre><code class="language-python">import gym  

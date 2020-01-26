@@ -365,6 +365,7 @@ input[disabled] {
   line-height: 1.4;
   margin-bottom: 10px;
   font-weight: 700;
+  letter-spacing: 0.5px;
   color: #222831;
 }
 .block-title a:hover {
@@ -433,6 +434,9 @@ input[disabled] {
 .grap p {
   color: #404b69;
   text-indent: 2em;
+}
+.grap p a {
+  color: #f1404b;
 }
 .grap blockquote p {
   text-indent: 0;
@@ -763,4 +767,7 @@ input[disabled] {
 }
 .navigation {
   text-align: right;
+}
+.video {
+  max-width: 100%;
 }

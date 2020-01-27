@@ -150,7 +150,7 @@ a:hover {
 }
 pre {
   padding: 20px;
-  font: 14px/22px courier new;
+  font: 14px/22px Fira Code, Operator Mono, monospace;
   position: relative;
   margin: 20px 0;
   background-color: #f8f8f8;
@@ -165,7 +165,7 @@ code {
   background-color: #f8f8f8;
   word-break: break-word;
   letter-spacing: 0;
-  font: 14px/26px courier new;
+  font: 14px/26px Fira Code, Operator Mono, monospace;
 }
 pre code {
   padding: 0;

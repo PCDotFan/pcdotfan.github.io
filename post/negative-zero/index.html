@@ -5,7 +5,7 @@
 <title>JavaScript 未能解决的 「-0」 |
     PCDotFan</title>
 <link rel="stylesheet" href="/styles/main.css">
-<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580095497994">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1580117115497">
 <link href="https://fonts.googleapis.com/css?family=Fira+Code|Lato:400,700&display=swap" rel="stylesheet">
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
@@ -59,12 +59,17 @@
           <i class="dot">•</i>
           <time>2020-01-27</time>
           
+          <i class="dot">•</i>
+          <a href="https://blog.g4.cx/tag/57hHjyFRS" class="post-tag">
+            JavaScript
+          </a>
+          
         </div>
         <div class="grap">
           <p><code>-0</code>在表示一些自然规律时时常会被用到，例如我们使用 ± 来代表物理上速度、动量方向的正反；数学上<code>-0</code>参加极限运算也与<code>+0</code>的结果截然不同。</p>
 <p>但是在 JavaScript 里，别眨眼，诡异的事情来了……</p>
 <!-- more -->
-<pre><code class="language-javascript">var negZero = -0
+<pre><code class="language-javascript">const negZero = -0
 console.log(negZero) // -0
 
 console.log(negZero === 0) // true
@@ -98,6 +103,11 @@ console.log(Math.sign(negZero)) // -0
 
         </div>
         <div class="tag-list">
+          
+          <i class="dot">•</i>
+          <a href="https://blog.g4.cx/tag/57hHjyFRS" class="post-tags">
+            JavaScript
+          </a>
           
         </div>
           <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">

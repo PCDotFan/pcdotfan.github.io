@@ -413,6 +413,7 @@ input[disabled] {
 }
 .grap {
   margin-top: 30px;
+  margin-bottom: 10px;
 }
 .grap h2 {
   position: relative;
@@ -769,6 +770,6 @@ input[disabled] {
 .navigation {
   text-align: right;
 }
-.video {
+video {
   max-width: 100%;
 }

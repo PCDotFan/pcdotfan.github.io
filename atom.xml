@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-27T03:24:46.581Z</updated>
+    <updated>2020-01-27T03:25:01.401Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, PCDotFan</rights>
     <entry>
         <title type="html"><![CDATA[JavaScript 未能解决的 「-0」]]></title>
-        <id>https://blog.g4.cx/post/t4GYahYYN</id>
-        <link href="https://blog.g4.cx/post/t4GYahYYN">
+        <id>https://blog.g4.cx/post/negative-zero</id>
+        <link href="https://blog.g4.cx/post/negative-zero">
         </link>
         <updated>2020-01-27T02:59:25.000Z</updated>
         <summary type="html"><![CDATA[<p><code>-0</code>在表示一些自然规律时时常会被用到，例如我们使用 ± 来代表物理上速度、动量方向的正反；数学上<code>-0</code>参加极限运算也与<code>+0</code>的结果截然不同。</p>

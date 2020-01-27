@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-27T02:52:20.972Z</updated>
+    <updated>2020-01-27T03:24:46.581Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://blog.g4.cx/images/avatar.png</logo>
     <icon>https://blog.g4.cx/favicon.ico</icon>
     <rights>All rights reserved 2020, PCDotFan</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript 未能解决的 「-0」]]></title>
+        <id>https://blog.g4.cx/post/t4GYahYYN</id>
+        <link href="https://blog.g4.cx/post/t4GYahYYN">
+        </link>
+        <updated>2020-01-27T02:59:25.000Z</updated>
+        <summary type="html"><![CDATA[<p><code>-0</code>在表示一些自然规律时时常会被用到，例如我们使用 ± 来代表物理上速度、动量方向的正反；数学上<code>-0</code>参加极限运算也与<code>+0</code>的结果截然不同。</p>
+<p>但是在 JavaScript 里，别眨眼，诡异的事情来了……</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><code>-0</code>在表示一些自然规律时时常会被用到，例如我们使用 ± 来代表物理上速度、动量方向的正反；数学上<code>-0</code>参加极限运算也与<code>+0</code>的结果截然不同。</p>
+<p>但是在 JavaScript 里，别眨眼，诡异的事情来了……</p>
+<!-- more -->
+<pre><code class="language-javascript">var negZero = -0
+console.log(negZero) // -0
+
+console.log(negZero === 0) // true
+console.log(negZero === -0) //true
+console.log(negZero &lt; 0) // false
+console.log(negZero &gt; 0) // false
+console.log(negZero.toString()) // 0
+
+console.log(Math.sign(-3)) // -1
+console.log(Math.sign(negZero)) // -0
+</code></pre>
+<p>WTF？所以我要怎么知道 <code>-0</code> 是 <code>-0</code> 而不是 <code>0</code> 呢？既然通过转换字符串、<code>Math.sign</code> 的方法都行不通，只能从数学的方向下手：JavaScript 还好内置有 <code>Infinity</code> 和 <code>-Infinity</code> 的支持——我们知道 <code>1 / +0 === ∞</code> / <code>1 / -0 === -∞</code>，所以只需要根据这一性质就可以写出对应的 polyfill：</p>
+<pre><code class="language-javascript">const isNegZero = (v) =&gt; {
+    return 1 / v === -Infinity
+}
+</code></pre>
+<p>ES6 引入了 <code>Object.is</code> 来判断两个值是否相等（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is">MDN</a>），被认为是比 <code>===</code> 更严格的相等比较（哈哈哈哈哈哈四个等于出现了）</p>
+<p>如果下列任何一项成立，在没有类型转换的情况下，这两个值相同：</p>
+<ul>
+<li>两个值都是 <code>undefined</code></li>
+<li>两个值都是 <code>null</code></li>
+<li>两个值都是 <code>true</code> 或者都是 <code>false</code></li>
+<li>两个值是由相同个数的字符按照相同的顺序组成的字符串</li>
+<li>两个值指向同一个对象</li>
+<li>两个值都是数字并且</li>
+<li>都是正零 <code>+0</code></li>
+<li>都是负零 <code>-0</code></li>
+<li><strong>都是 <code>NaN</code></strong></li>
+<li>都是除零和 <code>NaN</code> 外的其它同一个数字</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[强化学习：[DQN] The Pacman]]></title>
         <id>https://blog.g4.cx/post/the-pacman</id>
@@ -850,86 +895,6 @@ print(optimal_policy)
 <p>转位和弦又叫分数和弦，分子为根音 / 分母为最低音。</p>
 <figure data-type="image" tabindex="9"><img src="https://cdn.mywpku.com/20190626221929.png" alt="" loading="lazy"></figure>
 <p>Mark 一下这篇好文章：<a href="https://zhuanlan.zhihu.com/p/22211196">https://zhuanlan.zhihu.com/p/22211196</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ES6 - Set 和 Map 数据结构]]></title>
-        <id>https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou</id>
-        <link href="https://blog.g4.cx/post/es6-set-he-map-shu-ju-jie-gou">
-        </link>
-        <updated>2019-06-09T11:04:20.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="set-集合">Set 集合</h2>
-<p>ES6 当中的 Set 和数学概念中的「集合」基本上是一致的。只不过它兼有普通 Array 的性质并且具备以下特点：</p>
-<ul>
-<li><strong>唯一</strong>：保证集合中各个元素都是不相同的</li>
-<li><strong>不发生类型转换</strong>：<code>5</code> 和 <code>&quot;5&quot;</code> 被视为两种不同元素，<code>0</code> 和 <code>false</code> 也是如此</li>
-<li><strong>NaN 等于自身</strong>：类似于精确相等运算符（<code>===</code>），主要的区别是 <code>NaN</code> 等于自身，而精确相等运算符认为 <code>NaN</code> 不等于自身。（Via <a href="http://es6.ruanyifeng.com/#docs/set-map">Set 和 Map 数据结构</a>）</li>
-<li><strong>空对象不相等</strong>：所有的空对象在集合中都被视为不同的元素</li>
-</ul>
-<p>其余的用法基本上和 Array 相同，利用 Set 集合很容易实现数学概念当中的「交并补集」，例如：</p>
-<pre><code class="language-javascript">// 并集
-let a = new Set([2, 3, 4, 5])
-let b = new Set([4, 5, 7, 8])
-let union = new Set([...a, ...b])
-// [2, 3, 4, 5, 7, 8]
-
-// 交集
-let a = new Set([2, 3, 4, 5])
-let b = new Set([4, 5, 7, 8])
-let intersection = new Set([...a].filter(item =&gt; b.has(item)))
-// [4, 5]
-
-// 补集
-let a = new Set([1, 2, 3, 4, 5, 6])
-let b = new Set([1, 2, 3])
-let c = new Set([...a].filter(item =&gt; !b.has(item)))
-// [4, 5, 6]
-</code></pre>
-<p>还多学到一个知识点：剩余参数的内部实现是 <code>for..of</code>，所以具有 <code>Iterable</code> 接口的对象都能使用剩余参数 <code>...</code>。</p>
-<p><code>new Set()</code> 当中可传递的不仅仅是数组，而是所有可进行遍历的对象（比如字符串）：</p>
-<pre><code class="language-javascript">// 字母去重
-let a = new Set(&quot;aaaaabbbcccccddd&quot;)
-// Set(4) {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;}
-</code></pre>
-<h2 id="map">Map</h2>
-<p>在实现 <strong>「键-&gt;值」对</strong> 时我们通常使用的是 <code>Object</code>，但 <code>Object</code> 的设计更像是实现了 <strong>「字符串-&gt;值」对</strong> 的模式，这意味着键名必须是一个合法的字符串（或是 <code>Symbol</code>）。<code>Map</code> 的设计则更加开放，键值均可为任意类型。</p>
-<p>和普通 <code>Object</code> 的用法稍有不同，<code>Map</code> 需要以方法 <code>set()</code> 和 <code>get()</code> 对实例进行操作，例如：</p>
-<pre><code class="language-javascript">let a = new Map()
-let b = { foo: 'bar' }
-a.set(b, 'barbarbar')
-// 我怎么知道这有什么用呢，反正我是把一个对象和 'barbarbar' 联系起来了
-a.get(b)
-// 得到 'barbarbar'
-</code></pre>
-<p>其实耐心尝试可以发现：<code>Map</code> 实际上是一个类似于 Hash 结构的存在，还是使用上面的例子，然后这样做会如何呢？</p>
-<pre><code class="language-javascript">a.get({ foo: 'bar' }) // 提示不存在
-</code></pre>
-<p>这是因为 <strong>只有对同一个对象的引用，Map 结构才将其视为同一个键</strong> （Thanks ruanyifeng）。换句话来说，以下的操作会出现的对应结果是：</p>
-<pre><code class="language-javascript">a.set('a', 'b')
-a.get('a') // undefined
-
-const keyA = 'a'
-a.set(keyA, 'b')
-a.get(keyA) // 'b'
-</code></pre>
-<p>那你可能会问了：<code>a.set('a', 'b')</code> 既然都没有报错，那我要怎么取到值啊？<br>
-答：转换成其它形式呗（比如 <code>Array</code>, <code>Object</code>）~</p>
-<h3 id="map-和-array-之间有些暧昧的关系">Map 和 Array 之间有些暧昧的关系：</h3>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/10/16/5bc55f315c755.jpg" alt="" loading="lazy"></figure>
-<p>From MDN：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map">Map 与数组的关系</a>，<code>Map</code> 的实现方法与构造二维数组有关。</p>
-<pre><code class="language-javascript">var kvArray = [[&quot;key1&quot;, &quot;value1&quot;], [&quot;key2&quot;, &quot;value2&quot;]];
-
-// 使用常规的Map构造函数可以将一个二维键值对数组转换成一个Map对象
-var myMap = new Map(kvArray);
-
-myMap.get(&quot;key1&quot;); // 返回值为 &quot;value1&quot;
-
-// 使用Array.from函数可以将一个Map对象转换成一个二维键值对数组
-console.log(Array.from(myMap)); // 输出和kvArray相同的数组
-
-// 或者在键或者值的迭代器上使用Array.from，进而得到只含有键或者值的数组
-console.log(Array.from(myMap.keys())); // 输出 [&quot;key1&quot;, &quot;key2&quot;]
-</code></pre>
 ]]></content>
     </entry>
 </feed>

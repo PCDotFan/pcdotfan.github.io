@@ -5,7 +5,7 @@
 <title>AORUS Gaming Box 从入坑到妥协 - Macbook Pro 不完全显卡坞笔记 [Win &amp; macOS] |
     PCDotFan</title>
 <link rel="stylesheet" href="/styles/main.css">
-<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1584960606481">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1584961525327">
 <link href="https://fonts.googleapis.com/css?family=Fira+Code|Lato:400,700&display=swap" rel="stylesheet">
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
@@ -106,10 +106,7 @@
 <p>相比之下 Win10 并不需要 <code>purge-wrangler.sh</code> 那样的脚本去帮助配置，你只需要好好把 BOOTCAMP 提供的驱动先安好，在 NVIDIA 官网上下载对应的显卡驱动（可能还有 CUDA）然后就好啦！</p>
 <p>才怪……</p>
 <p><s>你还需要掌握<strong>掐时间</strong>插入显卡坞的玄学技能，具体步骤是这样：</s></p>
-<p><s>1. 确保电脑是关机状态、显卡坞没插上</s><br>
-<s>2. 开机，紧盯屏幕</s><br>
-<s>3. 在蓝色微软 Logo 出现后<strong>立即</strong>插入显卡坞</s><br>
-<s>4. 如果你发现这时小圈圈转的比以前久了很多，甚至还带有一丢丢花屏的现象，恭喜你启动成功了！</s></p>
+<p><s>1. 确保电脑是关机状态、显卡坞没插上；2. 开机，紧盯屏幕；3. 在蓝色微软 Logo 出现后<strong>立即</strong>插入显卡坞；4. 如果你发现这时小圈圈转的比以前久了很多，甚至还带有一丢丢花屏的现象，恭喜你启动成功了！</s></p>
 <p><s>如果你的设备管理器里没看到显卡……恭喜你，从头再来一次吧！</s></p>
 <p><strong>2020-03-20 更新：</strong> 博主测试在 BOOTCAMP + win10 1909 的情况下，在开机状态直接插入 N 卡显卡坞可正常识别并自动打上对应驱动。</p>
 <p>为了避免之前的玄学操作以及你可能在启动时遇到的「<strong>错误 12</strong>」以及「<strong>无限卡 Windows Logo 问题</strong>」，接下来跟我做：</p>
@@ -121,11 +118,17 @@
 <li>复制下载的 <code>bootx64.efi</code> 文件到 <code>/EFI/Boot</code> 目录，这时候目录下应有 <code>bootx64.efi</code> 和 <code>bootx64_original.efi</code> 两个文件</li>
 </ol>
 <p>重启进入 Windows 后会弹出黑框提示 <code>Plug in your eGPU then press any key</code>，这时再插入显卡坞并按下任意键；如果你暂时不需要用到 eGPU，则按下 <code>Z</code> 键直接进入系统。</p>
+<p><code>apple_set_os-loader</code> 解决了连接上独显后，本身自带的核显不能使用的问题——这也很好地解释了之前为什么需要「卡时间插入显卡坞」：必须要等待核显加载完毕后再插入显卡坞。</p>
+<p>如果以上的 <code>apple_set_os_loader</code> 不能使用，也可以至作者 GitHub 下载源码，使用 docker 编译一下：<a href="https://github.com/aa15032261/apple_set_os-loader">https://github.com/aa15032261/apple_set_os-loader</a>，理论上支持包括 16 寸之内的新款机器。</p>
 <h3 id="几点注意-2">几点注意</h3>
 <ul>
-<li>一定要记得将 「NVIDIA 控制面板 -&gt; 管理3D设置」上的「电源管理模式」改为「高性能」；同理，Windows 控制面板下的电源管理计划也是如此，否则绝对能<strong>卡到怀疑人生</strong></li>
-</ul>
+<li>
+<p>一定要记得将 「NVIDIA 控制面板 -&gt; 管理3D设置」上的「电源管理模式」改为「高性能」；同理，Windows 控制面板下的电源管理计划也是如此，否则绝对能<strong>卡到怀疑人生</strong></p>
+</li>
+<li>
 <p>不知道是不是极少数个例：在拓展屏幕模式下（内外屏均工作）可以如丝般流畅，但一合盖就会出现问题：<strong>合盖后</strong> 内屏虽然能正常关闭、外部显示器正常工作，但……<strong>卡到怀疑人生</strong></p>
+</li>
+</ul>
 <p>查了好久还是从 eGPU.io 上找到了答案：你还需要掌握<strong>掐时间</strong>合盖的玄学技能，具体步骤是这样：</p>
 <p>如果你希望仅仅是外屏工作：</p>
 <ol>

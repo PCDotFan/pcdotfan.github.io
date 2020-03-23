@@ -5,7 +5,7 @@
 <title>AORUS Gaming Box 从入坑到妥协 - Macbook Pro 不完全显卡坞笔记 [Win &amp; macOS] |
     PCDotFan</title>
 <link rel="stylesheet" href="/styles/main.css">
-<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1584961525327">
+<link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1584961690737">
 <link href="https://fonts.googleapis.com/css?family=Fira+Code|Lato:400,700&display=swap" rel="stylesheet">
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
   </head>
@@ -118,7 +118,7 @@
 <li>复制下载的 <code>bootx64.efi</code> 文件到 <code>/EFI/Boot</code> 目录，这时候目录下应有 <code>bootx64.efi</code> 和 <code>bootx64_original.efi</code> 两个文件</li>
 </ol>
 <p>重启进入 Windows 后会弹出黑框提示 <code>Plug in your eGPU then press any key</code>，这时再插入显卡坞并按下任意键；如果你暂时不需要用到 eGPU，则按下 <code>Z</code> 键直接进入系统。</p>
-<p><code>apple_set_os-loader</code> 解决了连接上独显后，本身自带的核显不能使用的问题——这也很好地解释了之前为什么需要「卡时间插入显卡坞」：必须要等待核显加载完毕后再插入显卡坞。</p>
+<p><code>apple_set_os-loader</code> 解决了连接上独显后，本身自带的核显不能使用的问题——这也很好地解释了之前为什么需要「掐时间」：必须要等待核显加载完毕后再插入显卡坞。</p>
 <p>如果以上的 <code>apple_set_os_loader</code> 不能使用，也可以至作者 GitHub 下载源码，使用 docker 编译一下：<a href="https://github.com/aa15032261/apple_set_os-loader">https://github.com/aa15032261/apple_set_os-loader</a>，理论上支持包括 16 寸之内的新款机器。</p>
 <h3 id="几点注意-2">几点注意</h3>
 <ul>

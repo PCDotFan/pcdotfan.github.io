@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-01-27T09:25:17.513Z</updated>
+    <updated>2020-03-23T10:50:09.818Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, PCDotFan</rights>
     <entry>
         <title type="html"><![CDATA[JavaScript 未能解决的 「-0」]]></title>
-        <id>https://blog.g4.cx/post/negative-zero</id>
-        <link href="https://blog.g4.cx/post/negative-zero">
+        <id>https://blog.g4.cx/post/negative-zero/</id>
+        <link href="https://blog.g4.cx/post/negative-zero/">
         </link>
         <updated>2020-01-27T02:59:25.000Z</updated>
         <summary type="html"><![CDATA[<p><code>-0</code>在表示一些自然规律时时常会被用到，例如我们使用 ± 来代表物理上速度、动量方向的正反；数学上<code>-0</code>参加极限运算也与<code>+0</code>的结果截然不同。</p>
@@ -57,8 +57,8 @@ console.log(Math.sign(negZero)) // -0
     </entry>
     <entry>
         <title type="html"><![CDATA[强化学习：[DQN] The Pacman]]></title>
-        <id>https://blog.g4.cx/post/the-pacman</id>
-        <link href="https://blog.g4.cx/post/the-pacman">
+        <id>https://blog.g4.cx/post/the-pacman/</id>
+        <link href="https://blog.g4.cx/post/the-pacman/">
         </link>
         <updated>2020-01-26T15:33:26.000Z</updated>
         <content type="html"><![CDATA[<!--more-->
@@ -279,8 +279,8 @@ with tf.Session() as sess:
     </entry>
     <entry>
         <title type="html"><![CDATA[强化学习：The Taxi Problem]]></title>
-        <id>https://blog.g4.cx/post/the-taxi-problem</id>
-        <link href="https://blog.g4.cx/post/the-taxi-problem">
+        <id>https://blog.g4.cx/post/the-taxi-problem/</id>
+        <link href="https://blog.g4.cx/post/the-taxi-problem/">
         </link>
         <updated>2020-01-26T15:24:42.000Z</updated>
         <summary type="html"><![CDATA[<p>接上一篇 <a href="https://blog.g4.cx/post/the-frozen-lake/">强化学习：The Frozen Lake</a>，同样是使用 OpenAI Gym 来玩另一个游戏：The Taxi Problem。环境和接口都大同小异。</p>
@@ -407,8 +407,8 @@ env.close()
     </entry>
     <entry>
         <title type="html"><![CDATA[2019-2020 跨年博客]]></title>
-        <id>https://blog.g4.cx/post/2019-2020</id>
-        <link href="https://blog.g4.cx/post/2019-2020">
+        <id>https://blog.g4.cx/post/2019-2020/</id>
+        <link href="https://blog.g4.cx/post/2019-2020/">
         </link>
         <updated>2020-01-02T03:03:05.000Z</updated>
         <summary type="html"><![CDATA[<p>写跨年博客的想法其实很早就有了，但每到真正下笔时却总是半途而废。再忙也好、再晚也好，我今天说什么都要把这篇博客写完推到网上。</p>
@@ -490,8 +490,8 @@ env.close()
     </entry>
     <entry>
         <title type="html"><![CDATA[初入强化学习]]></title>
-        <id>https://blog.g4.cx/post/3Q3S9-46P</id>
-        <link href="https://blog.g4.cx/post/3Q3S9-46P">
+        <id>https://blog.g4.cx/post/3Q3S9-46P/</id>
+        <link href="https://blog.g4.cx/post/3Q3S9-46P/">
         </link>
         <updated>2019-11-06T14:50:56.000Z</updated>
         <summary type="html"><![CDATA[<p>原作 Medium 地址：https://medium.com/@adeshg7/introduction-to-reinforcement-learning-part-1-dbfd19c28a30</p>
@@ -579,8 +579,8 @@ env.close()
     </entry>
     <entry>
         <title type="html"><![CDATA[强化学习：冰湖游戏 The Frozen Lake]]></title>
-        <id>https://blog.g4.cx/post/the-frozen-lake</id>
-        <link href="https://blog.g4.cx/post/the-frozen-lake">
+        <id>https://blog.g4.cx/post/the-frozen-lake/</id>
+        <link href="https://blog.g4.cx/post/the-frozen-lake/">
         </link>
         <updated>2019-11-05T03:23:44.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -726,8 +726,8 @@ print(optimal_policy)
     </entry>
     <entry>
         <title type="html"><![CDATA[Nicechord - 终止式和副属和弦]]></title>
-        <id>https://blog.g4.cx/post/nicechord-104</id>
-        <link href="https://blog.g4.cx/post/nicechord-104">
+        <id>https://blog.g4.cx/post/nicechord-104/</id>
+        <link href="https://blog.g4.cx/post/nicechord-104/">
         </link>
         <updated>2019-07-28T09:14:32.000Z</updated>
         <summary type="html"><![CDATA[<p>终止式指的是乐句或一首曲子「最后几个和弦」的安排方式。</p>
@@ -770,8 +770,8 @@ print(optimal_policy)
     </entry>
     <entry>
         <title type="html"><![CDATA[Nicechord - 音程名称]]></title>
-        <id>https://blog.g4.cx/post/nicechord-103</id>
-        <link href="https://blog.g4.cx/post/nicechord-103">
+        <id>https://blog.g4.cx/post/nicechord-103/</id>
+        <link href="https://blog.g4.cx/post/nicechord-103/">
         </link>
         <updated>2019-06-29T02:00:22.000Z</updated>
         <summary type="html"><![CDATA[<p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
@@ -798,8 +798,8 @@ print(optimal_policy)
     </entry>
     <entry>
         <title type="html"><![CDATA[Nicechord - 和弦功能]]></title>
-        <id>https://blog.g4.cx/post/nicechord-102</id>
-        <link href="https://blog.g4.cx/post/nicechord-102">
+        <id>https://blog.g4.cx/post/nicechord-102/</id>
+        <link href="https://blog.g4.cx/post/nicechord-102/">
         </link>
         <updated>2019-06-27T03:14:55.000Z</updated>
         <summary type="html"><![CDATA[<p>和弦的功能我想了想，似乎都可以归到人们常说的<strong>起承转合</strong>四个字当中。</p>
@@ -846,8 +846,8 @@ print(optimal_policy)
     </entry>
     <entry>
         <title type="html"><![CDATA[Nicechord - 现代和弦代号]]></title>
-        <id>https://blog.g4.cx/post/nicechord-001</id>
-        <link href="https://blog.g4.cx/post/nicechord-001">
+        <id>https://blog.g4.cx/post/nicechord-001/</id>
+        <link href="https://blog.g4.cx/post/nicechord-001/">
         </link>
         <updated>2019-06-26T13:00:34.000Z</updated>
         <summary type="html"><![CDATA[<p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>

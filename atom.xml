@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-03-23T12:03:56.739Z</updated>
+    <updated>2020-06-10T13:54:08.824Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://blog.g4.cx/images/avatar.png</logo>
     <icon>https://blog.g4.cx/favicon.ico</icon>
     <rights>All rights reserved 2020, PCDotFan</rights>
+    <entry>
+        <title type="html"><![CDATA[HDU 创业班第四期 - 提炼核心竞争力]]></title>
+        <id>https://blog.g4.cx/post/iDfq39lWm/</id>
+        <link href="https://blog.g4.cx/post/iDfq39lWm/">
+        </link>
+        <updated>2020-06-10T13:06:41.000Z</updated>
+        <content type="html"><![CDATA[<p>我校创业班的每一期都干货满满，相比于网课上的分享输出要更密集更贴合实际。因为快考试了只能先提前记记，之后再补上详细内容。</p>
+<blockquote>
+<p>李景元 - Gamble Li 时印科技创始人 &amp; CEO<br>
+2019 福布斯 30U30<br>
+上海 30 位 30 岁以下青年创客<br>
+德国红点工业设计奖获得者<br>
+浙商创业青云榜 60 强</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="http://cdn.mywpku.com/WX20200610-211531@2x.png" alt="" loading="lazy"></figure>
+<p>颠覆式创新设计名字看起来很高大上，实际上就是最耳熟能详的技术创新、应用创新、商业模式创新这三项。技术创新不谈，要求所在赛道的技术能够比竞争者好 10 倍以上；商业模式创新也基本上不是属于大学生能做的范畴。真正人人都能做的就是应用创新了。</p>
+<figure data-type="image" tabindex="2"><img src="http://cdn.mywpku.com/QQ20200610-211601@2x.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="http://cdn.mywpku.com/QQ20200610-211626@2x.png" alt="" loading="lazy"></figure>
+<p>应用创新无非就是把用户的真实需求挖透，写出用户爱用的东西。这里就涉及到了敏捷开发的概念，也是我一直在这领域想错而又迟迟不肯改的观念——要求 0 到 100 都能从技术上讲得清楚，要求每一个细节都必须有真正实现才能叫 demo，否则就是商业欺诈。</p>
+<figure data-type="image" tabindex="4"><img src="http://cdn.mywpku.com/QQ20200610-211611@2x.png" alt="" loading="lazy"></figure>
+<p>事实并不是这样的。特别是像刚起步的创业者（尤其是大学生）相对来说资金不够，此时不回头地直接将未经市场检验的，没有想透挖透需求的 idea 直接产出，所要面对的就是上图的「传统产品开发模式」——我相信绝大部分工科生一开始和我一样比较务实较真，都会按部就班地做出东西后才有底气上台路演 BP。</p>
+<p>举一个李哥上课讲的例子，dropbox.com 在最开始之时没有一行代码，它所做的就是剪了个产品的宣传视频，把现在随处可见的「云端同步」、「秒级传输」之类的概念讲给大众听（那时候概念很超前，还没有百度网盘），放在 YouTube 上广受观众期待，评论区都是在问何时内测或公测，以及如何收费定价的声音。</p>
+<p>一拍脑袋就想出来的点子势必会遭受市场的毒打，那为了降低试错成本和增加多一些试错的机会，大可就把界面设计出来，后面的黑盒大可不必太过较真。自动售拉面机需要你怎么用最低的成本实现？答案是——做一个壳。机器后面站着人，只要用户付钱后把自己人工煮好的面条端出来就行。这样一来可以快速让市场检验想法，有问题就及时打磨或者及时收手；二来成本足够低，只要商业模式可行就能赚得到钱，何乐而不为。至于真正做大了——再想办法把曾经的黑盒实现了便是。</p>
+<figure data-type="image" tabindex="5"><img src="http://cdn.mywpku.com/QQ20200610-211647@2x.png" alt="" loading="lazy"></figure>
+<p>一个苹果的小故事：苹果的工业设计灵魂人物不仅是一个设计师，当时在做 3D Touch 时很多人觉得不明白——为什么要做一个用力去按下去的按钮，显得非常鸡肋。当时他的回应是这样的：用户在使用 3D Touch 时会记住手机上的触摸感和独有的力度反馈，在同一台设备上并不能看出有多么优越，但是当他们想要换掉 iPhone 而采用其它手机时就发现再也回不来了——因为 3D Touch 带给用户的感受是独一无二的。这种思路在现在的一加手机上也有借鉴，90 Hz / 120 Hz 的屏幕实际上是在培养用户使用习惯，从最深处挖掘用户的需求，粘性就是这样来的。</p>
+<figure data-type="image" tabindex="6"><img src="http://cdn.mywpku.com/QQ20200610-211639@2x.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="http://cdn.mywpku.com/WX20200610-214730@2x.png" alt="" loading="lazy"></figure>
+<p>他回忆曾经打挑战杯时遇上过很多很多黑幕，但是最终还是拿到了全国金奖。李哥更多的是把在这件事情上取得的成绩归功于「执念」二字。评委也不是傻子，一看就知道是用老师的项目来打比赛的团队当然不会给太高的分。但是只要你真正的付出努力去做了，你的心思会通过路演的 PPT 和计划书一点一点地渗透给他们，只要你在项目里存在着这样的执念，不管项目体量有多大，他们都会因为你的执念而为你评奖，仅此而已。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JavaScript 未能解决的 「-0」]]></title>
         <id>https://blog.g4.cx/post/negative-zero/</id>
@@ -842,59 +872,6 @@ print(optimal_policy)
 </blockquote>
 <p>所以，与其给每一个和弦都定义一个功能，倒不如把现有的所有和弦都归类到「起、承、转」当中，只要遵循着最简单的 TDS 公式来谱曲就会很好听啦！</p>
 <figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20190629095631.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nicechord - 现代和弦代号]]></title>
-        <id>https://blog.g4.cx/post/nicechord-001/</id>
-        <link href="https://blog.g4.cx/post/nicechord-001/">
-        </link>
-        <updated>2019-06-26T13:00:34.000Z</updated>
-        <summary type="html"><![CDATA[<p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>和弦的定义变得越来越宽泛，比较基本的解释就是：<strong>三度音或三度音以上的堆叠</strong>。</p>
-<!-- more -->
-<h2 id="和弦命名">和弦命名</h2>
-<p><strong>三和弦 triad</strong>：三个音的和弦</p>
-<p>「三和弦」之后命名规则发生变化——以「最后一个和弦音的度数」来命名，也就是：</p>
-<ul>
-<li><strong>七和弦 seventh</strong>：四个音的和弦（ex. 1 3 5 7）</li>
-<li><strong>九和弦 ninth</strong>：五个音的和弦（ex. 1 3 5 7 9）</li>
-<li><strong>十一和弦 ...</strong>：六个音的和弦（ex. 1 3 5 7 9 11）</li>
-<li><strong>十三和弦 ...</strong>：七个音的和弦（ex. 1 3 5 7 9 11 13）</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190626210847.png" alt="十三和弦就是尽头了" loading="lazy"></figure>
-<p>十三和弦就是尽头了，因为第 15 度的音实际上与根音相同（也就是常说的高两个八度）。</p>
-<h2 id="和弦家族和代号">和弦家族和代号</h2>
-<p><strong>大（major）</strong>：</p>
-<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190626211701.png" alt="Cmaj 系列" loading="lazy"></figure>
-<p>仅有大三和弦不加字尾。大调总给人一种明亮、愉悦的感受，所能听到的欢快的曲目基本上都选择了大调音阶。</p>
-<p><strong>小（minor）</strong>：</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190626211808.png" alt="Cm 系列" loading="lazy"></figure>
-<p>小三和弦也是哦。和大调相反，小调呈现出的是灰色、哀伤等负面情绪。</p>
-<p><strong>属（dominant）</strong>：</p>
-<figure data-type="image" tabindex="4"><img src="https://cdn.mywpku.com/20190626211841.png" alt="C属和弦系列" loading="lazy"></figure>
-<p>属和弦独特的效果在蓝调音乐中起到重要的作用。</p>
-<p>之间的转换也有规律：例如大 7️⃣和弦转变到小7️⃣和弦，则需要给第 3️⃣、第 7️⃣度音降半音；转变到属 7️⃣和弦则需要给第 7️⃣度音降半音。</p>
-<figure data-type="image" tabindex="5"><img src="https://cdn.mywpku.com/20190626211100.png" alt="大小属之间" loading="lazy"></figure>
-<p>那么之后的音怎么办呢？不管和弦堆叠了几个音，其中的第 9️⃣、第十一、第十三度音都指「大调音阶」上的音。</p>
-<h2 id="和弦变换">和弦变换</h2>
-<p><strong>挂（sus）</strong>：</p>
-<p>不要 3️⃣度音，换成 4️⃣或 2️⃣度音（默认为 4️⃣）：</p>
-<figure data-type="image" tabindex="6"><img src="https://cdn.mywpku.com/20190626212213.png" alt="" loading="lazy"></figure>
-<p><strong>加（add）</strong>：</p>
-<figure data-type="image" tabindex="7"><img src="https://cdn.mywpku.com/20190626212340.png" alt="" loading="lazy"></figure>
-<p>多弹一个音，在省略记法里偶数代表 add，而奇数就是 dominant 啦。</p>
-<p><strong>不弹（omit）</strong>：</p>
-<figure data-type="image" tabindex="8"><img src="https://cdn.mywpku.com/20190626212240.png" alt="" loading="lazy"></figure>
-<p><strong>转位和弦</strong>：</p>
-<p>通常情况下和弦的根音都应该是「最低音」，比如说 C 的大三和弦 <strong>C E G</strong> 啦。那么反过来——最低音不是根音的和弦就叫「转位和弦」。例如<strong>E G c</strong>：这时 <strong>C</strong> 被抬高了 8️⃣度，<strong>E</strong> 虽然是最低音但根音还是<strong>c</strong>，这也就是 <strong>C/E（C on E）</strong> 和弦。</p>
-<blockquote>
-<p>根音就是转位和弦的「原身」——某一个原位<s>原味</s>和弦建构的基础，它位于原位和弦的最下面（最低音），通过在上方堆叠音的方式来构成和弦。</p>
-</blockquote>
-<p>转位和弦又叫分数和弦，分子为根音 / 分母为最低音。</p>
-<figure data-type="image" tabindex="9"><img src="https://cdn.mywpku.com/20190626221929.png" alt="" loading="lazy"></figure>
-<p>Mark 一下这篇好文章：<a href="https://zhuanlan.zhihu.com/p/22211196">https://zhuanlan.zhihu.com/p/22211196</a></p>
 ]]></content>
     </entry>
 </feed>

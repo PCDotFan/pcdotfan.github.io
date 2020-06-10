@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-06-10T13:54:08.824Z</updated>
+    <updated>2020-06-10T13:55:42.245Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -16,13 +16,18 @@
         <link href="https://blog.g4.cx/post/iDfq39lWm/">
         </link>
         <updated>2020-06-10T13:06:41.000Z</updated>
-        <content type="html"><![CDATA[<p>我校创业班的每一期都干货满满，相比于网课上的分享输出要更密集更贴合实际。因为快考试了只能先提前记记，之后再补上详细内容。</p>
+        <summary type="html"><![CDATA[<p>我校创业班的每一期都干货满满，相比于网课上的分享输出要更密集更贴合实际。因为快考试了只能先暂时记记，之后再补上详细内容。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>我校创业班的每一期都干货满满，相比于网课上的分享输出要更密集更贴合实际。因为快考试了只能先暂时记记，之后再补上详细内容。</p>
+<!-- more -->
 <blockquote>
-<p>李景元 - Gamble Li 时印科技创始人 &amp; CEO<br>
-2019 福布斯 30U30<br>
-上海 30 位 30 岁以下青年创客<br>
-德国红点工业设计奖获得者<br>
-浙商创业青云榜 60 强</p>
+<p>李景元 - Gamble Li 时印科技创始人 &amp; CEO</p>
+<ul>
+<li>2019 福布斯 30U30</li>
+<li>上海 30 位 30 岁以下青年创客</li>
+<li>德国红点工业设计奖获得者</li>
+<li>浙商创业青云榜 60 强</li>
+</ul>
 </blockquote>
 <figure data-type="image" tabindex="1"><img src="http://cdn.mywpku.com/WX20200610-211531@2x.png" alt="" loading="lazy"></figure>
 <p>颠覆式创新设计名字看起来很高大上，实际上就是最耳熟能详的技术创新、应用创新、商业模式创新这三项。技术创新不谈，要求所在赛道的技术能够比竞争者好 10 倍以上；商业模式创新也基本上不是属于大学生能做的范畴。真正人人都能做的就是应用创新了。</p>

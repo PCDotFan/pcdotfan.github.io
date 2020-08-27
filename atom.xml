@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.g4.cx</id>
     <title>PCDotFan</title>
-    <updated>2020-06-10T14:04:50.205Z</updated>
+    <updated>2020-08-27T16:39:56.636Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.g4.cx"/>
     <link rel="self" href="https://blog.g4.cx/atom.xml"/>
@@ -493,15 +493,15 @@ env.close()
 <h2 id="2020">2020</h2>
 <p>我没想到 20 岁来的这么快，我也真正到了要面对些什么的年纪。先定个小计划：</p>
 <ul>
-<li>~<s>把谷歌 STEP 项目的简历投过去</s>~ 被拒了</li>
+<li><s>把谷歌 STEP 项目的简历投过去</s> 被拒了</li>
 <li>考下雅思或托福，学车</li>
 <li>做一个拿得出手的开源项目</li>
-<li>跟着导师还是得做些什么的对吧</li>
-<li>把极客苏打做出来</li>
+<li><s>跟着导师还是得做些什么的对吧</s> 8 好意思换导师了</li>
+<li><s>把极客苏打做出来</s> 过于艰巨 做不到</li>
 <li>去报吉他班，自己练真的没啥进步</li>
 <li>少油少甜戒糖戒油炸，虽然我知道肯定不会执行</li>
-<li>去一次日本或 HK（再乱也想去看看）</li>
-<li>看一场彩虹合唱团的演出</li>
+<li><s>去一次日本或 HK（再乱也想去看看）</s> 突然的疫情</li>
+<li><s>看一场彩虹合唱团的演出</s> 突然的疫情</li>
 <li>多陪陪家人，外公外婆真的老了</li>
 </ul>
 <p>当然了，思想上的一点点要求也得说说：</p>

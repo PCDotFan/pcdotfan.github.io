@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0,minimal-ui">
-<title>Nicechord - 音程名称 |
+<title>Flutter 调试模式白屏而 flutter run 正常的解决方案 |
     PCDotFan</title>
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="shortcut icon" href="https://blog.g4.cx/favicon.ico?v=1601133651726">
@@ -53,45 +53,28 @@
       <section class="block-content container">
         
         <h2 class="block-title">
-          Nicechord - 音程名称
+          Flutter 调试模式白屏而 flutter run 正常的解决方案
         </h2>
         <div class="block-postMetaWrap">
           <i class="dot">•</i>
-          <time>2019-06-29</time>
-          
-          <i class="dot">•</i>
-          <a href="https://blog.g4.cx/tag/music/" class="post-tag">
-            音乐
-          </a>
+          <time>2020-09-26</time>
           
         </div>
         <div class="grap">
-          <p>音程就是指「音与音之间的距离」，就像尺子有刻度一样——音和音之间也有同样固定的标准。</p>
-<!-- more -->
-<h2 id="度">度</h2>
-<figure data-type="image" tabindex="1"><img src="https://cdn.mywpku.com/20190629100213.png" alt="" loading="lazy"></figure>
-<p>例如 <strong>do-re-mi</strong>，从 <strong>do</strong> 到 <strong>mi</strong> 就是 <strong>3 度</strong>。</p>
-<p>度一定是 <strong>整数</strong>，这也意味着实际上对音进行升降不会影响到音程。不管是 <strong>降 mi</strong> 还是 <strong>升 mi</strong>，只要它仍叫做 <strong>mi</strong>，那么从 <strong>do</strong> 到 <strong>mi</strong> 就还是 <strong>3 度</strong>。</p>
-<p>那问题来了：既然降音和升音都是一样的，那它们之间的距离怎么表示啊？</p>
-<h2 id="纯音程和大音程">纯音程和大音程</h2>
-<figure data-type="image" tabindex="2"><img src="https://cdn.mywpku.com/20190629100955.png" alt="" loading="lazy"></figure>
-<p>在大调音阶里，每一个音和第一个音之间的距离，都叫做「完全」或「大」音程。我们把「度」分为两组：</p>
+          <p>这个问题困扰了我好久好久……少说有 2 个月，之前直接放弃选择去做其他的东西了。具体的问题表现为：</p>
 <ul>
-<li>1 4 5 8 纯（完全）音程（减 ⬅️完全 ➡️增）</li>
-<li>2 3 6 7 大音程（减 ⬅️小 ⬅️大 ➡️增）</li>
+<li><code>flutter run</code> 可以正常在真机、模拟器上运行</li>
+<li>使用 Android Studio 或是 Visual Studio Code 都会卡在 <code>installing build/app/outputs/flutter-apk/app-debug.apk...</code> 且不出现报错，此时机器上的 apk <strong>白屏</strong></li>
 </ul>
-<figure data-type="image" tabindex="3"><img src="https://cdn.mywpku.com/20190629102333.png" alt="" loading="lazy"></figure>
-<p>将 C 大调 <strong>do-re-mi-fa-sol-la-ti-do</strong> 和第一个音 <strong>do</strong> 来比较就会像上面这样👆。</p>
-<p>举个 🌰，只要音之间的距离为 <strong>4 度</strong>，那么就属于「纯音程」，读作 <strong>纯 4 度</strong>。那么，比原先音程的距离要 <strong>窄</strong> 或者 <strong>宽</strong> 的就用其它的形容词来表示。</p>
-<p>举个 🌰，<strong>do-降 mi</strong> 之间是 <strong>3 度</strong>，但 <strong>降 mi</strong> 比原本的音程要窄一个单位，那么就是 <strong>小 3 度</strong>。</p>
+<p>issue：https://github.com/flutter/flutter/issues/22338</p>
+<p>尝试了 <strong>开发者选项 -&gt; 调大 log buffer size</strong>、<code>flutter clean</code>、硬件加速等等无果之后，最后发现是 <strong>代理</strong> 的问题！！！</p>
+<p>在 <code>.bashrc</code> 或是其他你用的 shell 里给 <code>NO_PROXY</code> 加上 <code>localhost,127.0.0.1</code> 就可以了：</p>
+<pre><code>export NO_PROXY=localhost,127.0.0.1
+</code></pre>
+<p>这调试的体验真的是太一波三折了，直接劝退</p>
 
         </div>
         <div class="tag-list">
-          
-          <i class="dot">•</i>
-          <a href="https://blog.g4.cx/tag/music/" class="post-tags">
-            音乐
-          </a>
           
         </div>
           <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
